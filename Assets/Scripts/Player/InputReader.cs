@@ -6,7 +6,7 @@ namespace Player
     public class InputReader : MonoBehaviour
     {
         public RunningBehaviour runBehaviour;
-        // public JumpBehaviour jumpBehaviour;
+        public JumpBehaviour jumpBehaviour;
 
         private void Awake()
         {
@@ -15,11 +15,11 @@ namespace Player
                 Debug.LogError($"{name}: {nameof(runBehaviour)} is null!" +
                                $"\nThis class is dependant on a {nameof(runBehaviour)} component!");
             }
-            // if (jumpBehaviour == null)
-            // {
-            //     Debug.LogError($"{name}: {nameof(jumpBehaviour)} is null!" +
-            //                    $"\nThis class is dependant on a {nameof(jumpBehaviour)} component!");
-            // }
+            if (jumpBehaviour == null)
+            {
+                Debug.LogError($"{name}: {nameof(jumpBehaviour)} is null!" +
+                               $"\nThis class is dependant on a {nameof(jumpBehaviour)} component!");
+            }
         }
 
         public void HandleMoveInput(InputAction.CallbackContext context)
@@ -31,11 +31,10 @@ namespace Player
             if (runBehaviour != null)
                 runBehaviour.Move(moveDirection);
         }
-        // public void HandleJumpInput(InputAction.CallbackContext context)
-        // {
-        //     //context.phase == InputActionPhase.Started it's the same as context.started
-        //     if (jumpBehaviour && context.started)
-        //         jumpBehaviour.StartCoroutine(jumpBehaviour.JumpCoroutine());
-        // }
+        public void HandleJumpInput(InputAction.CallbackContext context)
+        {
+            if (jumpBehaviour && context.started)
+                jumpBehaviour.StartCoroutine(jumpBehaviour.Jump());
+        }
     }
 }

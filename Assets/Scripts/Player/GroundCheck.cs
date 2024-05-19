@@ -8,27 +8,20 @@ namespace Player
     {
         [SerializeField] private LayerMask whatIsGround;
         [SerializeField] private float rayHeight = 0.2f;
-        private CapsuleCollider _collider;
-        private float _height;
+        [SerializeField ]private Transform footPivot;
         private bool _grounded;
-
-        private void Start()
+        private float _groundedDistance;
+        public bool IsOnGround()
         {
-            _collider = GetComponentInChildren<CapsuleCollider>();
-            _height = _collider.height;
+            return _grounded = Physics.Raycast(footPivot.position, Vector3.down, rayHeight, whatIsGround);
         }
 
-        public bool GroundRay()
+        private void Draw()
         {
-            return _grounded = Physics.Raycast(transform.position, Vector3.down, _height / 2 + rayHeight, whatIsGround);
+            Gizmos.DrawRay(footPivot.position, Vector3.down * rayHeight );
         }
 
-        public void Draw()
-        {
-            Gizmos.DrawRay(transform.position,Vector3.down );
-        }
-
-        private void OnDrawGizmos()
+        void OnDrawGizmos()
         {
             Draw();
         }

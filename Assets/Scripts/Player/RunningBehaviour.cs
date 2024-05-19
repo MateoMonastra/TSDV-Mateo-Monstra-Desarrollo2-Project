@@ -9,21 +9,23 @@ namespace Player
     {
         [Header("Running Variables: ")] 
         [SerializeField] private float speed;
-
         [SerializeField] private float acceleration = 10;
+        [SerializeField] private float airMultiplayer;
+        [SerializeField] private float brakeMultiplier = .75f;
         private bool _shouldBrake;
 
-        [SerializeField] private GroundCheck groundCheck;
+        private GroundCheck _groundCheck;
         [SerializeField] private float groundDrag;
 
-        [Header("Orientation: ")] 
-        [SerializeField] private Transform orientation;
+        [Header("Orientation: ")] [SerializeField]
+        private Transform orientation;
 
         private Vector3 _moveDirection;
         private Rigidbody _rb;
 
         private void Start()
         {
+            _groundCheck = GetComponent<GroundCheck>();
             _rb = GetComponent<Rigidbody>();
             _rb.freezeRotation = true;
         }
@@ -40,13 +42,31 @@ namespace Player
 
         private void Update()
         {
-            _rb.drag = groundCheck.GroundRay() ? groundDrag : 0;
+            _rb.drag = _groundCheck.IsOnGround() ? groundDrag : 0;
             SpeedControl();
         }
 
         private void FixedUpdate()
         {
-            _rb.AddForce(_moveDirection.normalized * speed * acceleration, ForceMode.Force);
+            if (_groundCheck.IsOnGround())
+            {
+                _rb.AddForce(_moveDirection.normalized * speed * acceleration, ForceMode.Force);
+            }
+            else
+            {
+                _rb.AddForce(_moveDirection.normalized * speed * acceleration * airMultiplayer, ForceMode.Force);
+            }
+            
+            if (_shouldBrake)
+            {
+                var currentHorizontalVelocity = _rb.velocity;
+                currentHorizontalVelocity.y = 0;
+                var currentSpeed = currentHorizontalVelocity.magnitude;
+                
+                _rb.AddForce(-currentHorizontalVelocity * brakeMultiplier, ForceMode.Impulse);
+                _shouldBrake = false;
+                Debug.Log($"{name}: Character hit brake!\tCurrent Speed is {currentSpeed}");
+            }
         }
 
         private void SpeedControl()
