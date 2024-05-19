@@ -65,7 +65,6 @@ namespace Player
                 
                 _rb.AddForce(-currentHorizontalVelocity * brakeMultiplier, ForceMode.Impulse);
                 _shouldBrake = false;
-                Debug.Log($"{name}: Character hit brake!\tCurrent Speed is {currentSpeed}");
             }
         }
 

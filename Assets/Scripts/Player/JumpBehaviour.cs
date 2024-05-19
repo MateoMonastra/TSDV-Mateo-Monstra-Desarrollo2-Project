@@ -22,11 +22,11 @@ namespace Player
 
         public IEnumerator Jump()
         {
-            if (!_canJump && !_groundCheck.IsOnGround())
+            if (!_canJump || !_groundCheck.IsOnGround())
                 yield break;
+            
             _canJump = false;
-
-            Debug.Log("IsJumping");
+            
             _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
             yield return new WaitForFixedUpdate();
@@ -37,7 +37,7 @@ namespace Player
 
         private void Reset()
         {
-                _canJump = true;
+            _canJump = true;
         }
     }
 }
