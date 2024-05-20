@@ -16,6 +16,7 @@ namespace Player
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         private RunningBehaviour _pm;
+        [SerializeField]private Animator animator;
 
 
         [Header("Grappling")] 
@@ -53,6 +54,8 @@ namespace Player
             if (_grapplingCdTimer > 0 || _pm.activeGun) yield break;
 
             _grappling = true;
+            animator.SetBool("ShootGrappler",true);
+
             
             if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit,maxGrappleDistance,grappable))
             {
@@ -86,6 +89,7 @@ namespace Player
         }
         private void StopGrapple()
         {
+            animator.SetBool("ShootGrappler",false);
             _grappling = false;
             _grapplingCdTimer = grapplingCd;
             lr.enabled = false;

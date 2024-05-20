@@ -17,6 +17,7 @@ namespace Player
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
+        [SerializeField] private Animator animator;
         private RunningBehaviour _pm;
         
         [Header("Swinging")] 
@@ -58,6 +59,7 @@ namespace Player
 
             if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit,maxSwingDistance,grappable))
             {
+                animator.SetBool("ShootSwing",true);
                 _pm.activeGun = true;
                 _swingPoint = hit.point;
                 _joint = transform.AddComponent<SpringJoint>();
@@ -84,6 +86,7 @@ namespace Player
     
         public IEnumerator StopSwing()
         {
+            animator.SetBool("ShootSwing",false);
             lr.positionCount = 0;
             Destroy(_joint);
             _swingCdTimer = swingCd;
