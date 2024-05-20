@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -23,6 +21,9 @@ namespace Player
         private Vector3 _moveDirection;
         private Rigidbody _rb;
 
+        public bool freeze;
+        public bool activeGrapple;
+
         private void Start()
         {
             _groundCheck = GetComponent<GroundCheck>();
@@ -32,6 +33,8 @@ namespace Player
 
         public void Move(Vector3 direction)
         {
+            if (activeGrapple) return;
+            
             if (direction.magnitude < 0.0001f)
             {
                 _shouldBrake = true;
@@ -42,26 +45,27 @@ namespace Player
 
         private void Update()
         {
-            _rb.drag = _groundCheck.IsOnGround() ? groundDrag : 0;
+            _rb.drag = _groundCheck.IsOnGround() && !activeGrapple ? groundDrag : 0;
             SpeedControl();
+
+            if (freeze) _rb.velocity = Vector3.zero;
         }
 
         private void FixedUpdate()
         {
             if (_groundCheck.IsOnGround())
             {
-                _rb.AddForce(_moveDirection.normalized * speed * acceleration, ForceMode.Force);
+                _rb.AddForce(_moveDirection.normalized * (speed * acceleration), ForceMode.Force);
             }
             else
             {
-                _rb.AddForce(_moveDirection.normalized * speed * acceleration * airMultiplayer, ForceMode.Force);
+                _rb.AddForce(_moveDirection.normalized * (speed * acceleration * airMultiplayer), ForceMode.Force);
             }
             
             if (_shouldBrake)
             {
                 var currentHorizontalVelocity = _rb.velocity;
                 currentHorizontalVelocity.y = 0;
-                var currentSpeed = currentHorizontalVelocity.magnitude;
                 
                 _rb.AddForce(-currentHorizontalVelocity * brakeMultiplier, ForceMode.Impulse);
                 _shouldBrake = false;
@@ -70,12 +74,14 @@ namespace Player
 
         private void SpeedControl()
         {
-            Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+            if (activeGrapple) return;
+            
+            Vector3 flatSpeed = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
-            if (flatVel.magnitude > speed)
+            if (flatSpeed.magnitude > speed)
             {
-                Vector3 limitedVel = flatVel.normalized * speed;
-                _rb.velocity = new Vector3(limitedVel.x, _rb.velocity.y, limitedVel.z);
+                Vector3 limitedSpeed = flatSpeed.normalized * speed;
+                _rb.velocity = new Vector3(limitedSpeed.x, _rb.velocity.y, limitedSpeed.z);
             }
         }
     }

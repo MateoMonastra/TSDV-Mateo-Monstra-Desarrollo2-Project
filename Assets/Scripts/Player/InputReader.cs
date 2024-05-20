@@ -7,6 +7,7 @@ namespace Player
     {
         public RunningBehaviour runBehaviour;
         public JumpBehaviour jumpBehaviour;
+        public GrapplingBehaviour grapplingBehaviour;
 
         private void Awake()
         {
@@ -35,6 +36,12 @@ namespace Player
         {
             if (jumpBehaviour && context.started)
                 jumpBehaviour.StartCoroutine(jumpBehaviour.Jump());
+        }
+        
+        public void HandleGrapplingInput(InputAction.CallbackContext context)
+        {
+            if (grapplingBehaviour && context.started)
+                grapplingBehaviour.StartCoroutine(grapplingBehaviour.StartGrapple());
         }
     }
 }
