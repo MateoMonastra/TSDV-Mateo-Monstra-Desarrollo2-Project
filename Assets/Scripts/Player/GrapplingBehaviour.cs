@@ -7,9 +7,11 @@ namespace Player
 {
     public class GrapplingBehaviour : MonoBehaviour
     {
+        public Coroutine OnPlay;
+        
         [Header("References")] 
         [SerializeField] private Transform playerCamera;
-        [SerializeField] private LayerMask whatIsGrappleable;
+        [SerializeField] private LayerMask grappable;
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
@@ -27,6 +29,8 @@ namespace Player
         [SerializeField] private float grapplingCd;
         private float _grapplingCdTimer;
         private bool _grappling;
+        
+        
         
         private void Start()
         {
@@ -46,11 +50,11 @@ namespace Player
         }
         public IEnumerator StartGrapple()
         {
-            if (_grapplingCdTimer > 0) yield break;
+            if (_grapplingCdTimer > 0 || _pm.activeGun) yield break;
 
             _grappling = true;
             
-            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit,maxGrappleDistance,whatIsGrappleable))
+            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit,maxGrappleDistance,grappable))
             {
                 _grapplePoint = hit.point;
                 Invoke(nameof(ExecuteGrapple),grappleDelayTime);
@@ -85,7 +89,7 @@ namespace Player
             _grappling = false;
             _grapplingCdTimer = grapplingCd;
             lr.enabled = false;
-            _pm.activeGrapple = false;
+            _pm.activeGun = false;
         }
         public Vector3 CalculteJumpVelocity(Vector3 startPoint, Vector3 endPoint,float tarjectoryHeight)
         {
@@ -102,14 +106,14 @@ namespace Player
 
             return velocityXZ + velocityY;
         }
+        
+        private Vector3 _velocityToSet;
         public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
         {
-            _pm.activeGrapple = true;
+            _pm.activeGun = true;
             _velocityToSet = CalculteJumpVelocity(transform.position, targetPosition, trajectoryHeight);
             Invoke(nameof(SetVelocity),0.1f);
         }
-        
-        private Vector3 _velocityToSet;
         private void SetVelocity()
         {
             rb.velocity = _velocityToSet;

@@ -22,7 +22,7 @@ namespace Player
         private Rigidbody _rb;
 
         public bool freeze;
-        public bool activeGrapple;
+        public bool activeGun;
 
         private void Start()
         {
@@ -33,7 +33,7 @@ namespace Player
 
         public void Move(Vector3 direction)
         {
-            if (activeGrapple) return;
+            if (activeGun) return;
             
             if (direction.magnitude < 0.0001f)
             {
@@ -45,7 +45,7 @@ namespace Player
 
         private void Update()
         {
-            _rb.drag = _groundCheck.IsOnGround() && !activeGrapple ? groundDrag : 0;
+            _rb.drag = _groundCheck.IsOnGround() && !activeGun ? groundDrag : 0;
             SpeedControl();
 
             if (freeze) _rb.velocity = Vector3.zero;
@@ -53,6 +53,8 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (activeGun) return;
+     
             if (_groundCheck.IsOnGround())
             {
                 _rb.AddForce(_moveDirection.normalized * (speed * acceleration), ForceMode.Force);
@@ -74,7 +76,7 @@ namespace Player
 
         private void SpeedControl()
         {
-            if (activeGrapple) return;
+            if (activeGun) return;
             
             Vector3 flatSpeed = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 

@@ -8,6 +8,7 @@ namespace Player
         public RunningBehaviour runBehaviour;
         public JumpBehaviour jumpBehaviour;
         public GrapplingBehaviour grapplingBehaviour;
+        public SwingBehaviour swingBehaviour;
 
         private void Awake()
         {
@@ -16,6 +17,7 @@ namespace Player
                 Debug.LogError($"{name}: {nameof(runBehaviour)} is null!" +
                                $"\nThis class is dependant on a {nameof(runBehaviour)} component!");
             }
+
             if (jumpBehaviour == null)
             {
                 Debug.LogError($"{name}: {nameof(jumpBehaviour)} is null!" +
@@ -26,22 +28,62 @@ namespace Player
         public void HandleMoveInput(InputAction.CallbackContext context)
         {
             Vector2 moveInput = context.ReadValue<Vector2>();
-            
+
             Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
-            
+
             if (runBehaviour != null)
+            {
                 runBehaviour.Move(moveDirection);
+            }
         }
+
         public void HandleJumpInput(InputAction.CallbackContext context)
         {
             if (jumpBehaviour && context.started)
-                jumpBehaviour.StartCoroutine(jumpBehaviour.Jump());
+            {
+                if (jumpBehaviour.OnPlay != null)
+                {
+                    StopCoroutine(jumpBehaviour.OnPlay);
+                }
+
+                jumpBehaviour.OnPlay = StartCoroutine(jumpBehaviour.Jump());
+            }
         }
-        
+
         public void HandleGrapplingInput(InputAction.CallbackContext context)
         {
             if (grapplingBehaviour && context.started)
-                grapplingBehaviour.StartCoroutine(grapplingBehaviour.StartGrapple());
+            {
+                if (grapplingBehaviour.OnPlay != null)
+                {
+                    StopCoroutine(grapplingBehaviour.OnPlay);
+                }
+
+                grapplingBehaviour.OnPlay = StartCoroutine(grapplingBehaviour.StartGrapple());
+            }
+        }
+
+        public void HandleSwingInput(InputAction.CallbackContext context)
+        {
+            if (swingBehaviour != null)
+            {
+                if (swingBehaviour.OnPlay != null)
+                {
+                    StopCoroutine(swingBehaviour.OnPlay);
+                }
+
+                swingBehaviour.OnPlay = StartCoroutine(swingBehaviour.StartSwing());
+
+                if (context.canceled)
+                {
+                    if (swingBehaviour.OnStop != null)
+                    {
+                        StopCoroutine(swingBehaviour.StopSwing());
+                    }
+
+                    swingBehaviour.OnStop = StartCoroutine(swingBehaviour.StopSwing());
+                }
+            }
         }
     }
 }

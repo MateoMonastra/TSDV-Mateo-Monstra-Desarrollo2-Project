@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ShootGrapler",
+                    "name": "ShootGrappler",
                     "type": "Button",
                     "id": "f04c8396-7d36-45c8-bb6c-1883d79e7ddb",
                     "expectedControlType": "Button",
@@ -36,6 +36,15 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "1fe7a85b-d458-4db7-bfb4-5a77b6ec2355",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootSwing",
+                    "type": "Button",
+                    "id": "319a35be-d904-4674-b2f4-c1084c5f2b94",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -215,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "ShootGrapler",
+                    "action": "ShootGrappler",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -226,7 +235,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "ShootGrapler",
+                    "action": "ShootGrappler",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -237,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "ShootGrapler",
+                    "action": "ShootGrappler",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -248,7 +257,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "ShootGrapler",
+                    "action": "ShootGrappler",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -259,7 +268,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "ShootGrapler",
+                    "action": "ShootGrappler",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -271,6 +280,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "106344a2-e29c-4bb8-b762-69b0d413071a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootSwing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
