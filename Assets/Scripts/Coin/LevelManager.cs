@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace Coin
@@ -8,17 +9,16 @@ namespace Coin
     {
         enum Levels
         {
+            Level0,
             Level1,
             Level2,
-            Level3,
-            Level4
+            Level3
         }
 
         [SerializeField] private Levels currentLevel;
 
         [SerializeField] private List<Coin> coins;
         [SerializeField] private Collider player;
-        [SerializeField] 
 
         void Start()
         {
@@ -32,19 +32,28 @@ namespace Coin
 
         private void WinCondition()
         {
+            int coinCount = 0;
+            
+            foreach (var coin in coins)
+            {
+                if (coin.isActive)
+                {
+                    coinCount++;
+                }
+            }
             if (coins.Count == 0)
             {
                 currentLevel++;
             }
         }
 
-        private void InitLevel()
+        private void ChangeLevel()
         {
             
         }
-
-        private void WipeLevel()
+        private void InitLevel()
         {
+            
         }
     }
 }

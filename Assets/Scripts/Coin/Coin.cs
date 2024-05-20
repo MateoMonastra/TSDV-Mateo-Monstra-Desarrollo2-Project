@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,10 +8,12 @@ namespace Coin
     public class Coin : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed;
-        private MeshRenderer _mr;
+        private SkinnedMeshRenderer _skinnedMeshRenderer;
+
+        public bool isActive;
         private void Start()
         {
-            _mr = GetComponent<MeshRenderer>();
+            _skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         }
 
         private void Update()
@@ -21,7 +24,10 @@ namespace Coin
 
         public void OnTriggerEnter(Collider other)
         {
-            _mr.enabled = false;
+            _skinnedMeshRenderer.enabled = false;
+            isActive = false;
+            
+            
         }
         
         
