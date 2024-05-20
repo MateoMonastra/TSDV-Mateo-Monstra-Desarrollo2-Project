@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 3364394584869790845}
   - component: {fileID: 2418678129158392799}
   - component: {fileID: 3584209203261041537}
+  - component: {fileID: 8204652900823214084}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -335,7 +336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8534017556030565496}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.321026, y: 1.153, z: 0.94000006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -387,12 +388,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   acceleration: 10
-  airMultiplayer: 0.1
+  airMultiplayer: 2
   brakeMultiplier: 0.75
   groundDrag: 5
   orientation: {fileID: 3635126106142896811}
   freeze: 0
-  activeGrapple: 0
+  activeGun: 0
 --- !u!114 &3364394584869790845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,13 +438,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
-  whatIsGrappleable:
+  grappable:
     serializedVersion: 2
     m_Bits: 1024
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
-  maxGrappleDistance: 25
+  maxGrappleDistance: 100
   grappleDelayTime: 0.25
-  overshootYAxis: 2
+  overshootYAxis: 1
   grapplingCd: 0.5
+--- !u!114 &8204652900823214084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534017556030565496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30757e75e104ce84dae6d4d8b7649f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  grappable:
+    serializedVersion: 2
+    m_Bits: 1024
+  lr: {fileID: 0}
+  gunTip: {fileID: 0}
+  rb: {fileID: 2233852084180537}
+  maxSwingDistance: 100
+  swingCd: 0.25
+  maxDistance: 0.8
+  minDistance: 0.25
+  spring: 4.5
+  damper: 7
+  massScale: 4.5

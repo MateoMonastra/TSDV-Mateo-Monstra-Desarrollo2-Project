@@ -947,6 +947,18 @@ PrefabInstance:
       propertyPath: maxGrappleDistance
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8204652900823214084, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: lr
+      value: 
+      objectReference: {fileID: 2092074730}
+    - target: {fileID: 8204652900823214084, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: gunTip
+      value: 
+      objectReference: {fileID: 1862108491}
+    - target: {fileID: 8204652900823214084, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1761306115}
     - target: {fileID: 8534017556030565496, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1235,6 +1247,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b7184c205b837a4e847a851bc6525e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1146186452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8204652900823214084, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+  m_PrefabInstance: {fileID: 928133780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30757e75e104ce84dae6d4d8b7649f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1154247645
@@ -1982,6 +2005,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4334618329158239573, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
   m_PrefabInstance: {fileID: 1731798509}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1862108491 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2767742802360945667, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
+  m_PrefabInstance: {fileID: 1731798509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1878274139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 198764, guid: ae79364aca7e6e74b8b8d8300b504d29, type: 3}
@@ -2294,6 +2322,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1293508105}
   m_SourcePrefab: {fileID: 100100000, guid: 3e758f09cb4d777459433143fc3c7892, type: 3}
+--- !u!120 &2092074730 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 6719902745117965095, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
+  m_PrefabInstance: {fileID: 1731798509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2114739559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2310,6 +2343,10 @@ PrefabInstance:
       propertyPath: jumpBehaviour
       value: 
       objectReference: {fileID: 1146186449}
+    - target: {fileID: 804378947806867337, guid: 5457f548ae40779419b786cd82dc0490, type: 3}
+      propertyPath: swingBehaviour
+      value: 
+      objectReference: {fileID: 1146186452}
     - target: {fileID: 804378947806867337, guid: 5457f548ae40779419b786cd82dc0490, type: 3}
       propertyPath: grapplingBehaviour
       value: 
