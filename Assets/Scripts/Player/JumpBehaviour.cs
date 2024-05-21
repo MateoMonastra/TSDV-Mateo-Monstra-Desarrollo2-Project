@@ -8,6 +8,7 @@ namespace Player
     public class JumpBehaviour : MonoBehaviour
     {
         public Coroutine OnPlay;
+
         [SerializeField] private float jumpForce;
         [SerializeField] private float jumpCooldown;
 

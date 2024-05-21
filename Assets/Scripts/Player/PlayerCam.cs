@@ -13,14 +13,22 @@ namespace Player
         private float _xRotation;
         private float _yRotation;
 
+        private bool firstFrame = true; 
+
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
-        public IEnumerator UpdateCamera(Vector2 angle)
+        public void UpdateCamera(Vector2 angle)
         {
+            if (firstFrame)
+            {
+                firstFrame = false;
+                return;
+            }
+
             float mouseX = angle.x * Time.deltaTime * sensX;
             float mouseY = angle.y * Time.deltaTime * sensY;
 
@@ -31,8 +39,6 @@ namespace Player
 
             transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
-
-            return null;
         }
     }
 }
