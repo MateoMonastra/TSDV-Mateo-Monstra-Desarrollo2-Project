@@ -15,16 +15,34 @@ namespace Coin
             Level3
         }
 
+        enum LevelMode
+        {
+            Normal,
+            CoinRun
+        }
+
         [SerializeField] private Levels currentLevel;
+        [SerializeField] private LevelMode levelMode;
 
         [SerializeField] private List<Coin> coins;
+        int currentCoin = 0;
 
         void Update()
         {
-            WinCondition();
+            switch (levelMode)
+            {
+                case LevelMode.Normal:
+                    NormalMode();
+                    break;
+                case LevelMode.CoinRun:
+                    CoinRushMode();
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private void WinCondition()
+        private void NormalMode()
         {
             int coinCount = 0;
 
@@ -35,6 +53,7 @@ namespace Coin
                     coinCount++;
                 }
             }
+
             if (coinCount == 0)
             {
                 currentLevel++;
@@ -50,5 +69,36 @@ namespace Coin
         {
             SceneManager.LoadScene(indice);
         }
+
+
+        private void CoinRushMode() 
+        {
+
+            foreach (var coin in coins) 
+            {
+                coin.DesactivateCoin();
+            }
+
+            coins[currentCoin].ActivateCoin();
+
+            if (!coins[currentCoin].isActive)
+            {
+                currentCoin++;
+
+                if (currentCoin == coins.Count)
+                {
+                    currentLevel++;
+                    if (currentLevel > Levels.Level3)
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+                    ChangeLevel((int)currentLevel);
+                }
+                else
+                {
+                    coins[currentCoin].ActivateCoin();
+                }
+            }
+        } 
     }
 }

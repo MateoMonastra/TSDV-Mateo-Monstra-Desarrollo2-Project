@@ -26,10 +26,19 @@ namespace Coin
 
         public void OnTriggerEnter(Collider other)
         {
-            _skinnedMeshRenderer.enabled = false;
             isActive = false;
+            DesactivateCoin();
         }
-        
-        
+
+        public void ActivateCoin() 
+        {
+            _skinnedMeshRenderer.enabled = true;
+        }
+
+        public void DesactivateCoin()
+        {
+            _skinnedMeshRenderer.enabled = false;
+        }
+
     }
 }
