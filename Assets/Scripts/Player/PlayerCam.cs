@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,10 +11,8 @@ namespace Player
 
         [SerializeField] private Transform orientation;
 
-        private float _xRotation;
         private float _yRotation;
-
-        private bool firstFrame = true; 
+        private float _xRotation;
 
         private void Start()
         {
@@ -21,24 +20,21 @@ namespace Player
             Cursor.visible = false;
         }
 
+        private void Update()
+        {
+            transform.rotation = Quaternion.Euler(_yRotation, _xRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, _xRotation, 0);
+        }
+
         public void UpdateCamera(Vector2 angle)
         {
-            if (firstFrame)
-            {
-                firstFrame = false;
-                return;
-            }
-
             float mouseX = angle.x * Time.deltaTime * sensX;
             float mouseY = angle.y * Time.deltaTime * sensY;
 
-            _yRotation += mouseX;
+            _xRotation += mouseX;
 
-            _xRotation -= mouseY;
-            _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
-
-            transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
-            orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
+            _yRotation -= mouseY;
+            _yRotation = Mathf.Clamp(_yRotation, -90f, 90f);
         }
     }
 }

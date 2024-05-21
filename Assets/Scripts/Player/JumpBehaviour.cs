@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Net;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -11,31 +13,53 @@ namespace Player
 
         [SerializeField] private float jumpForce;
         [SerializeField] private float jumpCooldown;
+        [SerializeField] private float coyoteTime;
 
         private GroundCheck _groundCheck;
         private bool _canJump;
         private Rigidbody _rb;
+        private float _coyoteTimeTimer;
 
         private void Start()
         {
+            _coyoteTimeTimer = coyoteTime;
             _groundCheck = GetComponent<GroundCheck>();
             _rb = GetComponent<Rigidbody>();
             Reset();
         }
 
+        private void Update()
+        {
+            if (!_groundCheck.IsOnGround())
+            {
+                _coyoteTimeTimer -= Time.deltaTime;
+            }
+            else
+            {
+                _coyoteTimeTimer = coyoteTime;
+            }
+        }
+
         public IEnumerator Jump()
         {
-            if (!_canJump || !_groundCheck.IsOnGround())
+            if (!_canJump)
                 yield break;
-            
-            _canJump = false;
-            
-            _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
-            yield return new WaitForFixedUpdate();
-            _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            if (!_groundCheck.IsOnGround() && _coyoteTimeTimer <= 0 || _groundCheck.IsOnGround())
+            {
+                _canJump = false;
 
-            Invoke(nameof(Reset), jumpCooldown);
+                _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+
+                yield return new WaitForFixedUpdate();
+                _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+                Invoke(nameof(Reset), jumpCooldown);
+            }
+            else
+            {
+                yield break;
+            }
         }
 
         private void Reset()
