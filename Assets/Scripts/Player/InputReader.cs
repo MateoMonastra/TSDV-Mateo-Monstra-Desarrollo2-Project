@@ -11,21 +11,7 @@ namespace Player
         public PlayerCam playerCam;
         public GrapplingBehaviour grapplingBehaviour;
         public SwingBehaviour swingBehaviour;
-
-        private void Awake()
-        {
-            if (runBehaviour == null)
-            {
-                Debug.LogError($"{name}: {nameof(runBehaviour)} is null!" +
-                               $"\nThis class is dependant on a {nameof(runBehaviour)} component!");
-            }
-
-            if (jumpBehaviour == null)
-            {
-                Debug.LogError($"{name}: {nameof(jumpBehaviour)} is null!" +
-                               $"\nThis class is dependant on a {nameof(jumpBehaviour)} component!");
-            }
-        }
+        public PauseUI pauseUI;
 
         public void HandleMoveInput(InputAction.CallbackContext context)
         {
@@ -95,6 +81,13 @@ namespace Player
 
                     swingBehaviour.OnStop = StartCoroutine(swingBehaviour.StopSwing());
                 }
+            }
+        }
+        public void HandlePauseMenuInput(InputAction.CallbackContext context)
+        {
+            if (pauseUI && context.started)
+            {
+                pauseUI.InitPauseMenu();
             }
         }
     }

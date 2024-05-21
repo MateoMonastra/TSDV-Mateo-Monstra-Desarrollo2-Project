@@ -75,7 +75,19 @@ MonoBehaviour:
     m_ActionId: 079fdb14-914d-4faa-8065-0a21ddacb12a
     m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 804378947806867337}
+        m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
+        m_MethodName: HandleCamInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d8e5bfa1-d66a-4e6c-8166-a66706e63359
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
@@ -185,5 +197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runBehaviour: {fileID: 0}
   jumpBehaviour: {fileID: 0}
+  playerCam: {fileID: 0}
   grapplingBehaviour: {fileID: 0}
   swingBehaviour: {fileID: 0}
