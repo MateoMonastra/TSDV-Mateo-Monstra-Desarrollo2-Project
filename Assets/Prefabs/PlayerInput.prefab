@@ -178,6 +178,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 319a35be-d904-4674-b2f4-c1084c5f2b94
     m_ActionName: Player/ShootSwing[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 804378947806867337}
+        m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
+        m_MethodName: HandlePauseMenuInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a5f7d613-4992-43e9-86b0-e9fa03cf4bae
+    m_ActionName: Player/PauseMenu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -200,3 +216,4 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   grapplingBehaviour: {fileID: 0}
   swingBehaviour: {fileID: 0}
+  pauseUI: {fileID: 0}

@@ -9,7 +9,7 @@ namespace Coin
     {
         enum Levels
         {
-            Level0,
+            Level0 = 1,
             Level1,
             Level2,
             Level3
@@ -18,12 +18,6 @@ namespace Coin
         [SerializeField] private Levels currentLevel;
 
         [SerializeField] private List<Coin> coins;
-        [SerializeField] private Collider player;
-
-        void Start()
-        {
-            currentLevel = Levels.Level0;
-        }
 
         void Update()
         {
@@ -33,7 +27,7 @@ namespace Coin
         private void WinCondition()
         {
             int coinCount = 0;
-            
+
             foreach (var coin in coins)
             {
                 if (coin.isActive)
@@ -44,7 +38,7 @@ namespace Coin
             if (coinCount == 0)
             {
                 currentLevel++;
-                if (currentLevel>Levels.Level3)
+                if (currentLevel > Levels.Level3)
                 {
                     SceneManager.LoadScene(0);
                 }
