@@ -22,7 +22,7 @@ namespace Coin
 
         void Start()
         {
-            currentLevel = Levels.Level1;
+            currentLevel = Levels.Level0;
         }
 
         void Update()
@@ -41,19 +41,20 @@ namespace Coin
                     coinCount++;
                 }
             }
-            if (coins.Count == 0)
+            if (coinCount == 0)
             {
                 currentLevel++;
+                if (currentLevel>Levels.Level3)
+                {
+                    SceneManager.LoadScene(0);
+                }
+                ChangeLevel((int)currentLevel);
             }
         }
 
-        private void ChangeLevel()
+        private void ChangeLevel(int indice)
         {
-            
-        }
-        private void InitLevel()
-        {
-            
+            SceneManager.LoadScene(indice);
         }
     }
 }

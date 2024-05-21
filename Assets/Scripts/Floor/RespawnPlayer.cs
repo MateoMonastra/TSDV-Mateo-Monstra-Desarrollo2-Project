@@ -1,4 +1,5 @@
 using System;
+using Player;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -34,8 +35,9 @@ namespace Floor
         {
             _transitionTimer = transitionCoolDown;
             transition.enabled = true;
-            player.transform.position = checkPoint.position;
             
+            player.transform.position = checkPoint.position;
+
         }
     }
 }

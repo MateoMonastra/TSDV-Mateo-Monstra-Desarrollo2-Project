@@ -87,7 +87,7 @@ namespace Player
             Invoke(nameof(StopGrapple), 1f);
             
         }
-        private void StopGrapple()
+        public void StopGrapple()
         {
             animator.SetBool("ShootGrappler",false);
             _grappling = false;
@@ -95,7 +95,7 @@ namespace Player
             lr.enabled = false;
             _pm.activeGun = false;
         }
-        public Vector3 CalculteJumpVelocity(Vector3 startPoint, Vector3 endPoint,float tarjectoryHeight)
+        private Vector3 CalculteJumpVelocity(Vector3 startPoint, Vector3 endPoint,float tarjectoryHeight)
         {
             //formula sacada de este video : https://www.youtube.com/watch?v=IvT8hjy6q4o
             

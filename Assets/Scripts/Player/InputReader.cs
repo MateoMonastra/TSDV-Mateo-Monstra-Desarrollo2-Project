@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -7,6 +8,7 @@ namespace Player
     {
         public RunningBehaviour runBehaviour;
         public JumpBehaviour jumpBehaviour;
+        public PlayerCam playerCam;
         public GrapplingBehaviour grapplingBehaviour;
         public SwingBehaviour swingBehaviour;
 
@@ -34,6 +36,16 @@ namespace Player
             if (runBehaviour != null)
             {
                 runBehaviour.Move(moveDirection);
+            }
+        }
+        
+        public void HandleCamInput(InputAction.CallbackContext context)
+        {
+            Vector2 lookInput = context.ReadValue<Vector2>();
+
+            if (playerCam != null)
+            {
+                playerCam.UpdateCamera(lookInput);
             }
         }
 

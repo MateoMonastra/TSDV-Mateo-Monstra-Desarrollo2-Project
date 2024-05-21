@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -18,10 +19,10 @@ namespace Player
             Cursor.visible = false;
         }
 
-        private void Update()
+        public IEnumerator UpdateCamera(Vector2 angle)
         {
-            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+            float mouseX = angle.x * Time.deltaTime * sensX;
+            float mouseY = angle.y * Time.deltaTime * sensY;
 
             _yRotation += mouseX;
 
@@ -30,6 +31,8 @@ namespace Player
 
             transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
+
+            return null;
         }
     }
 }
