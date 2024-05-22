@@ -15,30 +15,47 @@ namespace Coin
             Level3
         }
 
-        enum LevelMode
+        enum CoinMode
         {
             Normal,
             CoinRun
         }
 
-        public Levels currentLevel;
-        [SerializeField] private LevelMode levelMode;
+        enum LevelMode
+        {
+            Normal,
+            TimeTrial
+        }
 
+
+        [SerializeField] private CoinMode coinMode;
+        [SerializeField] private LevelMode levelMode;
         [SerializeField] private List<Coin> coins;
+        [SerializeField] private Timer timer;
+
+        public Levels currentLevel;
         int currentCoin = 0;
 
         void Update()
         {
-            switch (levelMode)
+            switch (coinMode)
             {
-                case LevelMode.Normal:
+                case CoinMode.Normal:
                     NormalMode();
                     break;
-                case LevelMode.CoinRun:
+                case CoinMode.CoinRun:
                     CoinRushMode();
                     break;
                 default:
                     break;
+            }
+
+            if (levelMode == LevelMode.TimeTrial) 
+            {
+                if (timer.TimerFinished()) 
+                {
+                    ChangeLevel((int)currentLevel);
+                }
             }
         }
 
@@ -74,7 +91,6 @@ namespace Coin
         {
             SceneManager.LoadScene(indice);
         }
-
 
         private void CoinRushMode()
         {
