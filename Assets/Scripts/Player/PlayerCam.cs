@@ -26,7 +26,7 @@ namespace Player
             orientation.rotation = Quaternion.Euler(0, _xRotation, 0);
         }
 
-        public void UpdateCamera(Vector2 angle)
+        public void UpdateMouseCamera(Vector2 angle)
         {
             float mouseX = angle.x * sensX;
             float mouseY = angle.y * sensY;
@@ -34,6 +34,17 @@ namespace Player
             _xRotation += mouseX;
 
             _yRotation -= mouseY;
+            _yRotation = Mathf.Clamp(_yRotation, -90f, 90f);
+        }
+        
+        public void UpdateJoystickCamera(Vector2 axis)
+        {
+            float joystickX = axis.x * sensX * Time.deltaTime;
+            float joystickY = axis.y * sensY * Time.deltaTime;
+
+            _xRotation += joystickX;
+
+            _yRotation -= joystickY;
             _yRotation = Mathf.Clamp(_yRotation, -90f, 90f);
         }
     }

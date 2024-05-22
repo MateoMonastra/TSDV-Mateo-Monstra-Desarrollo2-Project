@@ -48,8 +48,11 @@ namespace Floor
 
             playerRb.velocity = new Vector3(0f, 0f, 0f);
             _grapplingBeha.StopGrapple();
-            StartCoroutine(_swingBeha.StopSwing());
             player.transform.position = checkPoint.position;
+            if (_swingBeha)
+            {
+                StartCoroutine(_swingBeha.StopSwing());
+            }
         }
     }
 }

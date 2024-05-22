@@ -352,6 +352,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 528983805}
     - target: {fileID: 3584209203261041537, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: grappable.m_Bits
+      value: 1536
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584209203261041537, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
       propertyPath: maxGrappleDistance
       value: 200
       objectReference: {fileID: 0}
@@ -986,7 +990,7 @@ Transform:
   m_GameObject: {fileID: 856099061}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 553.914, y: 2.0577621, z: 248.81}
+  m_LocalPosition: {x: 553.914, y: 2.47, z: 249.54486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1953,11 +1957,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
       propertyPath: sensX
-      value: 0.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
       propertyPath: sensY
-      value: 0.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
       propertyPath: orientation

@@ -32,7 +32,14 @@ namespace Player
 
             if (playerCam != null)
             {
-                playerCam.UpdateCamera(lookInput);
+                if (context.control == Mouse.current)
+                {
+                    playerCam.UpdateMouseCamera(lookInput);
+                }
+                else
+                {
+                    playerCam.UpdateJoystickCamera(lookInput);
+                }
             }
         }
 
@@ -100,7 +107,7 @@ namespace Player
                 cheats.PassLevel();
             }
         }
-        
+
         public void HandleGodModeInput(InputAction.CallbackContext context)
         {
             if (cheats && context.started)
@@ -108,7 +115,7 @@ namespace Player
                 cheats.GodMode();
             }
         }
-        
+
         public void HandleFlashModeInput(InputAction.CallbackContext context)
         {
             if (cheats && context.started)

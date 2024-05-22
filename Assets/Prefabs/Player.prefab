@@ -290,7 +290,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7948645566891003362}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8ff4159551d538945907c0aac4521251, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -321,6 +321,8 @@ GameObject:
   - component: {fileID: 2418678129158392799}
   - component: {fileID: 3584209203261041537}
   - component: {fileID: 8204652900823214084}
+  - component: {fileID: 8221177055653463677}
+  - component: {fileID: 7111076486746251586}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -372,7 +374,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &2402239008537400328
 MonoBehaviour:
@@ -423,8 +425,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c63c714e6e7b584f99e7636acce4926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 7
+  jumpForce: 21
   jumpCooldown: 0.5
+  coyoteTime: 0.4
 --- !u!114 &3584209203261041537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +443,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   grappable:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1536
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
@@ -464,15 +467,45 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   grappable:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1536
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
   maxSwingDistance: 200
-  swingCd: 0.25
+  swingCd: 0.2
   maxDistance: 0.6
   minDistance: 0.25
   spring: 9
   damper: 7
   massScale: 36.62
+--- !u!114 &8221177055653463677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534017556030565496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108caba5e1337424b8381362262351c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
+  flashModeSpeed: 200
+  godModeActivated: 0
+--- !u!114 &7111076486746251586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534017556030565496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108caba5e1337424b8381362262351c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
+  flashModeSpeed: 200
+  godModeActivated: 0
