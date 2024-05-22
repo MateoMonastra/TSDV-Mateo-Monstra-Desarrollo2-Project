@@ -18,6 +18,7 @@ namespace Floor
         private float _transitionTimer;
         private GrapplingBehaviour _grapplingBeha;
         private SwingBehaviour _swingBeha;
+        private bool _playerGodMode;
 
         private void Start()
         {
@@ -38,12 +39,13 @@ namespace Floor
 
         private void OnTriggerEnter(Collider other)
         {
+            _playerGodMode = player.GetComponent<PlayerCheats>().godModeActivated;
+            
+            if (_playerGodMode) return;
             _transitionTimer = transitionCoolDown;
             transition.enabled = true;
-            playerRb.velocity = new Vector3(0f,0f,0f);
+            playerRb.velocity = new Vector3(0f, 0f, 0f);
             player.transform.position = checkPoint.position;
-            
-
         }
     }
 }

@@ -194,6 +194,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a5f7d613-4992-43e9-86b0-e9fa03cf4bae
     m_ActionName: Player/PauseMenu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 804378947806867337}
+        m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
+        m_MethodName: HandlePassLevelInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d0f5a100-ee96-418e-ab1f-ebc4e8feb5af
+    m_ActionName: Player/PassLevel[/Keyboard/f9]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 804378947806867337}
+        m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
+        m_MethodName: HandleGodModeInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 76ac6912-c7cb-47c1-aa44-dbc4c45a82c3
+    m_ActionName: Player/GodMode[/Keyboard/f10]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 804378947806867337}
+        m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
+        m_MethodName: HandleFlashModeInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dec9698e-91d0-4642-856b-dbfe5f7f0994
+    m_ActionName: Player/FlashMode[/Keyboard/f11]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -217,3 +265,4 @@ MonoBehaviour:
   grapplingBehaviour: {fileID: 0}
   swingBehaviour: {fileID: 0}
   pauseUI: {fileID: 0}
+  cheats: {fileID: 0}

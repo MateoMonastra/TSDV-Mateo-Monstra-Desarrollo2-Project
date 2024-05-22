@@ -7,7 +7,7 @@ namespace Coin
 {
     public class LevelManager : MonoBehaviour
     {
-        enum Levels
+        public enum Levels
         {
             Level0 = 1,
             Level1,
@@ -21,7 +21,7 @@ namespace Coin
             CoinRun
         }
 
-        [SerializeField] private Levels currentLevel;
+        public Levels currentLevel;
         [SerializeField] private LevelMode levelMode;
 
         [SerializeField] private List<Coin> coins;
@@ -70,7 +70,7 @@ namespace Coin
             }
         }
 
-        private void ChangeLevel(int indice)
+        public void ChangeLevel(int indice)
         {
             SceneManager.LoadScene(indice);
         }
@@ -98,8 +98,10 @@ namespace Coin
                         Cursor.visible = true;
                         SceneManager.LoadScene(0);
                     }
-
-                    ChangeLevel((int)currentLevel);
+                    else
+                    {
+                        ChangeLevel((int)currentLevel);
+                    }
                 }
                 else
                 {

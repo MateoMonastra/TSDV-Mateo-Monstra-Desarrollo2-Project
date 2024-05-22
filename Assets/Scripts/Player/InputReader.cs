@@ -12,6 +12,7 @@ namespace Player
         public GrapplingBehaviour grapplingBehaviour;
         public SwingBehaviour swingBehaviour;
         public PauseUI pauseUI;
+        public PlayerCheats cheats;
 
         public void HandleMoveInput(InputAction.CallbackContext context)
         {
@@ -24,7 +25,7 @@ namespace Player
                 runBehaviour.Move(moveDirection);
             }
         }
-        
+
         public void HandleCamInput(InputAction.CallbackContext context)
         {
             Vector2 lookInput = context.ReadValue<Vector2>();
@@ -83,11 +84,36 @@ namespace Player
                 }
             }
         }
+
         public void HandlePauseMenuInput(InputAction.CallbackContext context)
         {
             if (pauseUI && context.started)
             {
                 pauseUI.InitPauseMenu();
+            }
+        }
+
+        public void HandlePassLevelInput(InputAction.CallbackContext context)
+        {
+            if (cheats && context.started)
+            {
+                cheats.PassLevel();
+            }
+        }
+        
+        public void HandleGodModeInput(InputAction.CallbackContext context)
+        {
+            if (cheats && context.started)
+            {
+                cheats.GodMode();
+            }
+        }
+        
+        public void HandleFlashModeInput(InputAction.CallbackContext context)
+        {
+            if (cheats && context.started)
+            {
+                cheats.FlashMode();
             }
         }
     }

@@ -6,7 +6,7 @@ namespace Player
     public class RunningBehaviour : MonoBehaviour
     {
         [Header("Running Variables: ")] 
-        [SerializeField] private float speed;
+        public float speed;
         [SerializeField] private float acceleration = 10;
         [SerializeField] private float airMultiplayer;
         [SerializeField] private float brakeMultiplier = .75f;
