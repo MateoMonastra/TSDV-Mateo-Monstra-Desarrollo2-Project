@@ -8,97 +8,112 @@ namespace Player
     public class GrapplingBehaviour : MonoBehaviour
     {
         public Coroutine OnPlay;
-        
-        [Header("References")] 
-        [SerializeField] private Transform playerCamera;
+
+        [Header("References")] [SerializeField]
+        private Transform playerCamera;
+
         [SerializeField] private LayerMask grappable;
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         private RunningBehaviour _pm;
-        [SerializeField]private Animator animator;
+        [SerializeField] private Animator animator;
 
 
-        [Header("Grappling")] 
-        [SerializeField] private float maxGrappleDistance;
+        [Header("Grappling")] [SerializeField] private float maxGrappleDistance;
         [SerializeField] private float grappleDelayTime;
         [SerializeField] private float overshootYAxis;
 
         private Vector3 _grapplePoint;
 
-        [Header("Cooldown")] 
-        [SerializeField] private float grapplingCd;
+        [Header("Cooldown")] [SerializeField] private float grapplingCd;
         private float _grapplingCdTimer;
         private bool _grappling;
-        
-        
-        
+
+
         private void Start()
         {
             _pm = GetComponent<RunningBehaviour>();
         }
+
         private void Update()
         {
-            if (_grapplingCdTimer>0)
+            if (_grapplingCdTimer > 0)
             {
                 _grapplingCdTimer -= Time.deltaTime;
             }
         }
+
         private void LateUpdate()
         {
             if (_grappling)
-                lr.SetPosition(0,gunTip.position);
+                lr.SetPosition(0, gunTip.position);
         }
+
         public IEnumerator StartGrapple()
         {
             if (_grapplingCdTimer > 0 || _pm.activeGun) yield break;
 
             _grappling = true;
-            animator.SetBool("ShootGrappler",true);
+            animator.SetBool("ShootGrappler", true);
 
-            
-            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit,maxGrappleDistance,grappable))
+
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, maxGrappleDistance,
+                    grappable))
             {
                 _grapplePoint = hit.point;
-                Invoke(nameof(ExecuteGrapple),grappleDelayTime);
+
+                StartCoroutine(ExecuteGrapple());
             }
             else
             {
                 _grapplePoint = playerCamera.position + playerCamera.forward * maxGrappleDistance;
-                Invoke(nameof(StopGrapple),grappleDelayTime);
+                Invoke(nameof(StopGrapple), grappleDelayTime);
             }
 
             lr.enabled = true;
-            lr.SetPosition(1,_grapplePoint);
+            lr.SetPosition(1, _grapplePoint);
         }
-        private void ExecuteGrapple()
+
+        private IEnumerator ExecuteGrapple()
         {
             _pm.freeze = false;
 
-            Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-            
+            Vector3 lowestPoint =
+                new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+
             float grapplePointRelativeYPos = _grapplePoint.y - lowestPoint.y;
             float highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
-            
+
             if (grapplePointRelativeYPos < 0) highestPointOnArc = overshootYAxis;
-            
-            JumpToPosition(_grapplePoint, highestPointOnArc);
-            
+
+            if (_grappling)
+            {
+                JumpToPosition(_grapplePoint, highestPointOnArc);
+            }
+
             Invoke(nameof(StopGrapple), 1f);
             
+            yield break;
         }
+
         public void StopGrapple()
         {
-            animator.SetBool("ShootGrappler",false);
+            animator.SetBool("ShootGrappler", false);
+
+            ResetVelocity();
+            StopCoroutine(ExecuteGrapple());
+
             _grappling = false;
             _grapplingCdTimer = grapplingCd;
             lr.enabled = false;
             _pm.activeGun = false;
         }
-        private Vector3 CalculteJumpVelocity(Vector3 startPoint, Vector3 endPoint,float tarjectoryHeight)
+
+        private Vector3 CalculteJumpVelocity(Vector3 startPoint, Vector3 endPoint, float tarjectoryHeight)
         {
             //formula sacada de este video : https://www.youtube.com/watch?v=IvT8hjy6q4o
-            
+
             float gravity = Physics.gravity.y;
             float displacementY = endPoint.y - startPoint.y;
 
@@ -110,17 +125,24 @@ namespace Player
 
             return velocityXZ + velocityY;
         }
-        
+
         private Vector3 _velocityToSet;
+
         public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
         {
             _pm.activeGun = true;
             _velocityToSet = CalculteJumpVelocity(transform.position, targetPosition, trajectoryHeight);
-            Invoke(nameof(SetVelocity),0.1f);
+            Invoke(nameof(SetVelocity), 0.1f);
         }
+
         private void SetVelocity()
         {
             rb.velocity = _velocityToSet;
+        }
+
+        public void ResetVelocity()
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 }

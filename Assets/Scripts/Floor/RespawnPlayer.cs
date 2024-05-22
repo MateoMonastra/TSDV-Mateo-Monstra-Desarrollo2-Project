@@ -30,21 +30,25 @@ namespace Floor
         private void Update()
         {
             _transitionTimer -= Time.deltaTime;
-            
-            if (_transitionTimer <= 0)
+
+            if (transition.enabled && _transitionTimer <= 0)
             {
                 transition.enabled = false;
+                playerRb.velocity = new Vector3(0f, 0f, 0f);
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
             _playerGodMode = player.GetComponent<PlayerCheats>().godModeActivated;
-            
+
             if (_playerGodMode) return;
             _transitionTimer = transitionCoolDown;
             transition.enabled = true;
+
             playerRb.velocity = new Vector3(0f, 0f, 0f);
+            _grapplingBeha.StopGrapple();
+            StartCoroutine(_swingBeha.StopSwing());
             player.transform.position = checkPoint.position;
         }
     }

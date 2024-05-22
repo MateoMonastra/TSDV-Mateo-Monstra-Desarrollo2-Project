@@ -88,7 +88,10 @@ namespace Player
         {
             animator.SetBool("ShootSwing",false);
             lr.positionCount = 0;
-            Destroy(_joint);
+            if (_joint)
+            {
+                Destroy(_joint);
+            }
             _swingCdTimer = swingCd;
             _pm.activeGun = false;
             yield break;
