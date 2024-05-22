@@ -1551,6 +1551,14 @@ PrefabInstance:
       value: Transition
       objectReference: {fileID: 0}
     - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
+      propertyPath: sensX
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
+      propertyPath: sensY
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
       propertyPath: orientation
       value: 
       objectReference: {fileID: 587819163}

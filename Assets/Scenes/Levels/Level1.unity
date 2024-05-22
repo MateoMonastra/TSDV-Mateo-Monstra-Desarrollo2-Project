@@ -344,6 +344,14 @@ PrefabInstance:
       value: Transition
       objectReference: {fileID: 0}
     - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
+      propertyPath: sensX
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
+      propertyPath: sensY
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624489897781070574, guid: 8a4783445ad161b4e8dd839304159050, type: 3}
       propertyPath: orientation
       value: 
       objectReference: {fileID: 1344230782}
@@ -2311,8 +2319,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 588427645}
     - target: {fileID: 9073321079241383406, guid: 8f1b9e858386aa44eada6d2ac1dc7ef2, type: 3}
-      propertyPath: levelMode
+      propertyPath: coinMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073321079241383406, guid: 8f1b9e858386aa44eada6d2ac1dc7ef2, type: 3}
+      propertyPath: levelMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9073321079241383406, guid: 8f1b9e858386aa44eada6d2ac1dc7ef2, type: 3}
       propertyPath: currentLevel

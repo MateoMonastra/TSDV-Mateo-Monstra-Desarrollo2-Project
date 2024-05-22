@@ -28,8 +28,8 @@ namespace Player
 
         public void UpdateCamera(Vector2 angle)
         {
-            float mouseX = angle.x * Time.deltaTime * sensX;
-            float mouseY = angle.y * Time.deltaTime * sensY;
+            float mouseX = angle.x * sensX;
+            float mouseY = angle.y * sensY;
 
             _xRotation += mouseX;
 

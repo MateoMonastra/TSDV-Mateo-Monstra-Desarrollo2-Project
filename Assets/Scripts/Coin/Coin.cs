@@ -1,9 +1,5 @@
 using System;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using Scene = UnityEngine.SceneManagement.Scene;
 
 namespace Coin
 {
