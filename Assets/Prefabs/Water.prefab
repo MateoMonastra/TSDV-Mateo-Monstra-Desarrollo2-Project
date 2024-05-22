@@ -205,5 +205,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkPoint: {fileID: 0}
   player: {fileID: 0}
+  playerRb: {fileID: 0}
   transition: {fileID: 0}
-  transitionCoolDown: 1
+  transitionCoolDown: 0.5

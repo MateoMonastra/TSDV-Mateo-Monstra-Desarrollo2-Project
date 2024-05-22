@@ -59,9 +59,14 @@ namespace Coin
                 currentLevel++;
                 if (currentLevel > Levels.Level3)
                 {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     SceneManager.LoadScene(0);
                 }
-                ChangeLevel((int)currentLevel);
+                else
+                {
+                    ChangeLevel((int)currentLevel);
+                }
             }
         }
 
@@ -71,10 +76,9 @@ namespace Coin
         }
 
 
-        private void CoinRushMode() 
+        private void CoinRushMode()
         {
-
-            foreach (var coin in coins) 
+            foreach (var coin in coins)
             {
                 coin.DesactivateCoin();
             }
@@ -90,8 +94,11 @@ namespace Coin
                     currentLevel++;
                     if (currentLevel > Levels.Level3)
                     {
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
                         SceneManager.LoadScene(0);
                     }
+
                     ChangeLevel((int)currentLevel);
                 }
                 else
@@ -99,6 +106,6 @@ namespace Coin
                     coins[currentCoin].ActivateCoin();
                 }
             }
-        } 
+        }
     }
 }

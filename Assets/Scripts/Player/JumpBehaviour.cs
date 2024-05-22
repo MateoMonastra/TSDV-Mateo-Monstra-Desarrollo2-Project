@@ -45,7 +45,7 @@ namespace Player
             if (!_canJump)
                 yield break;
 
-            if (!_groundCheck.IsOnGround() && _coyoteTimeTimer <= 0 || _groundCheck.IsOnGround())
+            if (!_groundCheck.IsOnGround() && _coyoteTimeTimer > 0 || _groundCheck.IsOnGround())
             {
                 _canJump = false;
 
