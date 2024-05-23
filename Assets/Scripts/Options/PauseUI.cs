@@ -12,12 +12,14 @@ public class PauseUI : MonoBehaviour
         pauseMenu.enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 0;
     }
     public void Return()
     {
         pauseMenu.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Time.timeScale = 1;
     }
     public void GoMenu() 
     {
