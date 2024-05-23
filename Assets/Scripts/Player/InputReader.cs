@@ -34,7 +34,14 @@ namespace Player
             {
                 if (context.control == Mouse.current)
                 {
-                    playerCam.UpdateMouseCamera(lookInput);
+                    if (context.performed)
+                    {
+                        playerCam.UpdateMouseCamera(lookInput);
+                    }
+                    else
+                    {
+                        playerCam.UpdateMouseCamera(Vector2.zero);
+                    }
                 }
                 else
                 {

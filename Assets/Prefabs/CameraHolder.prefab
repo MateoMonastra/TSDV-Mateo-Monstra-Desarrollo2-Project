@@ -478,7 +478,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4482734508207855648}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a15d6ef3cb8bf949842f65fb4359a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerTime: 120
+  timerTime: 10
   textTimer: {fileID: 4806511511212636175}
 --- !u!1 &4713360129681791875
 GameObject:

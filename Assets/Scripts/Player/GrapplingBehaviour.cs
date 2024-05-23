@@ -100,8 +100,6 @@ namespace Player
         public void StopGrapple()
         {
             animator.SetBool("ShootGrappler", false);
-
-            ResetVelocity();
             StopCoroutine(ExecuteGrapple());
 
             _grappling = false;

@@ -1,28 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+namespace LevelManager
 {
-    [SerializeField] private float timerTime;
-    private float timer;
-
-    public Text textTimer;
-
-    private void Start()
+    public class Timer : MonoBehaviour
     {
-        timer = timerTime;
-    }
-    private void Update()
-    {
-        timer -= Time.deltaTime;
+        [SerializeField] private float timerTime;
+        private float _timer;
 
-        textTimer.text = timer.ToString("f0");
-    }
+        public Text textTimer;
 
-    public bool TimerFinished() 
-    {
-        return timer <= 0;
+        private void Start()
+        {
+            _timer = timerTime;
+        }
+        private void Update()
+        {
+            _timer -= Time.deltaTime;
+            
+            int minutes = (int)_timer / 60;
+            int seconds = (int)_timer % 60;
+            
+            textTimer.text = minutes + ":" + seconds;
+        }
+
+        public bool TimerFinished() 
+        {
+            return _timer <= 0;
+        }
     }
 }

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
-namespace Coin
+namespace LevelManager
 {
     public class LevelManager : MonoBehaviour
     {
@@ -30,11 +29,25 @@ namespace Coin
 
         [SerializeField] private CoinMode coinMode;
         [SerializeField] private LevelMode levelMode;
-        [SerializeField] private List<Coin> coins;
-        [SerializeField] private Timer timer;
+        [SerializeField] private List<Coin.Coin> coins;
+        [SerializeField] private GameObject timer;
 
         public Levels currentLevel;
-        int currentCoin = 0;
+        private Timer _timer;
+        int _currentCoin = 0;
+
+
+        private void Start()
+        {
+            if (levelMode == LevelMode.TimeTrial)
+            {
+                var canvas = timer.GetComponentInChildren<Canvas>();
+                canvas.enabled = true;
+                
+                _timer = timer.GetComponentInChildren<Timer>();
+                _timer.enabled = true;
+            }
+        }
 
         void Update()
         {
@@ -52,7 +65,7 @@ namespace Coin
 
             if (levelMode == LevelMode.TimeTrial) 
             {
-                if (timer.TimerFinished()) 
+                if (_timer.TimerFinished()) 
                 {
                     ChangeLevel((int)currentLevel);
                 }
@@ -99,13 +112,13 @@ namespace Coin
                 coin.DesactivateCoin();
             }
 
-            coins[currentCoin].ActivateCoin();
+            coins[_currentCoin].ActivateCoin();
 
-            if (!coins[currentCoin].isActive)
+            if (!coins[_currentCoin].isActive)
             {
-                currentCoin++;
+                _currentCoin++;
 
-                if (currentCoin == coins.Count)
+                if (_currentCoin == coins.Count)
                 {
                     currentLevel++;
                     if (currentLevel > Levels.Level3)
@@ -121,7 +134,7 @@ namespace Coin
                 }
                 else
                 {
-                    coins[currentCoin].ActivateCoin();
+                    coins[_currentCoin].ActivateCoin();
                 }
             }
         }

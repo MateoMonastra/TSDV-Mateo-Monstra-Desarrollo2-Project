@@ -8,7 +8,7 @@ namespace Player
 {
     public class PlayerCheats : MonoBehaviour
     {
-        [SerializeField] private LevelManager levelManager;
+        [SerializeField] private LevelManager.LevelManager levelManager;
         [SerializeField] private float flashModeSpeed;
 
         private RunningBehaviour _playerRb;
@@ -24,7 +24,7 @@ namespace Player
         public void PassLevel()
         {
             levelManager.currentLevel++;
-            if (levelManager.currentLevel > LevelManager.Levels.Level3)
+            if (levelManager.currentLevel > LevelManager.LevelManager.Levels.Level3)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
