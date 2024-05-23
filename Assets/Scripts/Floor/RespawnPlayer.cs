@@ -40,15 +40,17 @@ namespace Floor
 
         private void OnTriggerEnter(Collider other)
         {
-            _playerGodMode = player.GetComponent<PlayerCheats>().godModeActivated;
-
+            _playerGodMode = other.GetComponentInParent<PlayerCheats>().godModeActivated;
+            
             if (_playerGodMode) return;
+            
             _transitionTimer = transitionCoolDown;
             transition.enabled = true;
 
             playerRb.velocity = new Vector3(0f, 0f, 0f);
             _grapplingBeha.StopGrapple();
             player.transform.position = checkPoint.position;
+            
             if (_swingBeha)
             {
                 StartCoroutine(_swingBeha.StopSwing());
