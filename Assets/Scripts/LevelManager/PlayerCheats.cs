@@ -17,6 +17,21 @@ namespace LevelManager
         {
             _playerRb = GetComponent<RunningBehaviour>();
             _normalSpeed = _playerRb.speed;
+            if(levelManager == null)
+            {
+                foreach(var rootGO in gameObject.scene.GetRootGameObjects())
+                {
+                    if(rootGO.TryGetComponent<LevelManager>(out var levelManager))
+                    {
+                        this.levelManager = levelManager;
+                        break;
+                    }
+                }
+            }
+            if(levelManager == null)
+            {
+                Debug.LogError($"{name}: {nameof(LevelManager)} not found!");
+            }
         }
 
         public void PassLevel()
