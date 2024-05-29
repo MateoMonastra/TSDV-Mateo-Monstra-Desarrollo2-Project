@@ -17,6 +17,7 @@ namespace LevelManager
         {
             _playerRb = GetComponent<RunningBehaviour>();
             _normalSpeed = _playerRb.speed;
+
             if(levelManager == null)
             {
                 foreach(var rootGO in gameObject.scene.GetRootGameObjects())
