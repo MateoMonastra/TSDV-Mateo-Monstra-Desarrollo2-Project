@@ -20,8 +20,15 @@ namespace LevelManager
             
             int minutes = (int)_timer / 60;
             int seconds = (int)_timer % 60;
-            
-            textTimer.text = minutes + ":" + seconds;
+
+            if (seconds >= 10)
+            {
+                textTimer.text = minutes + ":" + seconds;
+            }
+            else
+            {
+                textTimer.text = minutes + ":0" + seconds;
+            }
         }
 
         public bool TimerFinished() 
