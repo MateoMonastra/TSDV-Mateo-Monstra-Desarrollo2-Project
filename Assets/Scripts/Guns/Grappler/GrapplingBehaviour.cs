@@ -9,8 +9,8 @@ namespace Player
     {
         public Coroutine OnPlay;
 
-        [Header("References")] [SerializeField]
-        private Transform playerCamera;
+        [Header("References")] 
+        [SerializeField] private Transform playerCamera;
 
         [SerializeField] private LayerMask grappable;
         [SerializeField] private LineRenderer lr;
@@ -20,13 +20,11 @@ namespace Player
         [SerializeField] private Animator animator;
 
 
-        [Header("Grappling")] [SerializeField] private float maxGrappleDistance;
-        [SerializeField] private float grappleDelayTime;
-        [SerializeField] private float overshootYAxis;
+        [Header("Model")] 
+        [SerializeField] private GrapplingModel model;
 
         private Vector3 _grapplePoint;
 
-        [Header("Cooldown")] [SerializeField] private float grapplingCd;
         private float _grapplingCdTimer;
         private bool _grappling;
 
@@ -58,7 +56,7 @@ namespace Player
             animator.SetBool("ShootGrappler", true);
 
 
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, maxGrappleDistance,
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.maxGrappleDistance,
                     grappable))
             {
                 _grapplePoint = hit.point;
@@ -67,8 +65,8 @@ namespace Player
             }
             else
             {
-                _grapplePoint = playerCamera.position + playerCamera.forward * maxGrappleDistance;
-                Invoke(nameof(StopGrapple), grappleDelayTime);
+                _grapplePoint = playerCamera.position + playerCamera.forward * model.maxGrappleDistance;
+                Invoke(nameof(StopGrapple), model.grappleDelayTime);
             }
 
             lr.enabled = true;
@@ -83,9 +81,9 @@ namespace Player
                 new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
             float grapplePointRelativeYPos = _grapplePoint.y - lowestPoint.y;
-            float highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
+            float highestPointOnArc = grapplePointRelativeYPos + model.overshootYAxis;
 
-            if (grapplePointRelativeYPos < 0) highestPointOnArc = overshootYAxis;
+            if (grapplePointRelativeYPos < 0) highestPointOnArc = model.overshootYAxis;
 
             if (_grappling)
             {
@@ -103,7 +101,7 @@ namespace Player
             StopCoroutine(ExecuteGrapple());
 
             _grappling = false;
-            _grapplingCdTimer = grapplingCd;
+            _grapplingCdTimer = model.grapplingCd;
             lr.enabled = false;
             _pm.activeGun = false;
         }

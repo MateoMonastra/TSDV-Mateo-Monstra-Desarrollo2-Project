@@ -18,22 +18,14 @@ namespace Player
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
+
+        [Header("Model")]
+        [SerializeField] private SwingModel model;
+
         private RunningBehaviour _pm;
         
-        [Header("Swinging")] 
-        [SerializeField] private float maxSwingDistance = 25f;
-        
-        [Header("Cooldown")] 
-        [SerializeField] private float swingCd;
         private float _swingCdTimer;
-        
-        [Header("Joint: ")]
-        [SerializeField] private float maxDistance = 0.8f;
-        [SerializeField] private float minDistance = 0.25f;
-        [SerializeField] private float spring = 4.5f;
-        [SerializeField] private float damper = 7f;
-        [SerializeField] private float massScale = 4.5f;
-
+       
         private Vector3 _swingPoint;
         private SpringJoint _joint;
 
@@ -57,7 +49,7 @@ namespace Player
                 StartCoroutine(StopSwing());
             }
 
-            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit,maxSwingDistance,grappable))
+            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit, model.GetmaxSwingDistance(), grappable))
             {
                 animator.SetBool("ShootSwing",true);
                 _pm.activeGun = true;
@@ -68,12 +60,12 @@ namespace Player
 
                 float distanceFromPoint = Vector3.Distance(playerCamera.position, _swingPoint);
 
-                _joint.maxDistance = distanceFromPoint * maxDistance;
-                _joint.minDistance = distanceFromPoint * minDistance;
+                _joint.maxDistance = distanceFromPoint * model.maxDistance;
+                _joint.minDistance = distanceFromPoint * model.minDistance;
 
-                _joint.spring = spring;
-                _joint.damper = damper;
-                _joint.massScale = massScale;
+                _joint.spring = model.spring;
+                _joint.damper = model.damper;
+                _joint.massScale = model.massScale;
 
                 lr.positionCount = 2;
 
@@ -92,7 +84,7 @@ namespace Player
             {
                 Destroy(_joint);
             }
-            _swingCdTimer = swingCd;
+            _swingCdTimer = model.swingCd;
             _pm.activeGun = false;
             yield break;
         }
