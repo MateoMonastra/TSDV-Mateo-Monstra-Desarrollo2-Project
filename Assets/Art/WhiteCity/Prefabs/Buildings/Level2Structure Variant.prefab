@@ -142,6 +142,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 769382104100421672, guid: ac2df44a680eb8949825cfefec369614, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.063533515
+      objectReference: {fileID: 0}
+    - target: {fileID: 769382104100421672, guid: ac2df44a680eb8949825cfefec369614, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 769382104100421672, guid: ac2df44a680eb8949825cfefec369614, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 59.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645006372103887537, guid: ac2df44a680eb8949825cfefec369614, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.047892652
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645006372103887537, guid: ac2df44a680eb8949825cfefec369614, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645006372103887537, guid: ac2df44a680eb8949825cfefec369614, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.24
+      objectReference: {fileID: 0}
     - target: {fileID: 6945436521041084798, guid: ac2df44a680eb8949825cfefec369614, type: 3}
       propertyPath: m_Name
       value: Level2Structure Variant

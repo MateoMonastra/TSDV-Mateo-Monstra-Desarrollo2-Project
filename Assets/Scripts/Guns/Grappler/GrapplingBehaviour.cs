@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
+using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Player
+namespace Guns.Grappler
 {
     public class GrapplingBehaviour : MonoBehaviour
     {
@@ -47,7 +46,7 @@ namespace Player
             if (_grappling)
                 lr.SetPosition(0, gunTip.position);
         }
-
+        
         public IEnumerator StartGrapple()
         {
             if (_grapplingCdTimer > 0 || _pm.activeGun) yield break;
@@ -56,7 +55,7 @@ namespace Player
             animator.SetBool("ShootGrappler", true);
 
 
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.maxGrappleDistance,
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.GetMaxGrappleDistance(),
                     grappable))
             {
                 _grapplePoint = hit.point;
@@ -65,14 +64,14 @@ namespace Player
             }
             else
             {
-                _grapplePoint = playerCamera.position + playerCamera.forward * model.maxGrappleDistance;
+                _grapplePoint = playerCamera.position + playerCamera.forward * model.GetMaxGrappleDistance();
                 Invoke(nameof(StopGrapple), model.grappleDelayTime);
             }
 
             lr.enabled = true;
             lr.SetPosition(1, _grapplePoint);
         }
-
+        
         private IEnumerator ExecuteGrapple()
         {
             _pm.freeze = false;

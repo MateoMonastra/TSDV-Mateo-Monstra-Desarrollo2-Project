@@ -1,15 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "GrapplingModel", menuName = "Models/Guns/Grappler")]
-public class GrapplingModel : ScriptableObject
+namespace Guns.Grappler
 {
-    [SerializeField] public float maxGrappleDistance { get; private set; }
-    [SerializeField] public float grappleDelayTime { get; private set; }
-    [SerializeField] public float overshootYAxis { get; private set; }
-    [SerializeField] public float grapplingCd { get; private set; }
-
-
-
+    [CreateAssetMenu(fileName = "GrapplingModel", menuName = "Models/Guns/Grappler")]
+    public class GrapplingModel : ScriptableObject
+    {
+        [SerializeField] private float maxGrappleDistance;
+        [SerializeField] internal float grappleDelayTime;
+        [SerializeField] internal float overshootYAxis;
+        [SerializeField] internal float grapplingCd;
+        public float GetMaxGrappleDistance()
+        {
+            return maxGrappleDistance;
+        }
+        public float GetGrappleDelayTime()
+        {
+            return grappleDelayTime;
+        }
+        public float GetOvershootYAxis()
+        {
+            return overshootYAxis;
+        }
+        public float GetGrapplingCd()
+        {
+            return grapplingCd;
+        }
+        
+    }
 }

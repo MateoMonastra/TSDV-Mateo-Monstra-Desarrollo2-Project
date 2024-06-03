@@ -447,10 +447,7 @@ MonoBehaviour:
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
-  maxGrappleDistance: 200
-  grappleDelayTime: 0.25
-  overshootYAxis: 1
-  grapplingCd: 0.5
+  model: {fileID: 11400000, guid: 7e7912bc552f56a4fab27b998d6fff04, type: 2}
 --- !u!114 &8204652900823214084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,13 +468,7 @@ MonoBehaviour:
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
-  maxSwingDistance: 200
-  swingCd: 0.2
-  maxDistance: 0.6
-  minDistance: 0.25
-  spring: 9
-  damper: 7
-  massScale: 36.62
+  model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
 --- !u!114 &8221177055653463677
 MonoBehaviour:
   m_ObjectHideFlags: 0

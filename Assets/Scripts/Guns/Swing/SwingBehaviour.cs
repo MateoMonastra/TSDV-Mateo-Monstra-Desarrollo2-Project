@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Guns.Swing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -44,12 +45,12 @@ namespace Player
         {
             
             if (_swingCdTimer > 0 || _pm.activeGun) yield break;
-            if (_joint != null)
+            if (_joint)
             {
                 StartCoroutine(StopSwing());
             }
 
-            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit, model.GetmaxSwingDistance(), grappable))
+            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit, model.GetMaxSwingDistance(), grappable))
             {
                 animator.SetBool("ShootSwing",true);
                 _pm.activeGun = true;
@@ -60,12 +61,12 @@ namespace Player
 
                 float distanceFromPoint = Vector3.Distance(playerCamera.position, _swingPoint);
 
-                _joint.maxDistance = distanceFromPoint * model.maxDistance;
-                _joint.minDistance = distanceFromPoint * model.minDistance;
+                _joint.maxDistance = distanceFromPoint * model.GetMaxDistance();
+                _joint.minDistance = distanceFromPoint * model.GetMinDistance();
 
-                _joint.spring = model.spring;
-                _joint.damper = model.damper;
-                _joint.massScale = model.massScale;
+                _joint.spring = model.GetSpring();
+                _joint.damper = model.GetDamper();
+                _joint.massScale = model.GetMassScale();
 
                 lr.positionCount = 2;
 
@@ -84,7 +85,7 @@ namespace Player
             {
                 Destroy(_joint);
             }
-            _swingCdTimer = model.swingCd;
+            _swingCdTimer = model.GetSwingCd();
             _pm.activeGun = false;
             yield break;
         }
