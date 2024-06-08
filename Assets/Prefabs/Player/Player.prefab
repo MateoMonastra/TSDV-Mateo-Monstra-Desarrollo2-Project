@@ -421,9 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c63c714e6e7b584f99e7636acce4926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 21
-  jumpCooldown: 0.5
-  coyoteTime: 0.4
+  model: {fileID: 11400000, guid: b0743c17b37c2ea418728c5729b9e3e7, type: 2}
 --- !u!114 &3584209203261041537
 MonoBehaviour:
   m_ObjectHideFlags: 0

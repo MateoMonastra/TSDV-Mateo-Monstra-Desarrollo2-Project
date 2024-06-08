@@ -352,8 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3797078f87fbdf74daa8682faba1cf8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 10
-  sensY: 2
+  model: {fileID: 11400000, guid: 6ffbcdd799a2a5f45becdff78e2fae75, type: 2}
   orientation: {fileID: 0}
 --- !u!114 &4250016773136230021
 MonoBehaviour:

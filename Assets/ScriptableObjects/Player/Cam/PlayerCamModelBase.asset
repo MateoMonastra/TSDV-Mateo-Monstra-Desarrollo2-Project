@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503d7d128429edf43a1c945a38afbc64, type: 3}
-  m_Name: RunningModelBase
+  m_Script: {fileID: 11500000, guid: 68d1824893abfb445afbeaedd86bcf1e, type: 3}
+  m_Name: PlayerCamModelBase
   m_EditorClassIdentifier: 
-  speed: 5
-  acceleration: 10
-  airMultiplayer: 0.2
-  brakeMultiplier: 0.75
+  sensX: 0
+  sensY: 0

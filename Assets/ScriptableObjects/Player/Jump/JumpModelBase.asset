@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503d7d128429edf43a1c945a38afbc64, type: 3}
-  m_Name: RunningModelBase
+  m_Script: {fileID: 11500000, guid: 69462fe9210a3e1449196b599ad42adc, type: 3}
+  m_Name: JumpModelBase
   m_EditorClassIdentifier: 
-  speed: 5
-  acceleration: 10
-  airMultiplayer: 0.2
-  brakeMultiplier: 0.75
+  jumpForce: 0
+  jumpCooldown: 0
+  coyoteTime: 0

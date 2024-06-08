@@ -4,9 +4,8 @@ namespace Player.PlayerCam
 {
     public class PlayerCam : MonoBehaviour
     {
-        [SerializeField] private float sensX;
-        [SerializeField] private float sensY;
-
+        [SerializeField] private PlayerCamModel model;
+        
         [SerializeField] private Transform orientation;
 
         private float _yRotation;
@@ -33,12 +32,12 @@ namespace Player.PlayerCam
 
         public void UpdateMouseCamera(Vector2 angle)
         {
-            _moveDirection = new Vector2(angle.x * sensX, angle.y * sensY);
+            _moveDirection = new Vector2(angle.x * model.SensX, angle.y * model.SensY);
         }
 
         public void UpdateJoystickCamera(Vector2 axis)
         {
-            _moveDirection = new Vector2(axis.x * sensX * Time.deltaTime, axis.y * sensY * Time.deltaTime);
+            _moveDirection = new Vector2(axis.x * model.SensX * Time.deltaTime, axis.y * model.SensY * Time.deltaTime);
         }
     }
 }

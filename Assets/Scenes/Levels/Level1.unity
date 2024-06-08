@@ -507,6 +507,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 2402239008537400328, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
     - target: {fileID: 2418678129158392799, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
       propertyPath: jumpForce
       value: 21

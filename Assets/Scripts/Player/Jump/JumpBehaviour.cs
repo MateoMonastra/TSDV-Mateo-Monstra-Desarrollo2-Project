@@ -7,9 +7,7 @@ namespace Player.Jump
     {
         public Coroutine OnPlay;
 
-        [SerializeField] private float jumpForce;
-        [SerializeField] private float jumpCooldown;
-        [SerializeField] private float coyoteTime;
+        [SerializeField] private JumpModel model;
 
         private GroundCheck _groundCheck;
         private bool _canJump;
@@ -18,7 +16,7 @@ namespace Player.Jump
 
         private void Start()
         {
-            _coyoteTimeTimer = coyoteTime;
+            _coyoteTimeTimer = model.CoyoteTime;
             _groundCheck = GetComponent<GroundCheck>();
             _rb = GetComponent<Rigidbody>();
             Reset();
@@ -32,7 +30,7 @@ namespace Player.Jump
             }
             else
             {
-                _coyoteTimeTimer = coyoteTime;
+                _coyoteTimeTimer = model.CoyoteTime;
             }
         }
 
@@ -48,9 +46,9 @@ namespace Player.Jump
                 _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
                 yield return new WaitForFixedUpdate();
-                _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+                _rb.AddForce(transform.up * model.JumpForce, ForceMode.Impulse);
 
-                Invoke(nameof(Reset), jumpCooldown);
+                Invoke(nameof(Reset), model.JumpCooldown);
             }
         }
 
