@@ -352,12 +352,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 528983805}
     - target: {fileID: 3584209203261041537, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: shootGrappler
+      value: ShootGrappler
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584209203261041537, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
       propertyPath: grappable.m_Bits
       value: 1536
       objectReference: {fileID: 0}
     - target: {fileID: 3584209203261041537, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
       propertyPath: maxGrappleDistance
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584209203261041537, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: grapplerAnimationName
+      value: ShootGrappler
       objectReference: {fileID: 0}
     - target: {fileID: 8204652900823214084, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
       propertyPath: lr

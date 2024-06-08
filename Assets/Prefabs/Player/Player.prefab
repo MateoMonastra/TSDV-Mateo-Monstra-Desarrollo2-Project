@@ -387,10 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7184c205b837a4e847a851bc6525e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  acceleration: 10
-  airMultiplayer: 2
-  brakeMultiplier: 0.75
+  model: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
   groundDrag: 5
   orientation: {fileID: 3635126106142896811}
   freeze: 0
@@ -448,6 +445,7 @@ MonoBehaviour:
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
   model: {fileID: 11400000, guid: 7e7912bc552f56a4fab27b998d6fff04, type: 2}
+  grapplerAnimationName: ShootGrappler
 --- !u!114 &8204652900823214084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +467,7 @@ MonoBehaviour:
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
+  swingAnimationName: ShootSwing
 --- !u!114 &8221177055653463677
 MonoBehaviour:
   m_ObjectHideFlags: 0

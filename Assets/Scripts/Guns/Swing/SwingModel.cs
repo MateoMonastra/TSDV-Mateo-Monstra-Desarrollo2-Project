@@ -12,35 +12,13 @@ namespace Guns.Swing
         [SerializeField] private float spring;
         [SerializeField] private float damper;
         [SerializeField] private float massScale;
-
     
-        public float GetMaxSwingDistance()
-        {
-            return maxSwingDistance;
-        }
-        public float GetSwingCd()
-        {
-            return swingCd;
-        }
-        public float GetMaxDistance()
-        {
-            return maxDistance;
-        }
-        public float GetMinDistance()
-        {
-            return minDistance;
-        }
-        public float GetSpring()
-        {
-            return spring;
-        }
-        public float GetDamper()
-        {
-            return damper;
-        }
-        public float GetMassScale()
-        {
-            return massScale;
-        }
+        public float MaxSwingDistance => maxSwingDistance;
+        public float SwingCd => swingCd;
+        public float MaxDistance => maxDistance;
+        public float MinDistance => minDistance;
+        public float Spring => spring;
+        public float Damper => damper;
+        public float MassScale => massScale;
     }
 }

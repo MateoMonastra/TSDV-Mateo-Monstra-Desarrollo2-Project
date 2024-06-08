@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
-namespace Player
+namespace Player.PlayerCam
 {
     public class PlayerCam : MonoBehaviour
     {

@@ -1,18 +1,17 @@
-using System;
 using System.Collections;
-using Guns.Swing;
+using Player.Running;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Player
+namespace Guns.Swing
 {
     public class SwingBehaviour : MonoBehaviour
     {
         public Coroutine OnPlay;
         public Coroutine OnStop;
-        
+
         [Header("References")] 
+        
         [SerializeField] private Transform playerCamera;
         [SerializeField] private LayerMask grappable;
         [SerializeField] private LineRenderer lr;
@@ -20,15 +19,18 @@ namespace Player
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
 
-        [Header("Model")]
+        [Header("Model")] 
+        
         [SerializeField] private SwingModel model;
 
         private RunningBehaviour _pm;
-        
+
         private float _swingCdTimer;
-       
+
         private Vector3 _swingPoint;
         private SpringJoint _joint;
+
+        [SerializeField] private string swingAnimationName;
 
         private void Start()
         {
@@ -43,16 +45,16 @@ namespace Player
         }
         public IEnumerator StartSwing()
         {
-            
             if (_swingCdTimer > 0 || _pm.activeGun) yield break;
             if (_joint)
             {
                 StartCoroutine(StopSwing());
             }
 
-            if (Physics.Raycast(playerCamera.position,playerCamera.forward,out var hit, model.GetMaxSwingDistance(), grappable))
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
+                    grappable))
             {
-                animator.SetBool("ShootSwing",true);
+                animator.SetBool(swingAnimationName, true);
                 _pm.activeGun = true;
                 _swingPoint = hit.point;
                 _joint = transform.AddComponent<SpringJoint>();
@@ -61,45 +63,42 @@ namespace Player
 
                 float distanceFromPoint = Vector3.Distance(playerCamera.position, _swingPoint);
 
-                _joint.maxDistance = distanceFromPoint * model.GetMaxDistance();
-                _joint.minDistance = distanceFromPoint * model.GetMinDistance();
+                _joint.maxDistance = distanceFromPoint * model.MaxDistance;
+                _joint.minDistance = distanceFromPoint * model.MinDistance;
 
-                _joint.spring = model.GetSpring();
-                _joint.damper = model.GetDamper();
-                _joint.massScale = model.GetMassScale();
+                _joint.spring = model.Spring;
+                _joint.damper = model.Damper;
+                _joint.massScale = model.MassScale;
 
                 lr.positionCount = 2;
 
                 lr.enabled = true;
-
             }
-            
+
             yield break;
         }
-    
         public IEnumerator StopSwing()
         {
-            animator.SetBool("ShootSwing",false);
+            animator.SetBool(swingAnimationName, false);
             lr.positionCount = 0;
             if (_joint)
             {
                 Destroy(_joint);
             }
-            _swingCdTimer = model.GetSwingCd();
+
+            _swingCdTimer = model.SwingCd;
             _pm.activeGun = false;
             yield break;
         }
-
         private void LateUpdate()
         {
             DrawRope();
         }
-
         private void DrawRope()
         {
             if (!_joint) return;
-            lr.SetPosition(0,gunTip.position);
-            lr.SetPosition(1,_swingPoint);
+            lr.SetPosition(0, gunTip.position);
+            lr.SetPosition(1, _swingPoint);
         }
     }
 }

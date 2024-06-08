@@ -1,4 +1,5 @@
 using Player;
+using Player.Running;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,13 +17,13 @@ namespace LevelManager
         private void Start()
         {
             _playerRb = GetComponent<RunningBehaviour>();
-            _normalSpeed = _playerRb.speed;
+            // _normalSpeed = _playerRb.speed;
 
             if(levelManager == null)
             {
-                foreach(var rootGO in gameObject.scene.GetRootGameObjects())
+                foreach(var rootGo in gameObject.scene.GetRootGameObjects())
                 {
-                    if(rootGO.TryGetComponent<LevelManager>(out var levelManager))
+                    if(rootGo.TryGetComponent<LevelManager>(out var levelManager))
                     {
                         this.levelManager = levelManager;
                         break;
@@ -58,7 +59,7 @@ namespace LevelManager
 
         public void FlashMode()
         {
-            _playerRb.speed = Mathf.Approximately(_playerRb.speed, _normalSpeed) ? flashModeSpeed : _normalSpeed;
+            // _playerRb.speed = Mathf.Approximately(_playerRb.speed, _normalSpeed) ? flashModeSpeed : _normalSpeed;
         }
     }
 }

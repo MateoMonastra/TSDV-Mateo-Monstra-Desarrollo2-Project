@@ -1,25 +1,28 @@
 using System.Collections;
 using Player;
+using Player.Running;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Guns.Grappler
 {
     public class GrapplingBehaviour : MonoBehaviour
     {
         public Coroutine OnPlay;
+        private IEnumerator _onStartGrapple;
 
         [Header("References")] 
+        
         [SerializeField] private Transform playerCamera;
-
         [SerializeField] private LayerMask grappable;
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
-        private RunningBehaviour _pm;
         [SerializeField] private Animator animator;
-
+        private RunningBehaviour _pm;
 
         [Header("Model")] 
+        
         [SerializeField] private GrapplingModel model;
 
         private Vector3 _grapplePoint;
@@ -27,12 +30,15 @@ namespace Guns.Grappler
         private float _grapplingCdTimer;
         private bool _grappling;
 
+        [SerializeField] private string grapplerAnimationName;
+
+        private Vector3 _velocityToSet;
 
         private void Start()
         {
             _pm = GetComponent<RunningBehaviour>();
+            _onStartGrapple = ExecuteGrapple();
         }
-
         private void Update()
         {
             if (_grapplingCdTimer > 0)
@@ -40,38 +46,36 @@ namespace Guns.Grappler
                 _grapplingCdTimer -= Time.deltaTime;
             }
         }
-
         private void LateUpdate()
         {
             if (_grappling)
                 lr.SetPosition(0, gunTip.position);
         }
-        
         public IEnumerator StartGrapple()
         {
             if (_grapplingCdTimer > 0 || _pm.activeGun) yield break;
 
             _grappling = true;
-            animator.SetBool("ShootGrappler", true);
+            animator.SetBool(grapplerAnimationName, true);
 
 
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.GetMaxGrappleDistance(),
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
                     grappable))
             {
                 _grapplePoint = hit.point;
 
-                StartCoroutine(ExecuteGrapple());
+                StartCoroutine(_onStartGrapple);
             }
             else
             {
-                _grapplePoint = playerCamera.position + playerCamera.forward * model.GetMaxGrappleDistance();
+                _grapplePoint = playerCamera.position + playerCamera.forward * model.MaxGrappleDistance;
+                // PREGUNTAR OPINION A JUMPY
                 Invoke(nameof(StopGrapple), model.grappleDelayTime);
             }
 
             lr.enabled = true;
             lr.SetPosition(1, _grapplePoint);
         }
-        
         private IEnumerator ExecuteGrapple()
         {
             _pm.freeze = false;
@@ -89,22 +93,20 @@ namespace Guns.Grappler
                 JumpToPosition(_grapplePoint, highestPointOnArc);
             }
 
-            Invoke(nameof(StopGrapple), 1f);
-            
+            Invoke(nameof(StopGrapple), model.grappleDelayTime);
+
             yield break;
         }
-
         public void StopGrapple()
         {
-            animator.SetBool("ShootGrappler", false);
-            StopCoroutine(ExecuteGrapple());
+            animator.SetBool(grapplerAnimationName, false);
+            StopCoroutine(_onStartGrapple);
 
             _grappling = false;
             _grapplingCdTimer = model.grapplingCd;
             lr.enabled = false;
             _pm.activeGun = false;
         }
-
         private Vector3 CalculteJumpVelocity(Vector3 startPoint, Vector3 endPoint, float tarjectoryHeight)
         {
             //formula sacada de este video : https://www.youtube.com/watch?v=IvT8hjy6q4o
@@ -120,24 +122,15 @@ namespace Guns.Grappler
 
             return velocityXZ + velocityY;
         }
-
-        private Vector3 _velocityToSet;
-
         public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
         {
             _pm.activeGun = true;
             _velocityToSet = CalculteJumpVelocity(transform.position, targetPosition, trajectoryHeight);
             Invoke(nameof(SetVelocity), 0.1f);
         }
-
         private void SetVelocity()
         {
             rb.velocity = _velocityToSet;
-        }
-
-        public void ResetVelocity()
-        {
-            rb.velocity = Vector3.zero;
         }
     }
 }

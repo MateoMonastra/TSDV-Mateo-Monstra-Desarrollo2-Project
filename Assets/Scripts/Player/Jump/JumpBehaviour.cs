@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
-using System.Net;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Serialization;
 
-namespace Player
+namespace Player.Jump
 {
     public class JumpBehaviour : MonoBehaviour
     {
@@ -55,10 +51,6 @@ namespace Player
                 _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
 
                 Invoke(nameof(Reset), jumpCooldown);
-            }
-            else
-            {
-                yield break;
             }
         }
 

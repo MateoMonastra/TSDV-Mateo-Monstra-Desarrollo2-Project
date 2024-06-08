@@ -16,7 +16,7 @@ namespace Coin
 
         private void Update()
         {
-            transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);
+            transform.Rotate(Vector3.up * (Time.deltaTime * rotationSpeed));
 
         }
 

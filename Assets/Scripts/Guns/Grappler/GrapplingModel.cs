@@ -10,22 +10,6 @@ namespace Guns.Grappler
         [SerializeField] internal float grappleDelayTime;
         [SerializeField] internal float overshootYAxis;
         [SerializeField] internal float grapplingCd;
-        public float GetMaxGrappleDistance()
-        {
-            return maxGrappleDistance;
-        }
-        public float GetGrappleDelayTime()
-        {
-            return grappleDelayTime;
-        }
-        public float GetOvershootYAxis()
-        {
-            return overshootYAxis;
-        }
-        public float GetGrapplingCd()
-        {
-            return grapplingCd;
-        }
-        
+        public float MaxGrappleDistance => maxGrappleDistance;
     }
 }

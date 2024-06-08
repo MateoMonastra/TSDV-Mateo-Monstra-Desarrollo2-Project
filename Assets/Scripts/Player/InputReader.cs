@@ -1,5 +1,9 @@
 using Guns.Grappler;
+using Guns.Swing;
 using LevelManager;
+using Options;
+using Player.Jump;
+using Player.Running;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -10,7 +14,7 @@ namespace Player
     {
         public RunningBehaviour runBehaviour;
         public JumpBehaviour jumpBehaviour;
-        public PlayerCam playerCam;
+        public PlayerCam.PlayerCam playerCam;
         public GrapplingBehaviour grapplingBehaviour;
         public SwingBehaviour swingBehaviour;
         public PauseUI pauseUI;
