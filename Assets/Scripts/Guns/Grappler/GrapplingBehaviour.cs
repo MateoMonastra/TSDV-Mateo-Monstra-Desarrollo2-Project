@@ -64,7 +64,7 @@ namespace Guns.Grappler
             {
                 _grapplePoint = hit.point;
 
-                StartCoroutine(_onStartGrapple);
+                StartCoroutine(ExecuteGrapple());
             }
             else
             {
@@ -93,14 +93,14 @@ namespace Guns.Grappler
                 JumpToPosition(_grapplePoint, highestPointOnArc);
             }
 
-            Invoke(nameof(StopGrapple), model.grappleDelayTime);
+            Invoke(nameof(StopGrapple), 1.0f);
 
             yield break;
         }
         public void StopGrapple()
         {
             animator.SetBool(grapplerAnimationName, false);
-            StopCoroutine(_onStartGrapple);
+            StopCoroutine(StartGrapple());
 
             _grappling = false;
             _grapplingCdTimer = model.grapplingCd;

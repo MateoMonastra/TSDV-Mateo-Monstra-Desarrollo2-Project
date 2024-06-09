@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxGrappleDistance: 200
   grappleDelayTime: 0.25
-  overshootYAxis: 1
+  overshootYAxis: 0.3
   grapplingCd: 0.5

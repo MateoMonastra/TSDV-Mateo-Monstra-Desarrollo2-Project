@@ -46,6 +46,7 @@ namespace Guns.Swing
         public IEnumerator StartSwing()
         {
             if (_swingCdTimer > 0 || _pm.activeGun) yield break;
+            
             if (_joint)
             {
                 StartCoroutine(StopSwing());
