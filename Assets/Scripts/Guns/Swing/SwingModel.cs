@@ -6,6 +6,7 @@ namespace Guns.Swing
     public class SwingModel : ScriptableObject
     {
         [SerializeField] private float maxSwingDistance;
+        [SerializeField] private float swingDelayTime;
         [SerializeField] private float swingCd;
         [SerializeField] private float maxDistance;
         [SerializeField] private float minDistance;
@@ -14,6 +15,7 @@ namespace Guns.Swing
         [SerializeField] private float massScale;
     
         public float MaxSwingDistance => maxSwingDistance;
+        public float SwingDelayTime => swingDelayTime;
         public float SwingCd => swingCd;
         public float MaxDistance => maxDistance;
         public float MinDistance => minDistance;

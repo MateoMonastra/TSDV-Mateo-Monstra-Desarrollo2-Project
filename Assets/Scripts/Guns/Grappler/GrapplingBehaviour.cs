@@ -9,7 +9,6 @@ namespace Guns.Grappler
     public class GrapplingBehaviour : MonoBehaviour
     {
         public Coroutine OnPlay;
-        private IEnumerator _onStartGrapple;
 
         [Header("References")] 
         
@@ -37,7 +36,6 @@ namespace Guns.Grappler
         private void Start()
         {
             _pm = GetComponent<RunningBehaviour>();
-            _onStartGrapple = ExecuteGrapple();
         }
         private void Update()
         {
@@ -70,7 +68,7 @@ namespace Guns.Grappler
             {
                 _grapplePoint = playerCamera.position + playerCamera.forward * model.MaxGrappleDistance;
                 // PREGUNTAR OPINION A JUMPY
-                Invoke(nameof(StopGrapple), model.grappleDelayTime);
+                Invoke(nameof(StopGrapple), model.GrappleDelayTime);
             }
 
             lr.enabled = true;
@@ -84,9 +82,9 @@ namespace Guns.Grappler
                 new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
             float grapplePointRelativeYPos = _grapplePoint.y - lowestPoint.y;
-            float highestPointOnArc = grapplePointRelativeYPos + model.overshootYAxis;
+            float highestPointOnArc = grapplePointRelativeYPos + model.OvershootYAxis;
 
-            if (grapplePointRelativeYPos < 0) highestPointOnArc = model.overshootYAxis;
+            if (grapplePointRelativeYPos < 0) highestPointOnArc = model.OvershootYAxis;
 
             if (_grappling)
             {
@@ -103,7 +101,7 @@ namespace Guns.Grappler
             StopCoroutine(StartGrapple());
 
             _grappling = false;
-            _grapplingCdTimer = model.grapplingCd;
+            _grapplingCdTimer = model.GrapplingCd;
             lr.enabled = false;
             _pm.activeGun = false;
         }

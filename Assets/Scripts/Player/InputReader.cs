@@ -84,7 +84,7 @@ namespace Player
 
         public void HandleSwingInput(InputAction.CallbackContext context)
         {
-            if (swingBehaviour != null)
+            if (swingBehaviour && context.started)
             {
                 if (swingBehaviour.OnPlay != null)
                 {
@@ -92,16 +92,10 @@ namespace Player
                 }
 
                 swingBehaviour.OnPlay = StartCoroutine(swingBehaviour.StartSwing());
-
-                if (context.canceled)
-                {
-                    if (swingBehaviour.OnStop != null)
-                    {
-                        StopCoroutine(swingBehaviour.StopSwing());
-                    }
-
-                    swingBehaviour.OnStop = StartCoroutine(swingBehaviour.StopSwing());
-                }
+            }
+            else if (swingBehaviour && context.canceled)
+            {
+                swingBehaviour.StopSwing();
             }
         }
 

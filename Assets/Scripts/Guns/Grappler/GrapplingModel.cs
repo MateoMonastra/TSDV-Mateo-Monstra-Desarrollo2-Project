@@ -7,9 +7,12 @@ namespace Guns.Grappler
     public class GrapplingModel : ScriptableObject
     {
         [SerializeField] private float maxGrappleDistance;
-        [SerializeField] internal float grappleDelayTime;
-        [SerializeField] internal float overshootYAxis;
-        [SerializeField] internal float grapplingCd;
+        [SerializeField] private float grappleDelayTime;
+        [SerializeField] private float overshootYAxis;
+        [SerializeField] private float grapplingCd;
         public float MaxGrappleDistance => maxGrappleDistance;
+        public float GrappleDelayTime => grappleDelayTime;
+        public float OvershootYAxis => overshootYAxis;
+        public float GrapplingCd => grapplingCd;
     }
 }

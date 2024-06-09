@@ -56,7 +56,7 @@ namespace Floor
             
             if (_swingBeha)
             {
-                StartCoroutine(_swingBeha.StopSwing());
+                _swingBeha.StopSwing();
             }
         }
     }
