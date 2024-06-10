@@ -49,7 +49,7 @@ namespace Guns.Grappler
                     grappable))
             {
                 hitPoint.ChangePosition = true;
-                HitPoint.MoveTo = hit.point;
+                hitPoint.MoveTo = hit.point;
             }
             else
             {

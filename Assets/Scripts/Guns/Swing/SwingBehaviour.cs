@@ -19,6 +19,7 @@ namespace Guns.Swing
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
+        [SerializeField] private HitPoint hitPoint;
 
         [Header("Model")] 
         
@@ -43,6 +44,18 @@ namespace Guns.Swing
             if (_swingCdTimer > 0)
             {
                 _swingCdTimer -= Time.deltaTime;
+            }
+
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
+                    grappable))
+            {
+                hitPoint.ChangePosition = true;
+                hitPoint.MoveTo = hit.point;
+                
+            }
+            else
+            {
+                hitPoint.ChangePosition = false;
             }
         }
         public IEnumerator StartSwing()
@@ -104,6 +117,15 @@ namespace Guns.Swing
             if (!_grappling || !_joint) return;
             lr.SetPosition(0, gunTip.position);
             lr.SetPosition(1, _swingPoint);
+
+            if (hitPoint.ChangePosition)
+            {
+                hitPoint.MovePoint();
+            }
+            else
+            {
+                hitPoint.ResetPoint();
+            }
         }
     }
 }

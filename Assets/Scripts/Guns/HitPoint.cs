@@ -9,7 +9,7 @@ namespace Guns
         private Vector3 _moveTo;
 
         public bool ChangePosition { get; set; }
-        public static Vector3 MoveTo { get; set; }
+        public Vector3 MoveTo { get; set; }
 
         private void OnEnable()
         {
@@ -18,9 +18,9 @@ namespace Guns
 
         public void MovePoint()
         {
-            if (_point.position == _moveTo) return;
+            if (_point.position == MoveTo) return;
             
-            _point.position = _moveTo;
+            _point.position = MoveTo;
         }
 
         public void ResetPoint()
