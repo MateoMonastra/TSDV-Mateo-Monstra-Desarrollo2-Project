@@ -18,6 +18,7 @@ namespace Guns.Grappler
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
+        [SerializeField] private HitPoint hitPoint;
         private RunningBehaviour _pm;
 
         [Header("Model")] 
@@ -43,11 +44,31 @@ namespace Guns.Grappler
             {
                 _grapplingCdTimer -= Time.deltaTime;
             }
+
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
+                    grappable))
+            {
+                hitPoint.ChangePosition = true;
+                HitPoint.MoveTo = hit.point;
+            }
+            else
+            {
+                hitPoint.ChangePosition = false;
+            }
         }
         private void LateUpdate()
         {
             if (_grappling)
                 lr.SetPosition(0, gunTip.position);
+
+            if (hitPoint.ChangePosition)
+            {
+                hitPoint.MovePoint();
+            }
+            else
+            {
+                hitPoint.ResetPoint();
+            }
         }
         public IEnumerator StartGrapple()
         {
