@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class FSM : MonoBehaviour
 {
-    List<States> states;
+    [SerializeField] List<States> states;
 
-    States currentState;
+    public States currentState;
+
+    private void FSMCheck()
+    {
+        foreach (States state in states)
+        {
+            if (state == currentState)
+            {
+                //state.();
+                //Preguntar si va por aca la cosa
+            }
+
+        }
+    }
 }
