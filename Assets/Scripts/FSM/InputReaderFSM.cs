@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class InputReaderFSM : MonoBehaviour
 {
-    FSM fsm;
-
-    [SerializeField] Jump jump;
-    [SerializeField] WalkIdle walkIdle;
+    public Action onMove;
+    public Action onJump;
 
     public void HandleJumpInput(InputAction.CallbackContext context)
     {
-        fsm.currentState = jump;
+        onJump.Invoke();
     }
 
     public void HandleMoveInput(InputAction.CallbackContext context)
     {
-        fsm.currentState = walkIdle;
+        onMove.Invoke();
     }
 }
 
