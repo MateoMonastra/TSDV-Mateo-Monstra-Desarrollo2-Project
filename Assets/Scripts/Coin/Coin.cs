@@ -6,12 +6,12 @@ namespace Coin
     public class Coin : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed;
-        private SkinnedMeshRenderer _skinnedMeshRenderer;
+        private MeshRenderer meshRenderer;
 
         public bool isActive = true;
         private void Start()
         {
-            _skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+            meshRenderer = GetComponentInChildren<MeshRenderer>();
         }
 
         private void Update()
@@ -28,12 +28,12 @@ namespace Coin
 
         public void ActivateCoin() 
         {
-            _skinnedMeshRenderer.enabled = true;
+            meshRenderer.enabled = true;
         }
 
         public void DesactivateCoin()
         {
-            _skinnedMeshRenderer.enabled = false;
+            meshRenderer.enabled = false;
         }
 
     }
