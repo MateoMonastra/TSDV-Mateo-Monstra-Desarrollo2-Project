@@ -45,18 +45,6 @@ namespace Guns.Swing
             {
                 _swingCdTimer -= Time.deltaTime;
             }
-
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
-                    grappable))
-            {
-                hitPoint.ChangePosition = true;
-                hitPoint.MoveTo = hit.point;
-                
-            }
-            else
-            {
-                hitPoint.ChangePosition = false;
-            }
         }
         public IEnumerator StartSwing()
         {
@@ -117,15 +105,6 @@ namespace Guns.Swing
             if (!_grappling || !_joint) return;
             lr.SetPosition(0, gunTip.position);
             lr.SetPosition(1, _swingPoint);
-
-            if (hitPoint.ChangePosition)
-            {
-                hitPoint.MovePoint();
-            }
-            else
-            {
-                hitPoint.ResetPoint();
-            }
         }
     }
 }

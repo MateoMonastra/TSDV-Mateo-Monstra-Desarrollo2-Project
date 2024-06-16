@@ -44,31 +44,11 @@ namespace Guns.Grappler
             {
                 _grapplingCdTimer -= Time.deltaTime;
             }
-
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
-                    grappable))
-            {
-                hitPoint.ChangePosition = true;
-                hitPoint.MoveTo = hit.point;
-            }
-            else
-            {
-                hitPoint.ChangePosition = false;
-            }
         }
         private void LateUpdate()
         {
             if (_grappling)
                 lr.SetPosition(0, gunTip.position);
-
-            if (hitPoint.ChangePosition)
-            {
-                hitPoint.MovePoint();
-            }
-            else
-            {
-                hitPoint.ResetPoint();
-            }
         }
         public IEnumerator StartGrapple()
         {
@@ -97,7 +77,9 @@ namespace Guns.Grappler
         }
         private IEnumerator ExecuteGrapple()
         {
+            rb.velocity = Vector3.zero;
             _pm.freeze = false;
+            _pm.activeGun = true;
 
             Vector3 lowestPoint =
                 new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);

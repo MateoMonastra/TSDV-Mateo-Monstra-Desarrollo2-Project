@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69462fe9210a3e1449196b599ad42adc, type: 3}
   m_Name: JumpModelBase
   m_EditorClassIdentifier: 
-  jumpForce: 21
+  jumpForce: 30
   jumpCooldown: 0.5
   coyoteTime: 0.4

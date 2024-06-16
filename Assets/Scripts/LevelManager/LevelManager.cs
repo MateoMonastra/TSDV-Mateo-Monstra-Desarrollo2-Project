@@ -30,10 +30,9 @@ namespace LevelManager
         [SerializeField] private CoinMode coinMode;
         [SerializeField] private LevelMode levelMode;
         [SerializeField] private List<Coin.Coin> coins;
-        [SerializeField] private GameObject timer;
+        [SerializeField] private Timer timer;
 
         public Levels currentLevel;
-        private Timer _timer;
         int _currentCoin = 0;
 
 
@@ -43,9 +42,7 @@ namespace LevelManager
             {
                 var canvas = timer.GetComponentInChildren<Canvas>();
                 canvas.enabled = true;
-                
-                _timer = timer.GetComponentInChildren<Timer>();
-                _timer.enabled = true;
+                timer.enabled = true;
             }
         }
 
@@ -65,7 +62,7 @@ namespace LevelManager
 
             if (levelMode == LevelMode.TimeTrial) 
             {
-                if (_timer.TimerFinished()) 
+                if (timer.TimerFinished()) 
                 {
                     ChangeLevel((int)currentLevel);
                 }
