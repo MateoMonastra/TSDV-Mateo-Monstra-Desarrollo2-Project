@@ -8,6 +8,7 @@ namespace Menu
     {
         [SerializeField] private Canvas menu;
         [SerializeField] private CreditsUI creditsMenu;
+        [SerializeField] private int sceneLoadId;
 
         public void InitMenu()
         {
@@ -15,7 +16,7 @@ namespace Menu
         }
         public void Play()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(sceneLoadId);
         }
 
         public void ShowCredits() 

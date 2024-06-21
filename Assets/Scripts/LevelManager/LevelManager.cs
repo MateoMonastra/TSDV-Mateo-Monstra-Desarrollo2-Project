@@ -44,6 +44,9 @@ namespace LevelManager
                 canvas.enabled = true;
                 timer.enabled = true;
             }
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         void Update()
