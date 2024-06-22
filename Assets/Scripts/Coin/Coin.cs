@@ -23,7 +23,10 @@ namespace Coin
         public void OnTriggerEnter(Collider other)
         {
             isActive = false;
-            DesactivateCoin();
+            if (meshRenderer.enabled)
+            {
+                DesactivateCoin();
+            }
         }
 
         public void ActivateCoin() 

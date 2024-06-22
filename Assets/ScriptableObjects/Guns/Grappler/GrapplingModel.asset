@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b9e9393338b8f45931595d6ac04905, type: 3}
   m_Name: GrapplingModel
   m_EditorClassIdentifier: 
-  maxGrappleDistance: 200
+  maxGrappleDistance: 100
   grappleDelayTime: 0.25
-  overshootYAxis: 0.3
+  overshootYAxis: 0.5
   grapplingCd: 0.5

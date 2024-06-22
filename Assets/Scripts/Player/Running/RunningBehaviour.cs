@@ -65,9 +65,11 @@ namespace Player.Running
             else
                 _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration * model.AirMultiplayer),
                     ForceMode.Force);
-            
-            if (_shouldBrake);
+
+            if (_shouldBrake)
+            {
                 Brake();
+            }
 
         }
 

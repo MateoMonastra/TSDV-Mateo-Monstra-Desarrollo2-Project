@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c8e736542f17341969ff58375c1567, type: 3}
   m_Name: SwingModel
   m_EditorClassIdentifier: 
-  maxSwingDistance: 200
-  swingCd: 0
+  maxSwingDistance: 100
+  swingDelayTime: 0.25
+  swingCd: 0.5
   maxDistance: 0.8
   minDistance: 0.25
   spring: 4.5

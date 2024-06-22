@@ -13,11 +13,10 @@ namespace Floor
     {
         [SerializeField] private Transform checkPoint;
         [SerializeField] private GameObject player;
-        [SerializeField] private Rigidbody playerRb;
         [SerializeField] private Canvas transition;
         [SerializeField] private float transitionCoolDown;
 
-        private MeshRenderer _collider;
+        private Rigidbody _playerRb;
         private float _transitionTimer;
         private GrapplingBehaviour _grapplingBeha;
         private SwingBehaviour _swingBeha;
@@ -25,9 +24,9 @@ namespace Floor
 
         private void Start()
         {
-            _collider = GetComponentInChildren<MeshRenderer>();
             _grapplingBeha = player.GetComponent<GrapplingBehaviour>();
             _swingBeha = player.GetComponent<SwingBehaviour>();
+            _playerRb = player.GetComponent<Rigidbody>();
         }
 
         private void Update()
@@ -37,7 +36,7 @@ namespace Floor
             if (transition.enabled && _transitionTimer <= 0)
             {
                 transition.enabled = false;
-                playerRb.velocity = new Vector3(0f, 0f, 0f);
+                _playerRb.velocity = new Vector3(0f, 0f, 0f);
             }
         }
 
@@ -50,7 +49,7 @@ namespace Floor
             _transitionTimer = transitionCoolDown;
             transition.enabled = true;
 
-            playerRb.velocity = new Vector3(0f, 0f, 0f);
+            _playerRb.velocity = new Vector3(0f, 0f, 0f);
             _grapplingBeha.StopGrapple();
             player.transform.position = checkPoint.position;
             
