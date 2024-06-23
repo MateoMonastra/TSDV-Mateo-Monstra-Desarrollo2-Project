@@ -18,7 +18,6 @@ namespace Guns.Grappler
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
-        [SerializeField] private HitPoint hitPoint;
         private RunningBehaviour _pm;
 
         [Header("Model")] 
@@ -68,7 +67,6 @@ namespace Guns.Grappler
             else
             {
                 _grapplePoint = playerCamera.position + playerCamera.forward * model.MaxGrappleDistance;
-                // PREGUNTAR OPINION A JUMPY
                 Invoke(nameof(StopGrapple), model.GrappleDelayTime);
             }
 

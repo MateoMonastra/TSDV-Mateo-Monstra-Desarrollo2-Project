@@ -11,21 +11,27 @@ namespace Floor
 {
     public class RespawnPlayer : MonoBehaviour
     {
-        [SerializeField] private Transform checkPoint;
         [SerializeField] private GameObject player;
         [SerializeField] private Canvas transition;
         [SerializeField] private float transitionCoolDown;
+        
+        private Transform _checkPoint;
+        public Transform CheckPoint
+        {
+            get => _checkPoint;
+            set => _checkPoint = value;
+        }
 
         private Rigidbody _playerRb;
         private float _transitionTimer;
-        private GrapplingBehaviour _grapplingBeha;
-        private SwingBehaviour _swingBeha;
+        private GrapplingBehaviour _grapplingBehaviour;
+        private SwingBehaviour _swingBehaviour;
         private bool _playerGodMode;
 
         private void Start()
         {
-            _grapplingBeha = player.GetComponent<GrapplingBehaviour>();
-            _swingBeha = player.GetComponent<SwingBehaviour>();
+            _grapplingBehaviour = player.GetComponent<GrapplingBehaviour>();
+            _swingBehaviour = player.GetComponent<SwingBehaviour>();
             _playerRb = player.GetComponent<Rigidbody>();
         }
 
@@ -50,13 +56,15 @@ namespace Floor
             transition.enabled = true;
 
             _playerRb.velocity = new Vector3(0f, 0f, 0f);
-            _grapplingBeha.StopGrapple();
-            player.transform.position = checkPoint.position;
+            _grapplingBehaviour.StopGrapple();
+            player.transform.position = _checkPoint.position;
             
-            if (_swingBeha)
+            if (_swingBehaviour)
             {
-                _swingBeha.StopSwing();
+                _swingBehaviour.StopSwing();
             }
+
+            Debug.Log("Repawn");
         }
     }
 }

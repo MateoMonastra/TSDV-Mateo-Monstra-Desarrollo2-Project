@@ -3,6 +3,7 @@ using Player.Running;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Guns.Swing
 {
@@ -19,7 +20,6 @@ namespace Guns.Swing
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
-        [SerializeField] private HitPoint hitPoint;
 
         [Header("Model")] 
         
