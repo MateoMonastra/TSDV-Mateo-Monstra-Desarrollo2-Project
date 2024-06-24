@@ -10,7 +10,6 @@ namespace Player.Running
 
         private bool _shouldBrake;
 
-        private GroundCheck _groundCheck;
         [SerializeField] private float groundDrag;
 
         [Header("Orientation: ")] 
@@ -21,10 +20,16 @@ namespace Player.Running
 
         public bool freeze;
         public bool activeGun;
+        private GroundCheck GroundCheck { get; set; }
+        public GroundCheck _groundCheck
+        {
+            get => GroundCheck;
+            set => GroundCheck = value;
+        }
 
         private void Start()
         {
-            _groundCheck = GetComponent<GroundCheck>();
+            GroundCheck = GetComponent<GroundCheck>();
             _rb = GetComponent<Rigidbody>();
             _rb.freezeRotation = true;
         }
@@ -42,7 +47,7 @@ namespace Player.Running
 
         private void SpeedControl()
         {
-            _rb.drag = _groundCheck.IsOnGround() ? groundDrag : 0;
+            _rb.drag = GroundCheck.IsOnGround() ? groundDrag : 0;
 
             Vector3 flatSpeed = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
@@ -59,7 +64,7 @@ namespace Player.Running
             SpeedControl();
             if (freeze) _rb.velocity = Vector3.zero;
 
-            if (_groundCheck.IsOnGround())
+            if (GroundCheck.IsOnGround())
                 _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration), ForceMode.Force);
             else
                 _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration * model.AirMultiplayer),

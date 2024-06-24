@@ -13,6 +13,7 @@ namespace Guns.Swing
         [SerializeField] private float spring;
         [SerializeField] private float damper;
         [SerializeField] private float massScale;
+        [SerializeField] private LayerMask grappeable;
     
         public float MaxSwingDistance => maxSwingDistance;
         public float SwingDelayTime => swingDelayTime;
@@ -22,5 +23,6 @@ namespace Guns.Swing
         public float Spring => spring;
         public float Damper => damper;
         public float MassScale => massScale;
+        public LayerMask Grappeable => grappeable;
     }
 }

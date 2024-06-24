@@ -15,7 +15,6 @@ namespace Guns.Swing
         [Header("References")] 
         
         [SerializeField] private Transform playerCamera;
-        [SerializeField] private LayerMask grappable;
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
@@ -48,13 +47,13 @@ namespace Guns.Swing
         }
         public IEnumerator StartSwing()
         {
-            if (_swingCdTimer > 0 || _pm.activeGun) { Debug.Log("cant shoot"); yield break; }
+            if (_swingCdTimer > 0 || _pm.activeGun|| _pm._groundCheck.IsOnGround()) { Debug.Log("cant shoot"); yield break; }
             
             if (_joint) StopSwing();
             
 
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
-                    grappable))
+                    model.Grappeable))
             {
                 animator.SetBool(swingAnimationName, true);
                 
@@ -62,6 +61,11 @@ namespace Guns.Swing
 
                 ExecuteSwing();
                 Debug.Log("Swing");
+            }
+            else
+            {
+                _swingPoint = playerCamera.position + playerCamera.forward * model.MaxSwingDistance;
+                Invoke(nameof(StopSwing), model.SwingDelayTime);
             }
 
             lr.enabled = true;

@@ -13,7 +13,6 @@ namespace Guns.Grappler
         [Header("References")] 
         
         [SerializeField] private Transform playerCamera;
-        [SerializeField] private LayerMask grappable;
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
@@ -51,14 +50,14 @@ namespace Guns.Grappler
         }
         public IEnumerator StartGrapple()
         {
-            if (_grapplingCdTimer > 0 || _pm.activeGun) yield break;
+            if (_grapplingCdTimer > 0 || _pm.activeGun || _pm._groundCheck.IsOnGround()) yield break;
 
             _grappling = true;
             animator.SetBool(grapplerAnimationName, true);
 
 
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
-                    grappable))
+                    model.Grappeable))
             {
                 _grapplePoint = hit.point;
 
