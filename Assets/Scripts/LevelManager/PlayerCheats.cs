@@ -40,7 +40,7 @@ namespace LevelManager
         {
             levelManager.currentLevel++;
             
-            if (levelManager.currentLevel > LevelManager.Levels.Level3)
+            if (levelManager.currentLevel > LevelManager.Levels.Level2)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

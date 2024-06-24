@@ -10,8 +10,7 @@ namespace LevelManager
         {
             Level0 = 1,
             Level1,
-            Level2,
-            Level3
+            Level2
         }
 
         enum CoinMode
@@ -87,7 +86,7 @@ namespace LevelManager
             if (coinCount == 0)
             {
                 currentLevel++;
-                if (currentLevel > Levels.Level3)
+                if (currentLevel > Levels.Level2)
                 {
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
@@ -121,7 +120,7 @@ namespace LevelManager
                 if (_currentCoin == coins.Count)
                 {
                     currentLevel++;
-                    if (currentLevel > Levels.Level3)
+                    if (currentLevel > Levels.Level2)
                     {
                         Cursor.lockState = CursorLockMode.None;
                         Cursor.visible = true;
