@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSwingDistance: 100
   swingDelayTime: 0.25
-  swingCd: 0.5
+  swingCd: 0.1
   maxDistance: 0.8
   minDistance: 0.25
   spring: 4.5

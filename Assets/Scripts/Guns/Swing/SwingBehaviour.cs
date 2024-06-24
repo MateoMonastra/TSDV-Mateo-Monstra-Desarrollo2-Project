@@ -48,29 +48,25 @@ namespace Guns.Swing
         }
         public IEnumerator StartSwing()
         {
-            if (_swingCdTimer > 0 || _pm.activeGun) yield break;
+            if (_swingCdTimer > 0 || _pm.activeGun) { Debug.Log("cant shoot"); yield break; }
             
             if (_joint) StopSwing();
             
-            _grappling = true;
-            animator.SetBool(swingAnimationName, true);
 
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
                     grappable))
             {
+                animator.SetBool(swingAnimationName, true);
+                
                 _swingPoint = hit.point;
-                StartCoroutine(ExecuteSwing());
-            }
-            else
-            {
-                _swingPoint = playerCamera.position + playerCamera.forward * model.MaxSwingDistance;
-                // PREGUNTAR OPINION A JUMPY
-                Invoke(nameof(StopSwing), model.SwingDelayTime);
+
+                ExecuteSwing();
+                Debug.Log("Swing");
             }
 
             lr.enabled = true;
         }
-        private IEnumerator ExecuteSwing()
+        private void ExecuteSwing()
         {
             _pm.activeGun = true;
             _joint = transform.AddComponent<SpringJoint>();
@@ -88,7 +84,6 @@ namespace Guns.Swing
             
             lr.positionCount = 2;
             
-            yield break;
         }
         public void StopSwing()
         {
@@ -102,7 +97,7 @@ namespace Guns.Swing
         }
         private void LateUpdate()
         {
-            if (!_grappling || !_joint) return;
+            if (!_joint) return;
             lr.SetPosition(0, gunTip.position);
             lr.SetPosition(1, _swingPoint);
         }

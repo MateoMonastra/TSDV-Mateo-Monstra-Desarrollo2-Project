@@ -28,7 +28,7 @@ namespace Player
 
             if (runBehaviour != null)
             {
-                runBehaviour.Move(moveDirection);
+                runBehaviour.SetDirection(moveDirection);
             }
         }
 

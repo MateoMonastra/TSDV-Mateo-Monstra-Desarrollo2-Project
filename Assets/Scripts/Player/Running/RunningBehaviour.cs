@@ -29,9 +29,8 @@ namespace Player.Running
             _rb.freezeRotation = true;
         }
 
-        public void Move(Vector3 direction)
+        public void SetDirection(Vector3 direction)
         {
-            if (activeGun) return;
 
             if (direction.magnitude < 0.0001f)
             {
