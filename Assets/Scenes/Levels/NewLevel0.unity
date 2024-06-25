@@ -2364,9 +2364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
-  grappable:
-    serializedVersion: 2
-    m_Bits: 1536
   pointPrefab: {fileID: 52609788}
   sizeCurve:
     serializedVersion: 2
@@ -2392,7 +2389,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  sizeMultiplier: 0.025
 --- !u!1 &1730169701
 GameObject:
   m_ObjectHideFlags: 0
