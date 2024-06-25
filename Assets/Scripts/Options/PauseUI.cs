@@ -26,7 +26,6 @@ namespace Options
             Time.timeScale = 1;
             SceneManager.LoadScene(0);
         }
-
         public void ExitGame()
         {
             Application.Quit();
