@@ -4359,48 +4359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7184c205b837a4e847a851bc6525e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1773554377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773554369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d634d7a519dd0a4c888950d4de40d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
-  grappable:
-    serializedVersion: 2
-    m_Bits: 1536
-  pointPrefab: {fileID: 1879137368}
-  sizeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  sizeMultiplier: 0.025
 --- !u!1001 &1829589091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4689,11 +4647,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a00095e5e9d582e47b9be6dc06bf57f8, type: 3}
---- !u!23 &1879137368 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8645627342879389155, guid: a00095e5e9d582e47b9be6dc06bf57f8, type: 3}
-  m_PrefabInstance: {fileID: 1879137367}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909943383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4279080059834845942, guid: 30e04ef8c25eba049968d03ab98529aa, type: 3}
@@ -4769,6 +4722,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2745923457628907841, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
+      propertyPath: pointPrefab
+      value: 
+      objectReference: {fileID: 8645627342879389155, guid: a00095e5e9d582e47b9be6dc06bf57f8, type: 3}
     - target: {fileID: 3584209203261041537, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
       propertyPath: lr
       value: 
@@ -4808,10 +4765,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8534017556030565496, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1773554377}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f255ef4f15b5e394ea2ad963c3f4d827, type: 3}
 --- !u!1 &1946709175 stripped
 GameObject:

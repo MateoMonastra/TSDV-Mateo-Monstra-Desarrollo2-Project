@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 3584209203261041537}
   - component: {fileID: 8204652900823214084}
   - component: {fileID: 8221177055653463677}
+  - component: {fileID: 2745923457628907841}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -329,14 +330,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
-  grappable:
-    serializedVersion: 2
-    m_Bits: 1536
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
-  hitPoint: {fileID: 0}
   model: {fileID: 11400000, guid: 7e7912bc552f56a4fab27b998d6fff04, type: 2}
   grapplerAnimationName: ShootGrappler
 --- !u!114 &8204652900823214084
@@ -352,14 +349,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
-  grappable:
-    serializedVersion: 2
-    m_Bits: 1536
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
-  hitPoint: {fileID: 0}
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
   swingAnimationName: ShootSwing
 --- !u!114 &8221177055653463677
@@ -377,3 +370,41 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   flashModeSpeed: 200
   godModeActivated: 0
+--- !u!114 &2745923457628907841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534017556030565496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d634d7a519dd0a4c888950d4de40d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
+  pointPrefab: {fileID: 0}
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
