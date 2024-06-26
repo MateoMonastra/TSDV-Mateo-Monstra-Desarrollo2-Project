@@ -1,8 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Credits
+namespace MenuButton
 {
     public class ButtonAction : MonoBehaviour
     {

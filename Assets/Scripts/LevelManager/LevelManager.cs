@@ -32,7 +32,7 @@ namespace LevelManager
         [SerializeField] private Timer timer;
 
         public Levels currentLevel;
-        int _currentCoin = 0;
+        int _currentCoin;
 
 
         private void Start()
@@ -99,9 +99,9 @@ namespace LevelManager
             }
         }
 
-        public void ChangeLevel(int indice)
+        public void ChangeLevel(int index)
         {
-            SceneManager.LoadScene(indice);
+            SceneManager.LoadScene(index);
         }
 
         private void CoinRushMode()
