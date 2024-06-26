@@ -5,18 +5,18 @@ namespace Options
 {
     public class PauseUI : MonoBehaviour
     {
-        [SerializeField] private Canvas pauseMenu;
+        [SerializeField] private GameObject pauseMenu;
 
         public void InitPauseMenu() 
         {
-            pauseMenu.enabled = true;
+            pauseMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0;
         }
         public void Return()
         {
-            pauseMenu.enabled = false;
+            pauseMenu.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Time.timeScale = 1;
@@ -24,7 +24,6 @@ namespace Options
         public void GoMenu() 
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(0);
         }
         public void ExitGame()
         {
