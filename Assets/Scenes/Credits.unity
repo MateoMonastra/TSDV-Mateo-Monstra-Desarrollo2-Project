@@ -431,12 +431,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4221309731926962956, guid: 04b8de637c169574dba6bb7b686dfdd2, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165244537850398641, guid: 04b8de637c169574dba6bb7b686dfdd2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 424
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165244537850398641, guid: 04b8de637c169574dba6bb7b686dfdd2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 8444883887202545154, guid: 04b8de637c169574dba6bb7b686dfdd2, type: 3}
       propertyPath: m_Name
       value: CreditsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8444883887202545154, guid: 04b8de637c169574dba6bb7b686dfdd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1966516915595327301, guid: 04b8de637c169574dba6bb7b686dfdd2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b8de637c169574dba6bb7b686dfdd2, type: 3}
