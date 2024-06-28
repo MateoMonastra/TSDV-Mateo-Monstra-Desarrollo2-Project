@@ -35,9 +35,6 @@ namespace LevelManager
             Debug.Log("Descargado");
                 
             currentLevel = UpdateCurrentLevelData();
-                
-            //necesito terminar el ciclo antes que pase este chequeo
-            if (currentLevel.NextLevel == _returnMenu ) return;
            
             LoadLevel();
         }

@@ -2838,15 +2838,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
+      objectReference: {fileID: 1129282508}
+    - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
       objectReference: {fileID: 1044553287}
     - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: HandleClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: GoMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MenuButton.ButtonAction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Options.PauseUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430463338629423332, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8608513894879974880, guid: efae9df669806e14281ae145ee92c182, type: 3}
       propertyPath: m_Name
@@ -2855,7 +2875,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4132013297691819943, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1129282508}
   m_SourcePrefab: {fileID: 100100000, guid: efae9df669806e14281ae145ee92c182, type: 3}
 --- !u!1 &1129282505 stripped
 GameObject:
@@ -2867,6 +2890,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5940543160918480538, guid: efae9df669806e14281ae145ee92c182, type: 3}
   m_PrefabInstance: {fileID: 1129282504}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1129282507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4132013297691819943, guid: efae9df669806e14281ae145ee92c182, type: 3}
+  m_PrefabInstance: {fileID: 1129282504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1129282508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129282507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8184415bee0514684f9bf6fe1f2e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonHandler: {fileID: 11400000, guid: 34cec1695fac2d74d9a5fdeff6e2d05f, type: 2}
 --- !u!1 &1132920000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3709068632869619502, guid: 7ef1447486562104986050643860cb19, type: 3}
