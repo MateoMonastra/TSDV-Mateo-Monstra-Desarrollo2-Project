@@ -15,7 +15,5 @@ public class SetCheckPoint : MonoBehaviour
         if (newSpawnPoint == respawnPlayer.CheckPoint) return;
         
         respawnPlayer.CheckPoint = newSpawnPoint;
-        Debug.Log("ChangedSpawn");
-
     }
 }

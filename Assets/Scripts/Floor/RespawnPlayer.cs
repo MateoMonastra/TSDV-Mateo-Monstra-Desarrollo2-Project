@@ -12,7 +12,7 @@ namespace Floor
     public class RespawnPlayer : MonoBehaviour
     {
         [SerializeField] private GameObject player;
-        [SerializeField] private Canvas transition;
+        [SerializeField] private GameObject transition;
         [SerializeField] private float transitionCoolDown;
         
         private Transform _checkPoint;
@@ -26,7 +26,6 @@ namespace Floor
         private float _transitionTimer;
         private GrapplingBehaviour _grapplingBehaviour;
         private SwingBehaviour _swingBehaviour;
-        private bool _playerGodMode;
 
         private void Start()
         {
@@ -39,22 +38,17 @@ namespace Floor
         {
             _transitionTimer -= Time.deltaTime;
 
-            if (transition.enabled && _transitionTimer <= 0)
-            {
-                transition.enabled = false;
-                _playerRb.velocity = new Vector3(0f, 0f, 0f);
-            }
+            if (!transition.gameObject.activeInHierarchy || !(_transitionTimer <= 0)) return;
+            
+            transition.gameObject.SetActive(false);
+            _playerRb.velocity = new Vector3(0f, 0f, 0f);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            _playerGodMode = other.GetComponentInParent<PlayerCheats>().godModeActivated;
-            
-            if (_playerGodMode) return;
             
             _transitionTimer = transitionCoolDown;
-            transition.enabled = true;
-
+            transition.gameObject.SetActive(true);
             _playerRb.velocity = new Vector3(0f, 0f, 0f);
             _grapplingBehaviour.StopGrapple();
             player.transform.position = _checkPoint.position;

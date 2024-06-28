@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee2a696a21a40541b32e130ae6a31a5, type: 3}
+  m_Name: LevelData_Level3
+  m_EditorClassIdentifier: 
+  sceneName: Level3
+  nextLevel: Menu
+  coinPositionData:
+  - {fileID: 11400000, guid: ffe5be640395cf140bdb6ae9526830b8, type: 2}
+  - {fileID: 11400000, guid: eccffec8d6139514c8f2376764046472, type: 2}
+  - {fileID: 11400000, guid: 814ea64adf9ff814daa01926ccf15927, type: 2}
+  - {fileID: 11400000, guid: aa238e89241543c41b23bfe3312bb681, type: 2}
+  - {fileID: 11400000, guid: 96847794e6583f444997ef0ad6d80721, type: 2}

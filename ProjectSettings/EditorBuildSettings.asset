@@ -6,21 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/Boot.unity
+    guid: 9d1de0af277aa8d44943953d83b4bf9d
+  - enabled: 1
+    path: Assets/Scenes/PostBoot/SceneManager.unity
+    guid: 8b5d1e53df8d42747b7071c6fd39aa9f
+  - enabled: 1
+    path: Assets/Scenes/PostBoot/Menu.unity
     guid: 16548676d74a7c44aa32fbb2fae62bf5
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: 179c5bc835f9ace46829fb1cdb0e3c5c
+    path: Assets/Scenes/PostBoot/LevelManager.unity
+    guid: de58c9ae459c63247bfd48e1a07bc606
   - enabled: 1
-    path: Assets/Scenes/Levels/Level0.unity
+    path: Assets/Scenes/PostBoot/Levels/Level0.unity
     guid: e2062335951b4204abd6f4775a310a41
   - enabled: 1
-    path: Assets/Scenes/Levels/Level3.unity
-    guid: 2893067ab3a9c4e4c8e66b7186cfd62b
+    path: Assets/Scenes/PostBoot/Levels/Level1.unity
+    guid: 5a920979b11a6654c82e11ff045a5d17
   - enabled: 1
-    path: Assets/Scenes/Levels/Level2.unity
+    path: Assets/Scenes/PostBoot/Levels/Level2.unity
     guid: 0c56e03391acd6849ac14b2d0749ef35
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1.unity
-    guid: dbaf05d5b94ddab4b8692cf6e6baccce
+    path: Assets/Scenes/PostBoot/Levels/Level3.unity
+    guid: 2893067ab3a9c4e4c8e66b7186cfd62b
   m_configObjects: {}

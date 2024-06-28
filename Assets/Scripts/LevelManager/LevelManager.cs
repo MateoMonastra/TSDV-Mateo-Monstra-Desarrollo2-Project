@@ -1,141 +1,145 @@
+using System;
 using System.Collections.Generic;
+using EventSystems;
+using Managers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace LevelManager
 {
     public class LevelManager : MonoBehaviour
     {
-        public enum Levels
-        {
-            Level0 = 1,
-            Level1,
-            Level2
-        }
+        [SerializeField] private EventChannel eventChanel;
+        
+        [SerializeField] private List<LevelData.LevelData> levels;
+        [SerializeField] private LevelData.LevelData currentLevel;
+        
+        [Tooltip("List for Pull of Coins")]
+        [SerializeField] private List<Coin.Coin> coins = new List<Coin.Coin>();
 
-        enum CoinMode
-        {
-            Normal,
-            CoinRun
-        }
-
-        enum LevelMode
-        {
-            Normal,
-            TimeTrial
-        }
-
-
-        [SerializeField] private CoinMode coinMode;
-        [SerializeField] private LevelMode levelMode;
-        [SerializeField] private List<Coin.Coin> coins;
-        [SerializeField] private Timer timer;
-
-        public Levels currentLevel;
-        int _currentCoin;
-
-
+        private string _returnMenu = "Menu";
         private void Start()
         {
-            if (levelMode == LevelMode.TimeTrial)
-            {
-                var canvas = timer.GetComponentInChildren<Canvas>();
-                canvas.enabled = true;
-                timer.enabled = true;
-            }
+            SetMouseForGameplay();
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            if (!CheckLevelExistence(currentLevel.SceneName)) return;
+            LoadLevel();
         }
-
-        void Update()
+        private void Update()
         {
-            switch (coinMode)
+            if (!CheckLevelIsOver() || currentLevel.SceneName == _returnMenu) return;
+            
+            Debug.Log("Termino nivel");
+                
+            eventChanel.UnLoadScene(currentLevel.SceneName);
+            Debug.Log("Descargado");
+                
+            currentLevel = UpdateCurrentLevelData();
+                
+            //necesito terminar el ciclo antes que pase este chequeo
+            if (currentLevel.NextLevel == _returnMenu ) return;
+           
+            LoadLevel();
+        }
+        private bool CheckLevelExistence(string newLevel)
+        {
+            for (var index = 0; index < levels.Count; index++)
             {
-                case CoinMode.Normal:
-                    NormalMode();
-                    break;
-                case CoinMode.CoinRun:
-                    CoinRushMode();
-                    break;
-                default:
-                    break;
-            }
-
-            if (levelMode == LevelMode.TimeTrial) 
-            {
-                if (timer.TimerFinished()) 
+                var level = levels[index];
+                if (level.SceneName == newLevel)
                 {
-                    ChangeLevel((int)currentLevel);
+                    return true;
                 }
             }
+
+            return false;
         }
-
-        private void NormalMode()
+        private void LoadLevel()
         {
-            int coinCount = 0;
+            eventChanel.AddScene(currentLevel.SceneName);
 
+            currentLevel = GetCurrentLevelData();
+
+            SetCoinsNewTransform();
+
+        }
+        private LevelData.LevelData UpdateCurrentLevelData()
+        {
+            foreach (var level in levels)
+            {
+                if (level.SceneName == currentLevel.NextLevel)
+                {
+                    return level;
+                }
+                
+                if(currentLevel.NextLevel == _returnMenu)
+                {
+                    ReturnMenu();
+                }
+            }
+
+            Debug.Log("Level not found");
+            return null;
+        }
+        private LevelData.LevelData GetCurrentLevelData()
+        {
+            foreach (var level in levels)
+            {
+                if (level.SceneName == currentLevel.SceneName)
+                {
+                    return level;
+                }
+            }
+            Debug.Log("Level not found");
+            return null;
+        }
+        private bool CheckLevelIsOver()
+        {
             foreach (var coin in coins)
             {
                 if (coin.isActive)
                 {
-                    coinCount++;
+                    return false;
                 }
             }
-
-            if (coinCount == 0)
+            Debug.Log("Finish Level");
+            return true;
+        }
+        private void SetMouseForGameplay()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        private void SetMouseForMenu()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        private void SetCoinsNewTransform()
+        {
+            foreach (var newCoinPos in currentLevel.coinPositionData)
             {
-                currentLevel++;
-                if (currentLevel > Levels.Level2)
+                bool wasPositioned = false;
+
+                foreach (var coin in coins)
                 {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    SceneManager.LoadScene(0);
-                }
-                else
-                {
-                    ChangeLevel((int)currentLevel);
+                    if (!coin.isActive && !wasPositioned)
+                    {
+                        coin.gameObject.SetActive(true);
+                        coin.isActive = true;
+                        coin.SetNewTransform(newCoinPos);
+
+                        wasPositioned = true;
+                    }
                 }
             }
         }
-
-        public void ChangeLevel(int index)
+        private void ReturnMenu()
         {
-            SceneManager.LoadScene(index);
-        }
-
-        private void CoinRushMode()
-        {
-            foreach (var coin in coins)
-            {
-                coin.DesactivateCoin();
-            }
-
-            coins[_currentCoin].ActivateCoin();
-
-            if (!coins[_currentCoin].isActive)
-            {
-                _currentCoin++;
-
-                if (_currentCoin == coins.Count)
-                {
-                    currentLevel++;
-                    if (currentLevel > Levels.Level2)
-                    {
-                        Cursor.lockState = CursorLockMode.None;
-                        Cursor.visible = true;
-                        SceneManager.LoadScene(0);
-                    }
-                    else
-                    {
-                        ChangeLevel((int)currentLevel);
-                    }
-                }
-                else
-                {
-                    coins[_currentCoin].ActivateCoin();
-                }
-            }
+                SetMouseForMenu();
+                eventChanel.UnLoadScene(gameObject.scene.name);
+                eventChanel.AddScene(_returnMenu);
+                Debug.Log("LoadedMenu");
         }
     }
 }

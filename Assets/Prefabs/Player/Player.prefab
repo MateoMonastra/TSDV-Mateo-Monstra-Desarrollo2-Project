@@ -143,7 +143,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7948645566891003362}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -215,7 +215,6 @@ GameObject:
   - component: {fileID: 2418678129158392799}
   - component: {fileID: 3584209203261041537}
   - component: {fileID: 8204652900823214084}
-  - component: {fileID: 8221177055653463677}
   - component: {fileID: 2745923457628907841}
   m_Layer: 0
   m_Name: Player
@@ -355,21 +354,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
   swingAnimationName: ShootSwing
---- !u!114 &8221177055653463677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534017556030565496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 108caba5e1337424b8381362262351c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
-  flashModeSpeed: 200
-  godModeActivated: 0
 --- !u!114 &2745923457628907841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
-  pointPrefab: {fileID: 0}
+  pointPrefab: {fileID: 8645627342879389155, guid: a00095e5e9d582e47b9be6dc06bf57f8, type: 3}
   sizeCurve:
     serializedVersion: 2
     m_Curve:

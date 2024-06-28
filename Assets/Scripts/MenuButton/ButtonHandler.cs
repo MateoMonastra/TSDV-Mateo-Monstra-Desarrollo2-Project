@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ButtonHandler : ScriptableObject 
+namespace MenuButton
 {
-    abstract public void Handle(params object[] args);
+    public abstract class ButtonHandler : ScriptableObject 
+    {
+        public abstract void Handle(params object[] args);
+        public virtual void Set(){}
+    }
 }

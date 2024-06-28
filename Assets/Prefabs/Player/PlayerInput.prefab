@@ -265,4 +265,3 @@ MonoBehaviour:
   grapplingBehaviour: {fileID: 0}
   swingBehaviour: {fileID: 0}
   pauseUI: {fileID: 0}
-  cheats: {fileID: 0}

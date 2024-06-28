@@ -18,7 +18,6 @@ namespace Player
         public GrapplingBehaviour grapplingBehaviour;
         public SwingBehaviour swingBehaviour;
         public PauseUI pauseUI;
-        public PlayerCheats cheats;
 
         public void HandleMoveInput(InputAction.CallbackContext context)
         {
@@ -104,30 +103,6 @@ namespace Player
             if (pauseUI && context.started)
             {
                 pauseUI.InitPauseMenu();
-            }
-        }
-
-        public void HandlePassLevelInput(InputAction.CallbackContext context)
-        {
-            if (cheats && context.started)
-            {
-                cheats.PassLevel();
-            }
-        }
-
-        public void HandleGodModeInput(InputAction.CallbackContext context)
-        {
-            if (cheats && context.started)
-            {
-                cheats.GodMode();
-            }
-        }
-
-        public void HandleFlashModeInput(InputAction.CallbackContext context)
-        {
-            if (cheats && context.started)
-            {
-                cheats.FlashMode();
             }
         }
     }

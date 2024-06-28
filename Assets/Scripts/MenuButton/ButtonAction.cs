@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace MenuButton
 {
@@ -7,9 +6,20 @@ namespace MenuButton
     {
         [SerializeField] private ButtonHandler buttonHandler;
 
+        private void Start()
+        {
+            if (buttonHandler)
+            {
+                buttonHandler.Set();
+            }
+        }
         public void HandleClick()
         {
-            buttonHandler.Handle();
+            if (buttonHandler)
+            {
+                buttonHandler.Handle();
+            }
         }
+        
     }
 }

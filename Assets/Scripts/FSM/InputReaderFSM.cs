@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
-using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class InputReaderFSM : MonoBehaviour
+namespace FSM
 {
-    public Action onMove;
-    public Action onJump;
-
-    public void HandleJumpInput(InputAction.CallbackContext context)
+    public class InputReaderFsm : MonoBehaviour
     {
-        onJump.Invoke();
-    }
+        public Action onMove;
+        public Action onJump;
 
-    public void HandleMoveInput(InputAction.CallbackContext context)
-    {
-        onMove.Invoke();
+        public void HandleJumpInput(InputAction.CallbackContext context)
+        {
+            onJump.Invoke();
+        }
+
+        public void HandleMoveInput(InputAction.CallbackContext context)
+        {
+            onMove.Invoke();
+        }
     }
 }
 

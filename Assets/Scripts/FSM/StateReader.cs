@@ -1,31 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StateReader : MonoBehaviour
+namespace FSM
 {
-    [Header("References")]
-    [SerializeField] InputReaderFSM inputReaderFSM;
-    [SerializeField] FSM fsm;
-
-    [Header("States References")]
-    [SerializeField] Jump jump;
-    [SerializeField] WalkIdle walkIdle;
-
-    private void Awake()
+    public class StateReader : MonoBehaviour
     {
-        inputReaderFSM.onMove += SetMoveState;
-        inputReaderFSM.onJump += SetJumpState;
-    }
+        [Header("References")]
+        [SerializeField] InputReaderFsm inputReaderFsm;
+        [SerializeField] FsmChecker fsm;
 
-    private void SetMoveState() 
-    {
-        fsm.currentState = walkIdle;
-    }
+        [Header("States References")]
+        [SerializeField] Jump jump;
+        [SerializeField] WalkIdle walkIdle;
 
-    private void SetJumpState()
-    {
-        fsm.currentState = jump;
-    }
+        private void Awake()
+        {
+            inputReaderFsm.onMove += SetMoveState;
+            inputReaderFsm.onJump += SetJumpState;
+        }
 
+        private void SetMoveState() 
+        {
+            fsm.currentState = walkIdle;
+        }
+
+        private void SetJumpState()
+        {
+            fsm.currentState = jump;
+        }
+
+    }
 }

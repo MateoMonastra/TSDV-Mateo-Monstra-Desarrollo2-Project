@@ -6,38 +6,36 @@ namespace Coin
     public class Coin : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed;
-        private MeshRenderer meshRenderer;
 
-        public bool isActive = true;
-        private void Start()
-        {
-            meshRenderer = GetComponentInChildren<MeshRenderer>();
-        }
+        public bool isActive = false;
 
         private void Update()
         {
-            transform.Rotate(Vector3.up * (Time.deltaTime * rotationSpeed));
-
+            if (isActive)
+            {
+                transform.Rotate(Vector3.up * (Time.deltaTime * rotationSpeed));
+            }
         }
 
         public void OnTriggerEnter(Collider other)
         {
-            isActive = false;
-            if (meshRenderer.enabled)
+            if (isActive)
             {
                 DesactivateCoin();
             }
         }
 
-        public void ActivateCoin() 
+        private void DesactivateCoin()
         {
-            meshRenderer.enabled = true;
+            isActive = false;
+            gameObject.SetActive(false);
         }
 
-        public void DesactivateCoin()
+        public void SetNewTransform(CoinData newPosition)
         {
-            meshRenderer.enabled = false;
+            transform.position = newPosition.Position;
+            transform.localScale = newPosition.Scale;
+            transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
         }
-
     }
 }

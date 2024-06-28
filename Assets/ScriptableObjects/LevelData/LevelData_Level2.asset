@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee2a696a21a40541b32e130ae6a31a5, type: 3}
+  m_Name: LevelData_Level2
+  m_EditorClassIdentifier: 
+  sceneName: Level2
+  nextLevel: Level3
+  coinPositionData:
+  - {fileID: 11400000, guid: fff0fbcf616c5a149b6954a46de59ec1, type: 2}
+  - {fileID: 11400000, guid: b04002d64c3144d4390ceb2012637aa0, type: 2}
+  - {fileID: 11400000, guid: f46f9d760e6e4f54a80af7b82581d82f, type: 2}
+  - {fileID: 11400000, guid: 382b3915df3e33c49b3c5a14de03d26b, type: 2}
+  - {fileID: 11400000, guid: 3a44de62c51fe9141a7a6c1dc663f17b, type: 2}
+  - {fileID: 11400000, guid: 4c8db0317f4f62f49a160c0822dca05b, type: 2}
+  - {fileID: 11400000, guid: 2ccad34a5c625a54c855a130522ddeb0, type: 2}
+  - {fileID: 11400000, guid: f932cb1ff11cecc4cb66512e7bd72fa1, type: 2}
+  - {fileID: 11400000, guid: d87f1321076dab24ba2b9bd7c38b85c5, type: 2}

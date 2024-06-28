@@ -1,13 +1,14 @@
-using System;
+using Guns.Swing;
 using UnityEngine;
 
-namespace Guns.Swing
+namespace Guns.HitPoint
 {
     public class HitPointManager : MonoBehaviour
     {
         [SerializeField] private SwingModel model;
         [SerializeField] private MeshRenderer pointPrefab;
         [SerializeField] private AnimationCurve sizeCurve;
+        
         private float _size;
         private MeshRenderer _point;
         private UnityEngine.Camera _camera;
