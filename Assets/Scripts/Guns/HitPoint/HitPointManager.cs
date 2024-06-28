@@ -1,4 +1,5 @@
 using Guns.Swing;
+using Player;
 using UnityEngine;
 
 namespace Guns.HitPoint
@@ -8,6 +9,7 @@ namespace Guns.HitPoint
         [SerializeField] private SwingModel model;
         [SerializeField] private MeshRenderer pointPrefab;
         [SerializeField] private AnimationCurve sizeCurve;
+        [SerializeField] private GroundCheck groundCheck;
         
         private float _size;
         private MeshRenderer _point;
@@ -34,7 +36,7 @@ namespace Guns.HitPoint
             if (!_camera) return;
             
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hit, model.MaxSwingDistance,
-                    model.Grappeable))
+                    model.Grappeable) && !groundCheck.IsOnGround())
             {
                 _point.transform.position = hit.point;
                 _size = sizeCurve.Evaluate(hit.distance / model.MaxSwingDistance);
