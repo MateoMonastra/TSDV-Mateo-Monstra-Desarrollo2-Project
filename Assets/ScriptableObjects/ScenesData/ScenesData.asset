@@ -15,6 +15,7 @@ MonoBehaviour:
   scenes:
   - SoundManager
   - Menu
+  - Settings
   - HighScores
   - LevelManager
   - Level0

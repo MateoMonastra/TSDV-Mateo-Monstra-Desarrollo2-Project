@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -5.0002136, y: -139}
+  m_AnchoredPosition: {x: 58.999577, y: -139}
   m_SizeDelta: {x: -760, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63229789
@@ -293,7 +293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -16.000183, y: -19}
+  m_AnchoredPosition: {x: 47.999607, y: -19}
   m_SizeDelta: {x: -760, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92376325
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 192819595}
   - component: {fileID: 192819594}
   m_Layer: 5
-  m_Name: CreditsButton
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,9 +552,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 192819594}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -584,6 +584,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192819592}
   m_CullTransparentMesh: 1
+--- !u!1 &195639634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 195639635}
+  m_Layer: 0
+  m_Name: SavePlayerData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &195639635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195639634}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &395641707
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +702,7 @@ GameObject:
   - component: {fileID: 463371377}
   - component: {fileID: 463371376}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -850,7 +881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -70.000244, y: -183}
+  m_AnchoredPosition: {x: -6.0004272, y: -183}
   m_SizeDelta: {x: -800, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616114332
@@ -1423,7 +1454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -69.999756, y: 50}
+  m_AnchoredPosition: {x: -6, y: 50}
   m_SizeDelta: {x: -800, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467291030
@@ -1672,9 +1703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'OPTIONS
-
-'
+  m_text: SETTINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9fa2331a4361bdd46987db3b1b087332, type: 2}
   m_sharedMaterial: {fileID: -4813661705331961615, guid: 9fa2331a4361bdd46987db3b1b087332, type: 2}
@@ -1787,7 +1816,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -70.000244, y: -63}
+  m_AnchoredPosition: {x: -6.0004272, y: -63}
   m_SizeDelta: {x: -800, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704724977
@@ -2271,7 +2300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -23.999725, y: 96}
+  m_AnchoredPosition: {x: 40.000034, y: 96}
   m_SizeDelta: {x: -760, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2141011570
@@ -2378,3 +2407,4 @@ SceneRoots:
   - {fileID: 2105994673}
   - {fileID: 2059886145}
   - {fileID: 1582951278}
+  - {fileID: 195639635}
