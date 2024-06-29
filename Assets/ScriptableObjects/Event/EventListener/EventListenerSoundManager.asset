@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c56ead98f175e84fb57facc394c33cb, type: 3}
-  m_Name: ScenesData
+  m_Script: {fileID: 11500000, guid: 8a16f7d6496fcdf4bb8af7ea994216a1, type: 3}
+  m_Name: EventListenerSoundManager
   m_EditorClassIdentifier: 
-  scenes:
-  - SoundManager
-  - Menu
-  - HighScores
-  - LevelManager
-  - Level0
-  - Level1
-  - Level2
-  - Level3
+  soundManager: {fileID: 0}
+  eventChannel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}

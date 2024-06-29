@@ -7,8 +7,6 @@ namespace EventSystems.EventTimer
     public class EventChannelTimer : EventListener
     {
         public Action<float> OnAddTime;
-
-        
         public void AddScene(float timeToAdd)
         {
             OnAddTime.Invoke(timeToAdd);

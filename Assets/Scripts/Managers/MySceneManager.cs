@@ -8,13 +8,16 @@ namespace Managers
 {
     public class MySceneManager : MonoBehaviour
     {
-        [SerializeField] private string initSceneName;
+        [SerializeField] private List<string> initScenes;
         [SerializeField] private ScenesData.ScenesData scenesData;
         private List<string> _scenes = new List<string>();
 
         private void Start()
         {
-            AddScene(initSceneName);
+            foreach (var scene in initScenes)
+            {
+                AddScene(scene);
+            }
         }
 
         public void AddScene(string sceneName)

@@ -333,8 +333,12 @@ MonoBehaviour:
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
-  model: {fileID: 11400000, guid: 7e7912bc552f56a4fab27b998d6fff04, type: 2}
   grapplerAnimationName: ShootGrappler
+  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
+  shootClip: {fileID: 8300000, guid: e72e79d456f2e89408fb151bda7a1554, type: 3}
+  hitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
+  missClip: {fileID: 8300000, guid: 1c83fdd448d245c41b4e7ceb26f0f57e, type: 3}
+  model: {fileID: 11400000, guid: 7e7912bc552f56a4fab27b998d6fff04, type: 2}
 --- !u!114 &8204652900823214084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +356,9 @@ MonoBehaviour:
   gunTip: {fileID: 0}
   rb: {fileID: 2233852084180537}
   animator: {fileID: 0}
+  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
+  shootClip: {fileID: 8300000, guid: e72e79d456f2e89408fb151bda7a1554, type: 3}
+  hitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
   swingAnimationName: ShootSwing
 --- !u!114 &2745923457628907841
