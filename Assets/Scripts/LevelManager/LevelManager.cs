@@ -28,11 +28,8 @@ namespace LevelManager
         private void Update()
         {
             if (!CheckLevelIsOver() || currentLevel.SceneName == _returnMenu) return;
-            
-            Debug.Log("Termino nivel");
                 
-            eventChanel.UnLoadScene(currentLevel.SceneName);
-            Debug.Log("Descargado");
+            eventChanel.RemoveScene(currentLevel.SceneName);
                 
             currentLevel = UpdateCurrentLevelData();
            
@@ -134,9 +131,8 @@ namespace LevelManager
         private void ReturnMenu()
         {
                 SetMouseForMenu();
-                eventChanel.UnLoadScene(gameObject.scene.name);
+                eventChanel.RemoveScene(gameObject.scene.name);
                 eventChanel.AddScene(_returnMenu);
-                Debug.Log("LoadedMenu");
         }
     }
 }

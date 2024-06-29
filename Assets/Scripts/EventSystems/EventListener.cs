@@ -15,13 +15,13 @@ namespace EventSystems
         public void SetEvents()
         {
             eventChannel.OnAddScene += AddSceneListener;
-            eventChannel.OnUnLoadScene += UnLoadScene;
+            eventChannel.OnRemoveScene += RemoveScene;
         }
         private void AddSceneListener(string sceneName)
         {
             mySceneManager.AddScene(sceneName);
         }
-        private void UnLoadScene(string sceneName)
+        private void RemoveScene(string sceneName)
         {
             mySceneManager.RemoveScene(sceneName);
         }

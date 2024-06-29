@@ -16,7 +16,7 @@ namespace MenuButton
         {
             if (unLoadingScene != "null")
             {
-                eventChannel.UnLoadScene(unLoadingScene);
+                eventChannel.RemoveScene(unLoadingScene);
             }
             
             if (addingScene != "null")

@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace EventSystems
 {
-    [CreateAssetMenu(fileName = "EventChanel", menuName = "Models/Event/Channel")]
+    [CreateAssetMenu(fileName = "EventChannel", menuName = "Models/Event/Channel")]
     public class EventChannel : ScriptableObject
     {
         public Action<string> OnAddScene;
-        public Action<string> OnUnLoadScene;
+        public Action<string> OnRemoveScene;
         
         public void AddScene(string newScene)
         {
             OnAddScene.Invoke(newScene);
         }
-        public void UnLoadScene(string unLoadedScene)
+        public void RemoveScene(string unLoadedScene)
         {
-            OnUnLoadScene.Invoke(unLoadedScene);
+            OnRemoveScene.Invoke(unLoadedScene);
         }
     }
 }

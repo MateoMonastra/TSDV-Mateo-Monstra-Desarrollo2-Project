@@ -62,18 +62,15 @@ namespace Player.Running
             if (activeGun) return;
             
             SpeedControl();
-            if (freeze) _rb.velocity = Vector3.zero;
-
-            if (GroundCheck.IsOnGround())
-                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration), ForceMode.Force);
-            else
-                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration * model.AirMultiplayer),
-                    ForceMode.Force);
+            
+            Move();
 
             if (_shouldBrake)
             {
                 Brake();
             }
+            
+            if (freeze) _rb.velocity = Vector3.zero;
 
         }
 
@@ -84,6 +81,15 @@ namespace Player.Running
 
             _rb.AddForce(-currentHorizontalVelocity * model.BrakeMultiplier, ForceMode.Impulse);
             _shouldBrake = false;
+        }
+
+        private void Move()
+        {
+            if (GroundCheck.IsOnGround())
+                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration), ForceMode.Force);
+            else
+                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration * model.AirMultiplayer),
+                    ForceMode.Force);
         }
     }
 }

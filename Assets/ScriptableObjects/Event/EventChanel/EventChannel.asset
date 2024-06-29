@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de9442e31cd03a947bf40f58cae6aced, type: 3}
-  m_Name: EventChanel
+  m_Name: EventChannel
   m_EditorClassIdentifier: 
   addSceneName: null
   unLoadSceneName: null
