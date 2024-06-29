@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,18 +6,19 @@ namespace LevelManager
 {
     public class Timer : MonoBehaviour
     {
-        [SerializeField] private float timerTime;
         private float _timer;
 
-        public Text textTimer;
+        public TextMeshProUGUI textTimer;
 
+        public float TotalTime => _timer;
+        
         private void Start()
         {
-            _timer = timerTime;
+            _timer = 0;
         }
         private void Update()
         {
-            _timer -= Time.deltaTime;
+            _timer += Time.deltaTime;
             
             int minutes = (int)_timer / 60;
             int seconds = (int)_timer % 60;
@@ -31,9 +33,9 @@ namespace LevelManager
             }
         }
 
-        public bool TimerFinished() 
+        public void AddTime(float timeToAdd)
         {
-            return _timer <= 0;
+            _timer += timeToAdd;
         }
     }
 }

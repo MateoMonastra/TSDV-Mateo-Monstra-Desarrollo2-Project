@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using EventSystems;
+using EventSystems.EventTimer;
+using HighScore;
 using Managers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,15 +12,19 @@ namespace LevelManager
 {
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private EventChannel eventChanel;
-        
+        [SerializeField] private EventChannelSceneManager eventChanel;
+
         [SerializeField] private List<LevelData.LevelData> levels;
         [SerializeField] private LevelData.LevelData currentLevel;
-        
-        [Tooltip("List for Pull of Coins")]
-        [SerializeField] private List<Coin.Coin> coins = new List<Coin.Coin>();
+        [SerializeField] private string returnScene = "HighScores";
 
-        private string _returnMenu = "Menu";
+        [Tooltip("List for Pool of Coins")] [SerializeField]
+        private List<Coin.Coin> coins = new List<Coin.Coin>();
+
+        [SerializeField] private HighScoreData highScore;
+        [SerializeField] private Timer timer;
+
+
         private void Start()
         {
             SetMouseForGameplay();
@@ -25,16 +32,24 @@ namespace LevelManager
             if (!CheckLevelExistence(currentLevel.SceneName)) return;
             LoadLevel();
         }
+
         private void Update()
         {
-            if (!CheckLevelIsOver() || currentLevel.SceneName == _returnMenu) return;
-                
+            if (!CheckLevelIsOver() || currentLevel.SceneName == returnScene) return;
+
             eventChanel.RemoveScene(currentLevel.SceneName);
-                
-            currentLevel = UpdateCurrentLevelData();
-           
-            LoadLevel();
+
+            if (currentLevel.NextLevel != returnScene)
+            {
+                currentLevel = UpdateCurrentLevelData();
+                LoadLevel();
+            }
+            else
+            {
+                ReturnFromGameplay();
+            }
         }
+
         private bool CheckLevelExistence(string newLevel)
         {
             for (var index = 0; index < levels.Count; index++)
@@ -48,6 +63,7 @@ namespace LevelManager
 
             return false;
         }
+
         private void LoadLevel()
         {
             eventChanel.AddScene(currentLevel.SceneName);
@@ -55,8 +71,8 @@ namespace LevelManager
             currentLevel = GetCurrentLevelData();
 
             SetCoinsNewTransform();
-
         }
+
         private LevelData.LevelData UpdateCurrentLevelData()
         {
             foreach (var level in levels)
@@ -65,16 +81,12 @@ namespace LevelManager
                 {
                     return level;
                 }
-                
-                if(currentLevel.NextLevel == _returnMenu)
-                {
-                    ReturnMenu();
-                }
             }
 
             Debug.Log("Level not found");
             return null;
         }
+
         private LevelData.LevelData GetCurrentLevelData()
         {
             foreach (var level in levels)
@@ -84,9 +96,11 @@ namespace LevelManager
                     return level;
                 }
             }
+
             Debug.Log("Level not found");
             return null;
         }
+
         private bool CheckLevelIsOver()
         {
             foreach (var coin in coins)
@@ -96,19 +110,23 @@ namespace LevelManager
                     return false;
                 }
             }
+
             Debug.Log("Finish Level");
             return true;
         }
+
         private void SetMouseForGameplay()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        private void SetMouseForMenu()
+
+        private void SetMouseForMenus()
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+
         private void SetCoinsNewTransform()
         {
             foreach (var newCoinPos in currentLevel.coinPositionData)
@@ -128,11 +146,13 @@ namespace LevelManager
                 }
             }
         }
-        private void ReturnMenu()
+
+        private void ReturnFromGameplay()
         {
-                SetMouseForMenu();
-                eventChanel.RemoveScene(gameObject.scene.name);
-                eventChanel.AddScene(_returnMenu);
+            SetMouseForMenus();
+            highScore.AddNewHighScore(timer.TotalTime);
+            eventChanel.RemoveScene(gameObject.scene.name);
+            eventChanel.AddScene(returnScene);
         }
     }
 }

@@ -241,8 +241,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 192.84003, y: -58.196247}
-  m_SizeDelta: {x: 385.68005, y: 116.392494}
+  m_AnchoredPosition: {x: 192.84003, y: -60.57713}
+  m_SizeDelta: {x: 385.68005, y: 121.15426}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1040485507547330806
 CanvasRenderer:
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3a1b1d32a72902c469355c3505a86806, type: 3}
+  m_Texture: {fileID: 2800000, guid: 525c3ffd2fb971e4b81167f206395de8, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -469,8 +469,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 192.84003, y: -324.58875}
-  m_SizeDelta: {x: 385.68005, y: 116.392494}
+  m_AnchoredPosition: {x: 192.84003, y: -331.73138}
+  m_SizeDelta: {x: 385.68005, y: 121.15426}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2423869221375173346
 CanvasRenderer:
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: c2d6c02ce1237ee4a932e80ea9f9d0d2, type: 3}
+  m_Texture: {fileID: 2800000, guid: e2673c00bc2d35a468f69efd6ddb7a33, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -822,8 +822,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 192.84003, y: -590.9812}
-  m_SizeDelta: {x: 385.68005, y: 116.392494}
+  m_AnchoredPosition: {x: 192.84003, y: -602.8857}
+  m_SizeDelta: {x: 385.68005, y: 121.15426}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4535352924368088780
 CanvasRenderer:
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 4f2b1d6b041736941ab4ed38e094601f, type: 3}
+  m_Texture: {fileID: 2800000, guid: 05addf8d99b2ac44686fe4de5571d4f9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

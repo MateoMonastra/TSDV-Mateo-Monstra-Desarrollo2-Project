@@ -1,4 +1,5 @@
 using System;
+using EventSystems.EventTimer;
 using Guns.Grappler;
 using Guns.Swing;
 using LevelManager;
@@ -14,6 +15,10 @@ namespace Floor
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject transition;
         [SerializeField] private float transitionCoolDown;
+        
+        [Header("Timer References")]
+        [SerializeField] private EventChannelTimer eventChannelTimer;
+        [SerializeField] private float timeToAdd = 10.0f;
         
         private Transform _checkPoint;
         public Transform CheckPoint
@@ -46,11 +51,16 @@ namespace Floor
 
         private void OnTriggerEnter(Collider other)
         {
+            eventChannelTimer.OnAddTime(timeToAdd);
             
             _transitionTimer = transitionCoolDown;
+            
             transition.gameObject.SetActive(true);
+            
             _playerRb.velocity = new Vector3(0f, 0f, 0f);
+            
             _grapplingBehaviour.StopGrapple();
+            
             player.transform.position = _checkPoint.position;
             
             if (_swingBehaviour)

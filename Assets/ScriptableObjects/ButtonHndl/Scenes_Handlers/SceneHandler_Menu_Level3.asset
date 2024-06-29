@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eef370eb0d3484cad487243340f037, type: 3}
   m_Name: SceneHandler_Menu_Level3
   m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: 25e8fb4f5ca086540881c13a0103f874, type: 2}
+  eventChannel: {fileID: 11400000, guid: 3ab122df3c4dd524990f4a8eb2bc65fa, type: 2}
   addingScene: Menu
   unLoadingScene: Level3

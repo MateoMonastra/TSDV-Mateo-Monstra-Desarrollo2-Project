@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9442e31cd03a947bf40f58cae6aced, type: 3}
-  m_Name: EventChannel
+  m_Script: {fileID: 11500000, guid: 188f32536e13b514697656ca2b1b300d, type: 3}
+  m_Name: HighScoreData
   m_EditorClassIdentifier: 
-  addSceneName: null
-  unLoadSceneName: null
+  highScores: []

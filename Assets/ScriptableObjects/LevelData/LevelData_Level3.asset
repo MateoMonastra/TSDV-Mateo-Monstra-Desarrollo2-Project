@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelData_Level3
   m_EditorClassIdentifier: 
   sceneName: Level3
-  nextLevel: Menu
+  nextLevel: HighScores
   coinPositionData:
   - {fileID: 11400000, guid: ffe5be640395cf140bdb6ae9526830b8, type: 2}
   - {fileID: 11400000, guid: eccffec8d6139514c8f2376764046472, type: 2}

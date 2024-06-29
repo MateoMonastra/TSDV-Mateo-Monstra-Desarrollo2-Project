@@ -1,12 +1,11 @@
 using Managers;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace EventSystems
+namespace EventSystems.EventSceneManager
 {
-    public class SetListener : MonoBehaviour
+    public class SetSceneManagerListener : MonoBehaviour
     {
-        [SerializeField] private EventListener listener;
+        [SerializeField] private EventListenerSceneManager listener;
 
         private void Start()
         {

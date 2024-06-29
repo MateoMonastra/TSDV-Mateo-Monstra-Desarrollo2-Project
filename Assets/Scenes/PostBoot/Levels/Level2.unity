@@ -644,6 +644,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1773554369}
     - target: {fileID: 6599143416307398208, guid: 7cba20b8b8d1874409fdf5975aff6854, type: 3}
+      propertyPath: timeToAdd
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599143416307398208, guid: 7cba20b8b8d1874409fdf5975aff6854, type: 3}
       propertyPath: checkPoint
       value: 
       objectReference: {fileID: 1365411430}
@@ -651,6 +655,10 @@ PrefabInstance:
       propertyPath: transition
       value: 
       objectReference: {fileID: 1129282506}
+    - target: {fileID: 6599143416307398208, guid: 7cba20b8b8d1874409fdf5975aff6854, type: 3}
+      propertyPath: eventChannelTimer
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e418ab19016f4d49b7b448eb357c5cc, type: 2}
     - target: {fileID: 7851754390247538054, guid: 7cba20b8b8d1874409fdf5975aff6854, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

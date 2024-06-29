@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FSM.States
 {
-    [CreateAssetMenu(menuName = "Models/State/PosibleTransition", fileName = "PosibleTransition", order = 0)]
+    [CreateAssetMenu(fileName = "PosibleTransition", menuName = "Models/State/PosibleTransition")]
     public class StatePosibleTransition : ScriptableObject
     {
         public States PosibleTransition;

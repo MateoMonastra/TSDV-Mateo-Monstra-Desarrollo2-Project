@@ -8,7 +8,7 @@ namespace MenuButton
     [CreateAssetMenu(fileName = "SceneHandler", menuName = "Models/ButtonHandler/SceneHandler")]
     public class SceneHandler : ButtonHandler
     {
-        [SerializeField] private EventChannel eventChannel;
+        [SerializeField] private EventChannelSceneManager eventChannel;
         [SerializeField] private string addingScene = "null";
         [SerializeField] private string unLoadingScene = "null";
 
