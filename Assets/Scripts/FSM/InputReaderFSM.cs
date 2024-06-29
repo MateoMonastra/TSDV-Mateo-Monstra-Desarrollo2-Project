@@ -6,7 +6,7 @@ namespace FSM
 {
     public class InputReaderFsm : MonoBehaviour
     {
-        public Action onMove;
+        public Action<Vector2> onMove;
         public Action onJump;
 
         public void HandleJumpInput(InputAction.CallbackContext context)
@@ -16,7 +16,8 @@ namespace FSM
 
         public void HandleMoveInput(InputAction.CallbackContext context)
         {
-            onMove.Invoke();
+            onMove.Invoke(context.ReadValue<Vector2>());
+            
         }
     }
 }

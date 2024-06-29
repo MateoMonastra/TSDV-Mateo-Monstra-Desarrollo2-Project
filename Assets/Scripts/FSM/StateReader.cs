@@ -1,3 +1,4 @@
+using FSM.States;
 using UnityEngine;
 
 namespace FSM
@@ -6,7 +7,7 @@ namespace FSM
     {
         [Header("References")]
         [SerializeField] InputReaderFsm inputReaderFsm;
-        [SerializeField] FsmChecker fsm;
+        [SerializeField] StateMachine fsm;
 
         [Header("States References")]
         [SerializeField] Jump jump;
@@ -18,9 +19,12 @@ namespace FSM
             inputReaderFsm.onJump += SetJumpState;
         }
 
-        private void SetMoveState() 
+        private void SetMoveState(Vector2 direction) 
         {
             fsm.currentState = walkIdle;
+            
+            walkIdle.OnEnabled();
+            inputReaderFsm.onMove += walkIdle.SetDirection;
         }
 
         private void SetJumpState()

@@ -1,66 +1,88 @@
-using System.Collections;
 using System.Collections.Generic;
+using Player;
+using Player.Running;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class WalkIdle : States
+namespace FSM.States
 {
-    [SerializeField] private float speed = 10;
-    [SerializeField] private float acceleration = 10;
-    [SerializeField] private float brakeMultiplier = .75f;
-
-    //[SerializeField] private float airMultiplayer = 0.5f;
-
-    [Header("Orientation: ")]
-    [SerializeField] private Transform orientation;
-
-    private Vector3 _moveDirection;
-    private Rigidbody _rb;
-
-    private bool _shouldBrake;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class WalkIdle : global::FSM.States.States
     {
-        _rb = GetComponent<Rigidbody>();
-        _rb.freezeRotation = true;
-    }
+        [Header("Running Variables: ")] 
+        [SerializeField] private RunningModel _model;
+        
+        [SerializeField] private GroundCheck _groundCheck;
+        [SerializeField] private float _groundDrag;
 
-    // Update is called once per frame
-    void Update()
-    {
-        SpeedControl();
-    }
-    public void Move(Vector3 direction)
-    {
+        [Header("Orientation: ")] 
+        [SerializeField] private Transform _orientation;
 
-        if (direction.magnitude < 0.0001f)
+        private Vector3 _moveDirection;
+        private Rigidbody _rb;
+
+        private bool _shouldBrake;
+        public bool Freeze;
+        public bool ActiveGun;
+
+        public override void OnEnabled()
         {
-            _shouldBrake = true;
+            _rb.freezeRotation = true;
+        }
+        public override void FixedUpdate()
+        {
+            if (ActiveGun) return;
+            
+            SpeedControl();
+            
+            Move();
+
+            if (_shouldBrake)
+            {
+                Brake();
+            }
+            
+            if (Freeze) _rb.velocity = Vector3.zero;
+        }
+        public void SetDirection(Vector2 direction)
+        {
+            Vector3 moveDirection = new Vector3(direction.x, 0, direction.y);
+            
+            if (direction.magnitude < 0.0001f)
+            {
+                _shouldBrake = true;
+            }
+
+            _moveDirection = _orientation.forward * moveDirection.z + _orientation.right * moveDirection.x;
+        }
+        private void SpeedControl()
+        {
+            _rb.drag = _groundCheck.IsOnGround() ? _groundDrag : 0;
+
+            Vector3 flatSpeed = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+
+            if (!(flatSpeed.magnitude > _model.Speed)) return;
+
+            Vector3 limitedSpeed = flatSpeed.normalized * _model.Speed;
+            _rb.velocity = new Vector3(limitedSpeed.x, _rb.velocity.y, limitedSpeed.z);
+        }
+        private void Brake()
+        {
+            var currentHorizontalVelocity = _rb.velocity;
+            currentHorizontalVelocity.y = 0;
+
+            _rb.AddForce(-currentHorizontalVelocity * _model.BrakeMultiplier, ForceMode.Impulse);
+            _shouldBrake = false;
+        }
+        private void Move()
+        {
+            if (_groundCheck.IsOnGround())
+                _rb.AddForce(_moveDirection.normalized * (_model.Speed * _model.Acceleration), ForceMode.Force);
+            else
+                _rb.AddForce(_moveDirection.normalized * (_model.Speed * _model.Acceleration * _model.AirMultiplayer),
+                    ForceMode.Force);
         }
 
-        _moveDirection = orientation.forward * direction.z + orientation.right * direction.x;
-    }
-    private void FixedUpdate()
-    {
-        _rb.AddForce(_moveDirection.normalized * (speed * acceleration), ForceMode.Force);
-
-        if (!_shouldBrake) return;
-
-        var currentHorizontalVelocity = _rb.velocity;
-        currentHorizontalVelocity.y = 0;
-
-        _rb.AddForce(-currentHorizontalVelocity * brakeMultiplier, ForceMode.Impulse);
-        _shouldBrake = false;
-    }
-
-    private void SpeedControl()
-    {
-        Vector3 flatSpeed = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
-
-        if (!(flatSpeed.magnitude > speed)) return;
-
-        Vector3 limitedSpeed = flatSpeed.normalized * speed;
-        _rb.velocity = new Vector3(limitedSpeed.x, _rb.velocity.y, limitedSpeed.z);
+        public WalkIdle(List<States> possibleTransitions) : base(possibleTransitions)
+        { }
     }
 }
