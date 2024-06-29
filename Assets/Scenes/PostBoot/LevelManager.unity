@@ -349,7 +349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a15d6ef3cb8bf949842f65fb4359a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newColor: {r: 0.69803923, g: 0, b: 0, a: 1}
+  transparentColor: {r: 0.69803923, g: 0, b: 0, a: 0}
+  animFadeDuration: 3
+  animOutDuration: 3
   textTimer: {fileID: 888391980}
+  addTimeText: {fileID: 934133414}
 --- !u!4 &676268575
 Transform:
   m_ObjectHideFlags: 0
@@ -741,8 +746,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190258
-  m_fontColor: {r: 0.6981132, g: 0, b: 0, a: 1}
+    rgba: 178
+  m_fontColor: {r: 0.6981132, g: 0, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
