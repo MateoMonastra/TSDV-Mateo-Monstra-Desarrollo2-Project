@@ -1,6 +1,7 @@
+using Player.PlayerCam;
 using UnityEngine;
 
-namespace Player.PlayerCam
+namespace Gameplay.Player.PlayerCam
 {
     public class PlayerCam : MonoBehaviour
     {
@@ -12,6 +13,12 @@ namespace Player.PlayerCam
         private float _xRotation;
 
         private Vector2 _moveDirection;
+
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         private void Update()
         {
             _xRotation += _moveDirection.x;

@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using EventSystems.EventSoundManager;
+using Guns.Swing;
+using Player;
 using Player.Running;
-using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
+using State = Gameplay.FSM.States.State;
 
-namespace Guns.Swing
+namespace Gameplay.FSM.States
 {
-    public class SwingBehaviour : MonoBehaviour
+    public class Swing : State
     {
-        public Coroutine OnPlay;
-        public Coroutine OnStop;
-
         [Header("References")] 
         
         [SerializeField] private Transform playerCamera;
@@ -20,6 +19,7 @@ namespace Guns.Swing
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
+        [SerializeField] private string swingAnimationName;
         
         [Header("Audio SFX:")] 
         
@@ -31,38 +31,37 @@ namespace Guns.Swing
         
         [SerializeField] private SwingModel model;
 
-        private RunningBehaviour _pm;
-
         private float _swingCdTimer;
         private bool _grappling;
 
         private Vector3 _swingPoint;
         private SpringJoint _joint;
 
-        [SerializeField] private string swingAnimationName;
 
-        private void Start()
+        public override void OnEnter()
         {
-            _pm = GetComponent<RunningBehaviour>();
+            StartSwing();
         }
-        private void Update()
+        public override void OnUpdate()
         {
-            if (_swingCdTimer > 0)
-            {
-                _swingCdTimer -= Time.deltaTime;
-            }
         }
-        public IEnumerator StartSwing()
+        public override void OnEnd()
         {
-            if (_swingCdTimer > 0 || _pm.activeGun|| _pm._groundCheck.IsOnGround()) { Debug.Log("cant shoot"); yield break; }
-            
+            StopSwing();
+        }
+        public override void OnLateUpdate()
+        {
+            if (!_joint) return;
+            lr.SetPosition(0, gunTip.position);
+            lr.SetPosition(1, _swingPoint);
+        }
+        private void StartSwing()
+        {
             if (_joint) StopSwing();
             
-
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
                     model.Grappeable))
             {
-                channel.OnPlaySound(shootClip);
                 animator.SetBool(swingAnimationName, true);
                 
                 _swingPoint = hit.point;
@@ -81,7 +80,7 @@ namespace Guns.Swing
         private void ExecuteSwing()
         {
             channel.OnPlaySound(hitClip);
-            _pm.activeGun = true;
+          
             _joint = transform.AddComponent<SpringJoint>();
             _joint.autoConfigureConnectedAnchor = false;
             _joint.connectedAnchor = _swingPoint;
@@ -98,7 +97,7 @@ namespace Guns.Swing
             lr.positionCount = 2;
             
         }
-        public void StopSwing()
+        private void StopSwing()
         {
             animator.SetBool(swingAnimationName, false);
             
@@ -106,13 +105,6 @@ namespace Guns.Swing
             
             lr.positionCount = 0;
             _swingCdTimer = model.SwingCd;
-            _pm.activeGun = false;
-        }
-        private void LateUpdate()
-        {
-            if (!_joint) return;
-            lr.SetPosition(0, gunTip.position);
-            lr.SetPosition(1, _swingPoint);
         }
     }
 }

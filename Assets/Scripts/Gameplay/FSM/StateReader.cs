@@ -1,39 +1,61 @@
-using FSM.States;
-using Gameplay.FSM;
+using Gameplay.FSM.Behaviours;
+using Gameplay.Player.PlayerCam;
+using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace FSM
+namespace Gameplay.FSM
 {
     public class StateReader : MonoBehaviour
     {
-        [Header("References")]
-        [SerializeField] InputReaderFsm inputReaderFsm;
-        [SerializeField] StateMachine fsm;
+        [Header("References")] 
+        [SerializeField] private InputReaderFsm inputReaderFsm;
 
-        [FormerlySerializedAs("jump")]
-        [Header("States References")]
-        [SerializeField] Jump jumpController;
-        [SerializeField] WalkIdle walkIdle;
+        [SerializeField] private StateMachine fsm;
+
+        [Header("States References")] 
+        [SerializeField] private JumpIBehaviour jump;
+
+        [SerializeField] private WalkIdleIBehaviour walkIdle;
+        [SerializeField] private GrappleIBehaviour grapple;
+        [SerializeField] private SwingIBehaviour swing;
+        [SerializeField] private GroundCheck groundCheck;
 
         private void Awake()
         {
-            inputReaderFsm.onMove += SetMoveState;
+            inputReaderFsm.onMove += SetMoveStateDirection;
             inputReaderFsm.onJump += SetJumpState;
+            inputReaderFsm.onGrapple += SetGrappleState;
+            inputReaderFsm.onSwingStart += SetSwingState;
+            inputReaderFsm.onSwingEnd += EndSwingState;
         }
 
-        private void SetMoveState(Vector2 direction) 
+        private void SetMoveStateDirection(Vector2 direction)
         {
-            fsm.currentState = walkIdle;
-            
-            walkIdle.OnStart();
             inputReaderFsm.onMove += walkIdle.SetDirection;
+            fsm.ChangeState(walkIdle);
+        }
+
+        private void EndSwingState()
+        {
+            swing.Exit();
         }
 
         private void SetJumpState()
         {
-            fsm.currentState = jumpController;
+            if (groundCheck.IsOnGround())
+                fsm.ChangeState(jump);
         }
 
+        private void SetGrappleState()
+        {
+            if (!groundCheck.IsOnGround())
+                fsm.ChangeState(grapple);
+        }
+
+        private void SetSwingState()
+        {
+            if (!groundCheck.IsOnGround())
+                fsm.ChangeState(swing);
+        }
     }
 }

@@ -1,36 +1,35 @@
-using System.Collections.Generic;
+using EventSystems.EventSoundManager;
 using Player;
 using Player.Running;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace FSM.States
+namespace Gameplay.FSM.States
 {
     public class WalkIdle : State
     {
         [Header("Running Variables: ")] 
-        [SerializeField] private RunningModel _model;
-        [SerializeField] private GroundCheck _groundCheck;
-        [SerializeField] private float _groundDrag;
-
+        [SerializeField] private RunningModel model;
+        [SerializeField] private float groundDrag;
+        
         [Header("Orientation: ")] 
-        [SerializeField] private Transform _orientation;
+        [SerializeField] private Transform orientation;
 
+        private GroundCheck _groundCheck;
         private Vector3 _moveDirection;
         private Rigidbody _rb;
         
         private bool _shouldBrake;
-        public bool Freeze;
-        public bool ActiveGun;
 
-        public override void OnStart()
+        public override void OnEnter()
         {
+            _rb ??= GetComponent<Rigidbody>();
+            _groundCheck ??= GetComponent<GroundCheck>();
+            
             _rb.freezeRotation = true;
         }
-        public void FixedUpdate()
+        public override void OnFixedUpdate()
         {
-            if (ActiveGun) return;
-            
             SpeedControl();
             
             Move();
@@ -39,8 +38,6 @@ namespace FSM.States
             {
                 Brake();
             }
-            
-            if (Freeze) _rb.velocity = Vector3.zero;
         }
         public void SetDirection(Vector2 direction)
         {
@@ -50,18 +47,17 @@ namespace FSM.States
             {
                 _shouldBrake = true;
             }
-
-            _moveDirection = _orientation.forward * moveDirection.z + _orientation.right * moveDirection.x;
+            _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
         }
         private void SpeedControl()
         {
-            _rb.drag = _groundCheck.IsOnGround() ? _groundDrag : 0;
+            _rb.drag = _groundCheck.IsOnGround() ? groundDrag : 0;
 
             Vector3 flatSpeed = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
-            if (!(flatSpeed.magnitude > _model.Speed)) return;
+            if (!(flatSpeed.magnitude > model.Speed)) return;
 
-            Vector3 limitedSpeed = flatSpeed.normalized * _model.Speed;
+            Vector3 limitedSpeed = flatSpeed.normalized * model.Speed;
             _rb.velocity = new Vector3(limitedSpeed.x, _rb.velocity.y, limitedSpeed.z);
         }
         private void Brake()
@@ -69,15 +65,15 @@ namespace FSM.States
             var currentHorizontalVelocity = _rb.velocity;
             currentHorizontalVelocity.y = 0;
 
-            _rb.AddForce(-currentHorizontalVelocity * _model.BrakeMultiplier, ForceMode.Impulse);
+            _rb.AddForce(-currentHorizontalVelocity * model.BrakeMultiplier, ForceMode.Impulse);
             _shouldBrake = false;
         }
         private void Move()
         {
             if (_groundCheck.IsOnGround())
-                _rb.AddForce(_moveDirection.normalized * (_model.Speed * _model.Acceleration), ForceMode.Force);
+                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration), ForceMode.Force);
             else
-                _rb.AddForce(_moveDirection.normalized * (_model.Speed * _model.Acceleration * _model.AirMultiplayer),
+                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration * model.AirMultiplayer),
                     ForceMode.Force);
         }
     }

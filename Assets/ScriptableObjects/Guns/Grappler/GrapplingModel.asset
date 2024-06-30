@@ -16,6 +16,7 @@ MonoBehaviour:
   grappleDelayTime: 0.25
   overshootYAxis: 0.5
   grapplingCd: 0.3
+  grappleDuration: 1
   grappeable:
     serializedVersion: 2
     m_Bits: 1536

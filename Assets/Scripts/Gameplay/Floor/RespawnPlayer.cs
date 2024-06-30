@@ -29,13 +29,9 @@ namespace Floor
 
         private Rigidbody _playerRb;
         private float _transitionTimer;
-        private GrapplingBehaviour _grapplingBehaviour;
-        private SwingBehaviour _swingBehaviour;
 
         private void Start()
         {
-            _grapplingBehaviour = player.GetComponent<GrapplingBehaviour>();
-            _swingBehaviour = player.GetComponent<SwingBehaviour>();
             _playerRb = player.GetComponent<Rigidbody>();
         }
 
@@ -59,14 +55,7 @@ namespace Floor
             
             _playerRb.velocity = new Vector3(0f, 0f, 0f);
             
-            _grapplingBehaviour.StopGrapple();
-            
             player.transform.position = _checkPoint.position;
-            
-            if (_swingBehaviour)
-            {
-                _swingBehaviour.StopSwing();
-            }
 
             Debug.Log("Repawn");
         }

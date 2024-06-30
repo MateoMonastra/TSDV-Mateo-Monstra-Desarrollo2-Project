@@ -3,7 +3,11 @@ guid: 7660ac419b74e3f45ace953710253c84
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - channelSoundManager: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
+  - clip: {fileID: 8300000, guid: 63e7b1576fbd6e846a166e260478e8ab, type: 3}
+  - model: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
+  - orientation: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,70 +1,58 @@
+using System;
 using System.Collections;
 using EventSystems.EventSoundManager;
+using Guns.Grappler;
 using Player;
 using Player.Running;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Guns.Grappler
+namespace Gameplay.FSM.States
 {
-    public class GrapplingBehaviour : MonoBehaviour
+    public class Grapple : State
     {
-        public Coroutine OnPlay;
-
+        public Action onEnd;
         [Header("References")] 
-        
         [SerializeField] private Transform playerCamera;
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
+        [SerializeField] private GroundCheck groundCheck;
         [SerializeField] private Animator animator;
         [SerializeField] private string grapplerAnimationName;
 
         [Header("Audio SFX:")] 
-        
         [SerializeField] private EventChannelSoundManager channel;
         [SerializeField] private AudioClip shootClip;
         [SerializeField] private AudioClip hitClip;
         [SerializeField] private AudioClip missClip;
-        
 
         [Header("Model")] 
-        
         [SerializeField] private GrapplingModel model;
-
-        private RunningBehaviour _pm;
 
         private Vector3 _grapplePoint;
         
-        private float _grapplingCdTimer;
         private bool _grappling;
         
         private Vector3 _velocityToSet;
 
-        private void Start()
+        public override void OnEnter()
         {
-            _pm = GetComponent<RunningBehaviour>();
+            StartGrapple();
         }
-        private void Update()
+        public override void OnUpdate()
         {
-            if (_grapplingCdTimer > 0)
-            {
-                _grapplingCdTimer -= Time.deltaTime;
-            }
         }
-        private void LateUpdate()
+        public override void OnLateUpdate()
         {
             if (_grappling)
                 lr.SetPosition(0, gunTip.position);
         }
-        public IEnumerator StartGrapple()
+        private void StartGrapple()
         {
-            if (_grapplingCdTimer > 0 || _pm.activeGun || _pm._groundCheck.IsOnGround()) yield break;
-
             _grappling = true;
             animator.SetBool(grapplerAnimationName, true);
-            
-            channel.PlaySound(shootClip);
             
 
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
@@ -72,7 +60,7 @@ namespace Guns.Grappler
             {
                 _grapplePoint = hit.point;
 
-                StartCoroutine(ExecuteGrapple());
+                ExecuteGrapple();
             }
             else
             {
@@ -84,12 +72,11 @@ namespace Guns.Grappler
             lr.enabled = true;
             lr.SetPosition(1, _grapplePoint);
         }
-        private IEnumerator ExecuteGrapple()
+        private void ExecuteGrapple()
         {
             channel.PlaySound(hitClip);
+            
             rb.velocity = Vector3.zero;
-            _pm.freeze = false;
-            _pm.activeGun = true;
 
             Vector3 lowestPoint =
                 new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
@@ -104,21 +91,17 @@ namespace Guns.Grappler
                 JumpToPosition(_grapplePoint, highestPointOnArc);
             }
 
-            Invoke(nameof(StopGrapple), 1.0f);
-
-            yield break;
+            Invoke(nameof(StopGrapple), model.GrappleDuration);
         }
-        public void StopGrapple()
+        private void StopGrapple()
         {
             animator.SetBool(grapplerAnimationName, false);
-            StopCoroutine(StartGrapple());
 
             _grappling = false;
-            _grapplingCdTimer = model.GrapplingCd;
             lr.enabled = false;
-            _pm.activeGun = false;
+            onEnd.Invoke();
         }
-        private Vector3 CalculteJumpVelocity(Vector3 startPoint, Vector3 endPoint, float tarjectoryHeight)
+        private Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float tarjectoryHeight)
         {
             //formula sacada de este video : https://www.youtube.com/watch?v=IvT8hjy6q4o
 
@@ -133,10 +116,9 @@ namespace Guns.Grappler
 
             return velocityXZ + velocityY;
         }
-        public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
+        private void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
         {
-            _pm.activeGun = true;
-            _velocityToSet = CalculteJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+            _velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
             Invoke(nameof(SetVelocity), 0.1f);
         }
         private void SetVelocity()
