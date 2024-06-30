@@ -1,5 +1,7 @@
 using FSM.States;
+using Gameplay.FSM;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FSM
 {
@@ -9,8 +11,9 @@ namespace FSM
         [SerializeField] InputReaderFsm inputReaderFsm;
         [SerializeField] StateMachine fsm;
 
+        [FormerlySerializedAs("jump")]
         [Header("States References")]
-        [SerializeField] Jump jump;
+        [SerializeField] Jump jumpController;
         [SerializeField] WalkIdle walkIdle;
 
         private void Awake()
@@ -29,7 +32,7 @@ namespace FSM
 
         private void SetJumpState()
         {
-            fsm.currentState = jump;
+            fsm.currentState = jumpController;
         }
 
     }
