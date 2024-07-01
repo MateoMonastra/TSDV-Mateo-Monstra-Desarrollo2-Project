@@ -531,6 +531,8 @@ MonoBehaviour:
   - {fileID: 236544145}
   highScore: {fileID: 11400000, guid: d31600b52f50f0244a860c2a77400738, type: 2}
   timer: {fileID: 676268574}
+  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
+  finishLevelClip: {fileID: 8300000, guid: 8a85fd6c2df0bf44da3e929b779071cc, type: 3}
 --- !u!4 &870491002
 Transform:
   m_ObjectHideFlags: 0

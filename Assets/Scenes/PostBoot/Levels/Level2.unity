@@ -2575,6 +2575,14 @@ PrefabInstance:
       propertyPath: buttonHandler
       value: 
       objectReference: {fileID: 11400000, guid: 3032da9e64d975e4b9eb137b5789028a, type: 2}
+    - target: {fileID: 3375088198226171561, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 472
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375088198226171561, guid: efae9df669806e14281ae145ee92c182, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -179
+      objectReference: {fileID: 0}
     - target: {fileID: 4949021569787672136, guid: efae9df669806e14281ae145ee92c182, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 

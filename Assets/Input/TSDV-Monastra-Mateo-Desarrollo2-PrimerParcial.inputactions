@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PassLevel",
+                    "name": "PassLevelCheat",
                     "type": "Button",
                     "id": "d0f5a100-ee96-418e-ab1f-ebc4e8feb5af",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GodMode",
+                    "name": "JumperCheat",
                     "type": "Button",
                     "id": "76ac6912-c7cb-47c1-aa44-dbc4c45a82c3",
                     "expectedControlType": "Button",
@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FlashMode",
+                    "name": "SpeedCheat",
                     "type": "Button",
                     "id": "dec9698e-91d0-4642-856b-dbfe5f7f0994",
                     "expectedControlType": "Button",
@@ -381,7 +381,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PassLevel",
+                    "action": "PassLevelCheat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -392,7 +392,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GodMode",
+                    "action": "JumperCheat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -403,7 +403,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FlashMode",
+                    "action": "SpeedCheat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

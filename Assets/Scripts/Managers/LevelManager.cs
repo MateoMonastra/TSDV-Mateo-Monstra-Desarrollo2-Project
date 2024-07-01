@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using EventSystems;
+using EventSystems.EventSoundManager;
 using EventSystems.EventTimer;
 using HighScore;
 using Managers;
@@ -23,6 +24,10 @@ namespace LevelManager
 
         [SerializeField] private HighScoreData highScore;
         [SerializeField] private Timer timer;
+        
+        [Header("Audio SFX:")] 
+        [SerializeField] private EventChannelSoundManager channel;
+        [SerializeField] private AudioClip finishLevelClip;
 
 
         private void Start()
@@ -110,7 +115,7 @@ namespace LevelManager
                     return false;
                 }
             }
-
+            channel.PlaySound(finishLevelClip);
             Debug.Log("Finish Level");
             return true;
         }
