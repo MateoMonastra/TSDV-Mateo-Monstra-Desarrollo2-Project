@@ -1,3 +1,4 @@
+using Gameplay.Player.PlayerCam;
 using Gameplay.Player.Running;
 using UnityEngine;
 
@@ -18,17 +19,23 @@ namespace Gameplay.Player.FSM.States
         [Tooltip("Transform representing the player's orientation in the scene.")]
         [SerializeField] private Transform orientation;
 
+        [Tooltip("this reference is for using the delegate onCameraRotation")]
+        [SerializeField] private PlayerCamManager playerCamManager;
+
         private GroundCheck _groundCheck;
         private Vector3 _moveDirection;
         private Rigidbody _rb;
-        
+        private Vector3 moveDirection;
+
+
         private bool _shouldBrake;
 
         public override void OnEnter()
         {
             _rb ??= GetComponent<Rigidbody>();
             _groundCheck ??= GetComponent<GroundCheck>();
-            
+            playerCamManager.onCameraRotation += UpdateDirection;
+
             _rb.freezeRotation = true;
         }
         public override void OnFixedUpdate()
@@ -51,7 +58,7 @@ namespace Gameplay.Player.FSM.States
         /// <param name="direction">Direction vector from the input.</param>
         public void SetDirection(Vector2 direction)
         {
-            Vector3 moveDirection = new Vector3(direction.x, 0, direction.y);
+            moveDirection = new Vector3(direction.x, 0, direction.y);
             
             if (direction.magnitude < 0.0001f)
             {
@@ -59,6 +66,14 @@ namespace Gameplay.Player.FSM.States
             }
 
             if (orientation!=null)
+            {
+                _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
+            }
+        }
+
+        public void UpdateDirection() 
+        {
+            if (orientation != null)
             {
                 _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
             }

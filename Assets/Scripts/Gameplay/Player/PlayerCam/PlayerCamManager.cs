@@ -1,10 +1,13 @@
 using Gameplay.Player.FSM;
+using System;
 using UnityEngine;
 
 namespace Gameplay.Player.PlayerCam
 {
     public class PlayerCamManager : MonoBehaviour
     {
+        public Action onCameraRotation;
+
         [Header("Input Reader")] 
         [Tooltip("Reference to the InputReaderFsm scriptable object.")] 
         [SerializeField] private InputReaderFsm inputReaderFsm;
@@ -29,6 +32,7 @@ namespace Gameplay.Player.PlayerCam
         private void MoveMouseCam(Vector2 angle)
         {
             _playerCam.UpdateMouseCamera(angle);
+            onCameraRotation.Invoke();
         }
 
         /// <summary>
@@ -38,6 +42,7 @@ namespace Gameplay.Player.PlayerCam
         private void MoveJoystickCam(Vector2 angle)
         {
             _playerCam.UpdateJoystickCamera(angle);
+            onCameraRotation.Invoke();
         }
     }
 }
