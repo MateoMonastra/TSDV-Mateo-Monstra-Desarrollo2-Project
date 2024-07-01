@@ -14,10 +14,16 @@ namespace Gameplay.FSM
         public Action<Vector2> onMouseCam;
         public Action<Vector2> onJoystickCam;
         public Action onPause;
+        public Action onSpeedCheat;
+        public Action onJumperCheat;
+        public Action onPassLevelCheat;
 
         public void HandleJumpInput(InputAction.CallbackContext context)
         {
-            onJump.Invoke();
+            if (context.started)
+            {
+                onJump.Invoke();
+            }
         }
 
         public void HandleMoveInput(InputAction.CallbackContext context)
@@ -27,7 +33,10 @@ namespace Gameplay.FSM
 
         public void HandleGrappleInput(InputAction.CallbackContext context)
         {
-            onGrapple.Invoke();
+            if (context.started)
+            {
+                onGrapple.Invoke();
+            }
         }
 
         public void HandleSwingInput(InputAction.CallbackContext context)
@@ -60,10 +69,37 @@ namespace Gameplay.FSM
                 onJoystickCam.Invoke(context.ReadValue<Vector2>());
             }
         }
-        
+
         public void HandlePauseInput(InputAction.CallbackContext context)
         {
-            onPause.Invoke();
+            if (context.started)
+            {
+                onPause.Invoke();
+            }
+        }
+        
+        public void HandleSpeedCheatInput(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                onSpeedCheat.Invoke();
+            }
+        }
+        
+        public void HandleJumperCheatInput(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                onJumperCheat.Invoke();
+            }
+        }
+        
+        public void HandlePassLevelCheatInput(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                onPassLevelCheat.Invoke();
+            }
         }
     }
 }
