@@ -47,6 +47,7 @@ namespace Gameplay.FSM.States
             {
                 _shouldBrake = true;
             }
+
             _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
         }
         private void SpeedControl()

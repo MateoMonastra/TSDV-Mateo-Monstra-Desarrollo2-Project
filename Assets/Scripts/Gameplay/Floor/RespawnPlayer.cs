@@ -18,7 +18,7 @@ namespace Floor
         
         [Header("Timer References")]
         [SerializeField] private EventChannelTimer eventChannelTimer;
-        [SerializeField] private float timeToAdd = 10.0f;
+        [SerializeField] private float timeToAdd = 20.0f;
         
         private Transform _checkPoint;
         public Transform CheckPoint

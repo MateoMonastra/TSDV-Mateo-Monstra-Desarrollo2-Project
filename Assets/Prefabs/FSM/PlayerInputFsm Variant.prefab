@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 4017181329398730153, guid: 12f6b435e50d0c344bbef4933a59c1d4, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5471334192262882663}
     - target: {fileID: 4017181329398730153, guid: 12f6b435e50d0c344bbef4933a59c1d4, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -69,6 +69,10 @@ PrefabInstance:
       value: HandleSwingInput
       objectReference: {fileID: 0}
     - target: {fileID: 4017181329398730153, guid: 12f6b435e50d0c344bbef4933a59c1d4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandlePauseInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017181329398730153, guid: 12f6b435e50d0c344bbef4933a59c1d4, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: FSM.InputReaderFsm, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -86,6 +90,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4017181329398730153, guid: 12f6b435e50d0c344bbef4933a59c1d4, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017181329398730153, guid: 12f6b435e50d0c344bbef4933a59c1d4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9002178987112575150, guid: 12f6b435e50d0c344bbef4933a59c1d4, type: 3}

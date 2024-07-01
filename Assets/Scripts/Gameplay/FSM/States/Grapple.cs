@@ -18,7 +18,6 @@ namespace Gameplay.FSM.States
         [SerializeField] private LineRenderer lr;
         [SerializeField] private Transform gunTip;
         [SerializeField] private Rigidbody rb;
-        [SerializeField] private GroundCheck groundCheck;
         [SerializeField] private Animator animator;
         [SerializeField] private string grapplerAnimationName;
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8390278493228439361}
   - component: {fileID: 6781317764337629006}
+  - component: {fileID: 5191019171478648659}
   m_Layer: 5
   m_Name: PauseManager
   m_TagString: Untagged
@@ -24,7 +25,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5292460756710237603}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4453125, y: 0.4453125, z: 0.4453125}
   m_ConstrainProportionsScale: 0
@@ -49,3 +50,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
+--- !u!114 &5191019171478648659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5292460756710237603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b90adb52f850846bb6459296ef8cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 0}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0253dfda478726f488aa69d81bb6c0b9, type: 3}
   m_Name: CoinData_Level2_6
   m_EditorClassIdentifier: 
-  position: {x: -188.7, y: 36.93, z: -712.19}
+  position: {x: -188.7, y: 34.83, z: -712.19}
   scale: {x: 22.47538, y: 22.47538, z: 22.47538}

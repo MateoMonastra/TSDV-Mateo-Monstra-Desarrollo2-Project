@@ -210,11 +210,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2478820873607718048}
   - component: {fileID: 2233852084180537}
-  - component: {fileID: 2402239008537400328}
   - component: {fileID: 3364394584869790845}
-  - component: {fileID: 2418678129158392799}
-  - component: {fileID: 3584209203261041537}
-  - component: {fileID: 8204652900823214084}
+  - component: {fileID: 1211124681060994434}
   - component: {fileID: 2745923457628907841}
   m_Layer: 0
   m_Name: Player
@@ -269,23 +266,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &2402239008537400328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534017556030565496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b7184c205b837a4e847a851bc6525e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
-  groundDrag: 10
-  orientation: {fileID: 3635126106142896811}
-  freeze: 0
-  activeGun: 0
 --- !u!114 &3364394584869790845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +283,7 @@ MonoBehaviour:
     m_Bits: 512
   rayHeight: 0.08
   footPivot: {fileID: 6032620326677212347}
---- !u!114 &2418678129158392799
+--- !u!114 &1211124681060994434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,55 +292,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 8534017556030565496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c63c714e6e7b584f99e7636acce4926, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d634d7a519dd0a4c888950d4de40d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 11400000, guid: b0743c17b37c2ea418728c5729b9e3e7, type: 2}
---- !u!114 &3584209203261041537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534017556030565496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dbbe618f50e41a458dac87bbd4e2b42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
-  lr: {fileID: 0}
-  gunTip: {fileID: 0}
-  rb: {fileID: 2233852084180537}
-  animator: {fileID: 0}
-  grapplerAnimationName: ShootGrappler
-  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
-  shootClip: {fileID: 8300000, guid: e72e79d456f2e89408fb151bda7a1554, type: 3}
-  hitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
-  missClip: {fileID: 8300000, guid: 1c83fdd448d245c41b4e7ceb26f0f57e, type: 3}
-  model: {fileID: 11400000, guid: 7e7912bc552f56a4fab27b998d6fff04, type: 2}
---- !u!114 &8204652900823214084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8534017556030565496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30757e75e104ce84dae6d4d8b7649f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
-  lr: {fileID: 0}
-  gunTip: {fileID: 0}
-  rb: {fileID: 2233852084180537}
-  animator: {fileID: 0}
-  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
-  shootClip: {fileID: 8300000, guid: e72e79d456f2e89408fb151bda7a1554, type: 3}
-  hitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
-  swingAnimationName: ShootSwing
+  pointPrefab: {fileID: 8645627342879389155, guid: a00095e5e9d582e47b9be6dc06bf57f8, type: 3}
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  groundCheck: {fileID: 3364394584869790845}
 --- !u!114 &2745923457628907841
 MonoBehaviour:
   m_ObjectHideFlags: 0
