@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 14
   acceleration: 10
-  airMultiplayer: 0.5
   brakeMultiplier: 0.75
+  airMultiplier: 0.4

@@ -15,4 +15,4 @@ MonoBehaviour:
   speed: 120
   acceleration: 10
   brakeMultiplier: 0.75
-  airMultiplayer: 0.5
+  airMultiplier: 0.4

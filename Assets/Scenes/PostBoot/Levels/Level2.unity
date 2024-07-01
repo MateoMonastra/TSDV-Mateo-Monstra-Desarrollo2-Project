@@ -1269,6 +1269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Structure_Retro_Frame_Program_07_Art
       objectReference: {fileID: 0}
+    - target: {fileID: 3864816634257950734, guid: 962b1c1c028603d4d99d75059131eff5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4533232479691543220, guid: 962b1c1c028603d4d99d75059131eff5, type: 3}
       propertyPath: m_LocalScale.x
       value: 17.872002

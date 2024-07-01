@@ -34,6 +34,8 @@ namespace Gameplay.Player.FSM.States
         public override void OnFixedUpdate()
         {
             
+            SpeedControl();
+            
             Move();
 
             if (_shouldBrake)
@@ -41,7 +43,6 @@ namespace Gameplay.Player.FSM.States
                 Brake();
             }
             
-            SpeedControl();
         }
         
         /// <summary>
