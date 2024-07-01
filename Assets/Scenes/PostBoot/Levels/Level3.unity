@@ -2125,7 +2125,8 @@ PrefabInstance:
       propertyPath: inputReaderFsm
       value: 
       objectReference: {fileID: 1791033487}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3997795023321638276, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
