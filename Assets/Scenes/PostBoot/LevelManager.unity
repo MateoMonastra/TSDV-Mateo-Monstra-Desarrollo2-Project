@@ -349,10 +349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a15d6ef3cb8bf949842f65fb4359a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newColor: {r: 0.69803923, g: 0, b: 0, a: 1}
+  normalColor: {r: 0.69803923, g: 0, b: 0, a: 1}
   transparentColor: {r: 0.69803923, g: 0, b: 0, a: 0}
-  animFadeDuration: 3
-  animOutDuration: 3
+  animFadeInDuration: 8
+  animFadeOutDuration: 5
   textTimer: {fileID: 888391980}
   addTimeText: {fileID: 934133414}
 --- !u!4 &676268575
@@ -533,6 +533,7 @@ MonoBehaviour:
   timer: {fileID: 676268574}
   channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
   finishLevelClip: {fileID: 8300000, guid: 8a85fd6c2df0bf44da3e929b779071cc, type: 3}
+  passLevel: 0
 --- !u!4 &870491002
 Transform:
   m_ObjectHideFlags: 0
@@ -632,7 +633,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 34.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -766,7 +767,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 34.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
