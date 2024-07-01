@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using Floor;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class SetCheckPoint : MonoBehaviour
+namespace Gameplay.Floor
 {
-    [SerializeField] private RespawnPlayer respawnPlayer;
-    [SerializeField] private Transform newSpawnPoint;
-
-    private void OnCollisionEnter(Collision other)
+    public class SetCheckPoint : MonoBehaviour
     {
-        if (newSpawnPoint == respawnPlayer.CheckPoint) return;
+        [Tooltip("Reference of the respawn")]
+        [SerializeField] private RespawnPlayer respawnPlayer;
         
-        respawnPlayer.CheckPoint = newSpawnPoint;
+        [Tooltip("Reference of newSpawnPoint")]
+        [SerializeField] private Transform newSpawnPoint;
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (newSpawnPoint == respawnPlayer.CheckPoint) return;
+        
+            respawnPlayer.CheckPoint = newSpawnPoint;
+        }
     }
 }

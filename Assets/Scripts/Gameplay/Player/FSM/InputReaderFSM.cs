@@ -2,103 +2,130 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.FSM
+namespace Gameplay.Player.FSM
 {
     public class InputReaderFsm : MonoBehaviour
     {
-        public Action<Vector2> onMove;
-        public Action onJump;
-        public Action onGrapple;
-        public Action onSwingStart;
-        public Action onSwingEnd;
-        public Action<Vector2> onMouseCam;
-        public Action<Vector2> onJoystickCam;
-        public Action onPause;
-        public Action onSpeedCheat;
-        public Action onJumperCheat;
-        public Action onPassLevelCheat;
+        public Action<Vector2> OnMove;
+        public Action OnJump;
+        public Action OnGrapple;
+        public Action OnSwingStart;
+        public Action OnSwingEnd;
+        public Action<Vector2> OnMouseCam;
+        public Action<Vector2> OnJoystickCam;
+        public Action OnPause;
+        public Action OnSpeedCheat;
+        public Action OnJumperCheat;
+        public Action OnPassLevelCheat;
 
+        /// <summary>
+        /// Maneja la entrada de salto.
+        /// </summary>
         public void HandleJumpInput(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                onJump.Invoke();
+                OnJump.Invoke();
             }
         }
 
+        /// <summary>
+        /// Maneja la entrada de movimiento.
+        /// </summary>
         public void HandleMoveInput(InputAction.CallbackContext context)
         {
-            onMove.Invoke(context.ReadValue<Vector2>());
+            OnMove.Invoke(context.ReadValue<Vector2>());
         }
 
+        /// <summary>
+        /// Maneja la entrada de gancho.
+        /// </summary>
         public void HandleGrappleInput(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                onGrapple.Invoke();
+                OnGrapple.Invoke();
             }
         }
 
+        /// <summary>
+        /// Maneja la entrada de inicio y fin de balanceo.
+        /// </summary>
         public void HandleSwingInput(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                onSwingStart.Invoke();
+                OnSwingStart.Invoke();
             }
             else if (context.canceled)
             {
-                onSwingEnd.Invoke();
+                OnSwingEnd.Invoke();
             }
         }
 
+        /// <summary>
+        /// Maneja la entrada de cámara (ratón o joystick).
+        /// </summary>
         public void HandleCamInput(InputAction.CallbackContext context)
         {
             if (context.control == Mouse.current)
             {
                 if (context.performed)
                 {
-                    onMouseCam.Invoke(context.ReadValue<Vector2>());
+                    OnMouseCam.Invoke(context.ReadValue<Vector2>());
                 }
                 else
                 {
-                    onMouseCam.Invoke(Vector2.zero);
+                    OnMouseCam.Invoke(Vector2.zero);
                 }
             }
             else
             {
-                onJoystickCam.Invoke(context.ReadValue<Vector2>());
+                OnJoystickCam.Invoke(context.ReadValue<Vector2>());
             }
         }
 
+        /// <summary>
+        /// Maneja la entrada de pausa.
+        /// </summary>
         public void HandlePauseInput(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                onPause.Invoke();
+                OnPause.Invoke();
             }
         }
-        
+
+        /// <summary>
+        /// Maneja la entrada del truco de velocidad.
+        /// </summary>
         public void HandleSpeedCheatInput(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                onSpeedCheat.Invoke();
+                OnSpeedCheat.Invoke();
             }
         }
-        
+
+        /// <summary>
+        /// Maneja la entrada del truco de salto.
+        /// </summary>
         public void HandleJumperCheatInput(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                onJumperCheat.Invoke();
+                OnJumperCheat.Invoke();
             }
         }
-        
+
+        /// <summary>
+        /// Maneja la entrada del truco de pasar nivel.
+        /// </summary>
         public void HandlePassLevelCheatInput(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                onPassLevelCheat.Invoke();
+                OnPassLevelCheat.Invoke();
             }
         }
     }

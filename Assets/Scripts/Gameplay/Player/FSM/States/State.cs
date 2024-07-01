@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gameplay.FSM.States
+namespace Gameplay.Player.FSM.States
 {
     public abstract class State: MonoBehaviour
     {

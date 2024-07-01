@@ -1,7 +1,7 @@
-using Gameplay.FSM.States;
+using Gameplay.Player.FSM.States;
 using UnityEngine;
 
-namespace Gameplay.FSM.Behaviours
+namespace Gameplay.Player.FSM.Behaviours
 {
     public class SwingIBehaviour : MonoBehaviour, IBehaviour
     {
@@ -50,6 +50,9 @@ namespace Gameplay.FSM.Behaviours
             return _swing;
         }
         
+        /// <summary>
+        /// Sets the current behavior to walk idle after completing jump.
+        /// </summary>
         private void SetIBehaviour()
         {
             _fsm.CurretIBehaviour = GetComponent<WalkIdleIBehaviour>();

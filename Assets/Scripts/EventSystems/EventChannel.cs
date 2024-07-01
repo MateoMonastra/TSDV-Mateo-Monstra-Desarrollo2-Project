@@ -5,6 +5,5 @@ namespace EventSystems
 {
     public abstract class EventChannel : ScriptableObject
     {
-        
     }
 }

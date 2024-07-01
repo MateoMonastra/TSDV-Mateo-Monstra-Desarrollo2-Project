@@ -1,164 +1,217 @@
 using System.Collections.Generic;
 using EventSystems;
+using EventSystems.EventSceneManager;
 using EventSystems.EventSoundManager;
+using Gameplay.LevelData;
 using HighScore;
 using UnityEngine;
-using Timer = LevelManager.Timer;
+using Timer = Gameplay.Timer.Timer;
 
 namespace Managers
 {
-    public class LevelManager : MonoBehaviour
+   public class LevelManager : MonoBehaviour
+{
+    [Tooltip("Event channel for scene management.")]
+    [SerializeField] private EventChannelSceneManager eventChanel;
+    
+    [Tooltip("List of level data representing available levels.")]
+    [SerializeField] private List<LevelData> levels;
+    
+    [Tooltip("Current level data.")]
+    [SerializeField] private LevelData currentLevel;
+    
+    [Tooltip("Scene name to return to after finishing all levels.")]
+    [SerializeField] private string returnScene;
+    
+    [Tooltip("List for Pool of Coins.")]
+    [SerializeField] private List<Gameplay.Coin.Coin> coins = new List<Gameplay.Coin.Coin>();
+    
+    [Tooltip("Reference to the high score data manager.")]
+    [SerializeField] private HighScoreData highScore;
+    
+    [Tooltip("Reference to the timer for save it later.")]
+    [SerializeField] private Timer timer;
+
+    [Header("Audio SFX:")]
+    [SerializeField] private EventChannelSoundManager channel;
+    [SerializeField] private AudioClip finishLevelClip;
+
+    public bool passLevel;
+
+    private void Start()
     {
-        [SerializeField] private EventChannelSceneManager eventChanel;
-
-        [SerializeField] private List<LevelData.LevelData> levels;
-        [SerializeField] private LevelData.LevelData currentLevel;
-        [SerializeField] private string returnScene = "HighScores";
-
-        [Tooltip("List for Pool of Coins")] [SerializeField]
-        private List<Coin.Coin> coins = new List<Coin.Coin>();
-
-        [SerializeField] private HighScoreData highScore;
-        [SerializeField] private Timer timer;
+        SetMouseForGameplay();
         
-        [Header("Audio SFX:")] 
-        [SerializeField] private EventChannelSoundManager channel;
-        [SerializeField] private AudioClip finishLevelClip;
+        if (!CheckLevelExistence(currentLevel.SceneName)) return;
+        LoadLevel();
+    }
 
-        public bool passLevel;
-        private void Start()
+    private void Update()
+    {
+        if (!passLevel)
         {
-            SetMouseForGameplay();
-
-            if (!CheckLevelExistence(currentLevel.SceneName)) return;
+            if (!CheckLevelIsOver() || currentLevel.SceneName == returnScene) return;
+        }
+        else
+        {
+            TurnOffCoins();
+            passLevel = false;
+        }
+        
+        eventChanel.RemoveScene(currentLevel.SceneName);
+        
+        if (currentLevel.NextLevel != returnScene)
+        {
+            currentLevel = UpdateCurrentLevelData();
             LoadLevel();
         }
-        private void Update()
+        else
         {
-            if (!passLevel)
-            {
-                if (!CheckLevelIsOver() || currentLevel.SceneName == returnScene) return;
-            }
-            else
-            {
-                TurnOffCoins();
-                passLevel = false;
-            }
+            ReturnFromGameplay();
+        }
+    }
 
-            eventChanel.RemoveScene(currentLevel.SceneName);
-
-            if (currentLevel.NextLevel != returnScene)
+    /// <summary>
+    /// Check if a level with the given scene name exists in the levels list.
+    /// </summary>
+    /// <param name="newLevel">The scene name of the level to check.</param>
+    private bool CheckLevelExistence(string newLevel)
+    {
+        foreach (var level in levels)
+        {
+            if (level.SceneName == newLevel)
             {
-                currentLevel = UpdateCurrentLevelData();
-                LoadLevel();
-            }
-            else
-            {
-                ReturnFromGameplay();
+                return true;
             }
         }
-        private bool CheckLevelExistence(string newLevel)
+        return false;
+    }
+
+    /// <summary>
+    /// Load the current level scene and set up coin positions.
+    /// </summary>
+    private void LoadLevel()
+    {
+        eventChanel.AddScene(currentLevel.SceneName);
+        
+        currentLevel = GetCurrentLevelData();
+        
+        SetCoinsNewTransform();
+    }
+
+    /// <summary>
+    /// Update the current level data to the next level data based on the current level's next scene name.
+    /// </summary>
+    private LevelData UpdateCurrentLevelData()
+    {
+        foreach (var level in levels)
         {
-            for (var index = 0; index < levels.Count; index++)
+            if (level.SceneName == currentLevel.NextLevel)
             {
-                var level = levels[index];
-                if (level.SceneName == newLevel)
-                {
-                    return true;
-                }
+                return level;
             }
-
-            return false;
         }
-        private void LoadLevel()
-        {
-            eventChanel.AddScene(currentLevel.SceneName);
 
-            currentLevel = GetCurrentLevelData();
+        Debug.Log("Level not found");
+        return null;
+    }
 
-            SetCoinsNewTransform();
-        }
-        private LevelData.LevelData UpdateCurrentLevelData()
+    /// <summary>
+    /// Retrieve the current level data based on the current level's scene name.
+    /// </summary>
+    private LevelData GetCurrentLevelData()
+    {
+        foreach (var level in levels)
         {
-            foreach (var level in levels)
+            if (level.SceneName == currentLevel.SceneName)
             {
-                if (level.SceneName == currentLevel.NextLevel)
-                {
-                    return level;
-                }
+                return level;
             }
-
-            Debug.Log("Level not found");
-            return null;
         }
-        private LevelData.LevelData GetCurrentLevelData()
+
+        Debug.Log("Level not found");
+        return null;
+    }
+
+    /// <summary>
+    /// Check if the current level is over by checking if all coins are inactive.
+    /// </summary>
+    private bool CheckLevelIsOver()
+    {
+        foreach (var coin in coins)
         {
-            foreach (var level in levels)
+            if (coin.isActive)
             {
-                if (level.SceneName == currentLevel.SceneName)
-                {
-                    return level;
-                }
+                return false;
             }
-
-            Debug.Log("Level not found");
-            return null;
         }
-        private bool CheckLevelIsOver()
+        
+        channel.PlaySound(finishLevelClip);
+        Debug.Log("Finish Level");
+        return true;
+    }
+
+    /// <summary>
+    /// Set the mouse cursor settings for gameplay.
+    /// </summary>
+    private void SetMouseForGameplay()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    /// <summary>
+    /// Set the mouse cursor settings for menus.
+    /// </summary>
+    private void SetMouseForMenus()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    /// <summary>
+    /// Set the positions of coins in the level based on the current level's coin position data.
+    /// </summary>
+    private void SetCoinsNewTransform()
+    {
+        foreach (var newCoinPos in currentLevel.coinPositionData)
         {
+            bool wasPositioned = false;
+
             foreach (var coin in coins)
             {
-                if (coin.isActive)
+                if (!coin.isActive && !wasPositioned)
                 {
-                    return false;
-                }
-            }
-            channel.PlaySound(finishLevelClip);
-            Debug.Log("Finish Level");
-            return true;
-        }
-        private void SetMouseForGameplay()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        private void SetMouseForMenus()
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        private void SetCoinsNewTransform()
-        {
-            foreach (var newCoinPos in currentLevel.coinPositionData)
-            {
-                bool wasPositioned = false;
+                    coin.gameObject.SetActive(true);
+                    coin.isActive = true;
+                    coin.SetNewTransform(newCoinPos);
 
-                foreach (var coin in coins)
-                {
-                    if (!coin.isActive && !wasPositioned)
-                    {
-                        coin.gameObject.SetActive(true);
-                        coin.isActive = true;
-                        coin.SetNewTransform(newCoinPos);
-
-                        wasPositioned = true;
-                    }
+                    wasPositioned = true;
                 }
-            }
-        }
-        private void ReturnFromGameplay()
-        {
-            SetMouseForMenus();
-            highScore.AddNewHighScore(timer.TotalTime);
-            eventChanel.RemoveScene(gameObject.scene.name);
-            eventChanel.AddScene(returnScene);
-        }
-        private void TurnOffCoins()
-        {
-            foreach (var coin in coins)
-            {
-                coin.isActive = false;
             }
         }
     }
+
+    /// <summary>
+    /// Return from gameplay to menus, showing the mouse cursor and adding the return scene.
+    /// </summary>
+    private void ReturnFromGameplay()
+    {
+        SetMouseForMenus();
+        highScore.AddNewHighScore(timer.TotalTime);
+        eventChanel.RemoveScene(gameObject.scene.name);
+        eventChanel.AddScene(returnScene);
+    }
+
+    /// <summary>
+    /// Turn off all coins.
+    /// </summary>
+    private void TurnOffCoins()
+    {
+        foreach (var coin in coins)
+        {
+            coin.isActive = false;
+        }
+    }
+}
 }

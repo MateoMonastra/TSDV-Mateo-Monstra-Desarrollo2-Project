@@ -1,16 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using MenuButton;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "URLHandler", menuName = "Models/ButtonHandler/URLHandler")]
-public class URLHandler : ButtonHandler
+namespace Menu.MenuButton
 {
-    [SerializeField] private string url = "null";
-    override public void Handle(params object[] args) 
+    [CreateAssetMenu(fileName = "URLHandler", menuName = "Models/ButtonHandler/URLHandler")]
+    public class URLHandler : ButtonHandler
     {
-        if (url == "null") return;
+        [Tooltip("The URL to be opened.")]
+        [SerializeField] private string url = "null";
+        
+        /// <summary>
+        /// Handles the action of opening the specified URL.
+        /// </summary>
+        /// <param name="args">Optional arguments for the URL handler.</param>
+        public override void Handle(params object[] args) 
+        {
+            if (url == "null") return;
 
-        Application.OpenURL(url);
+            Application.OpenURL(url);
+        }
     }
 }

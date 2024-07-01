@@ -1,37 +1,45 @@
-using System;
-using System.Collections;
 using EventSystems.EventSoundManager;
-using Guns.Swing;
-using Player;
-using Player.Running;
+using Gameplay.Player.Guns.Swing;
 using Unity.VisualScripting;
 using UnityEngine;
-using State = Gameplay.FSM.States.State;
+using State = Gameplay.Player.FSM.States.State;
 
-namespace Gameplay.FSM.States
+namespace Gameplay.Player.FSM.States
 {
     public class Swing : State
     {
-        [Header("References")] 
+        [Header("References")]
         
+        [Tooltip("Transform of the player's camera.")]
         [SerializeField] private Transform playerCamera;
+        
+        [Tooltip("Line renderer used for visualizing the swing.")]
         [SerializeField] private LineRenderer lr;
+        
+        [Tooltip("Transform representing the tip of the grappling gun.")]
         [SerializeField] private Transform gunTip;
+        
+        [Tooltip("Rigidbody of the player.")]
         [SerializeField] private Rigidbody rb;
+        
+        [Tooltip("Animator responsible for swing animations.")]
         [SerializeField] private Animator animator;
+        
+        [Tooltip("Name of the swing animation trigger.")]
         [SerializeField] private string swingAnimationName;
+
+        [Header("Audio SFX:")]
         
-        [Header("Audio SFX:")] 
-        
+        [Tooltip("Manager for playing sound effects.")]
         [SerializeField] private EventChannelSoundManager channel;
-        [SerializeField] private AudioClip shootClip;
+        
+        [Tooltip("Audio clip played when the swing hits.")]
         [SerializeField] private AudioClip hitClip;
 
-        [Header("Model")] 
-        
+        [Header("Model")]
+        [Tooltip("Model defining swing parameters.")]
         [SerializeField] private SwingModel model;
-
-        private float _swingCdTimer;
+        
         private bool _grappling;
 
         private Vector3 _swingPoint;
@@ -55,6 +63,9 @@ namespace Gameplay.FSM.States
             lr.SetPosition(0, gunTip.position);
             lr.SetPosition(1, _swingPoint);
         }
+        /// <summary>
+        /// Checks that the Raycast results in true, then executes the swing
+        /// </summary>
         private void StartSwing()
         {
             if (_joint) StopSwing();
@@ -67,7 +78,6 @@ namespace Gameplay.FSM.States
                 _swingPoint = hit.point;
 
                 ExecuteSwing();
-                Debug.Log("Swing");
             }
             else
             {
@@ -77,6 +87,9 @@ namespace Gameplay.FSM.States
 
             lr.enabled = true;
         }
+        /// <summary>
+        /// Creates a joint and attaches it as a component to the player to perform its effect
+        /// </summary>
         private void ExecuteSwing()
         {
             channel.OnPlaySound(hitClip);
@@ -97,14 +110,16 @@ namespace Gameplay.FSM.States
             lr.positionCount = 2;
             
         }
+        /// <summary>
+        /// deletes the joint and Stops the Swing
+        /// </summary>
         private void StopSwing()
         {
             animator.SetBool(swingAnimationName, false);
             
             if (_joint) Destroy(_joint);
-            
+
             lr.positionCount = 0;
-            _swingCdTimer = model.SwingCd;
         }
     }
 }

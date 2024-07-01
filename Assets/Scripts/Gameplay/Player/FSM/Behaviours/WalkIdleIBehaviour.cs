@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using Gameplay.FSM.States;
 using Gameplay.Player.FSM.States;
 using UnityEngine;
 
-namespace Gameplay.FSM.Behaviours
+namespace Gameplay.Player.FSM.Behaviours
 {
     public class WalkIdleIBehaviour : MonoBehaviour, IBehaviour
     {
@@ -50,6 +47,10 @@ namespace Gameplay.FSM.Behaviours
             return _walkIdle;
         }
 
+        /// <summary>
+        /// Sets the movement direction for the walk idle state.
+        /// </summary>
+        /// <param name="newDirection">The new direction to be set.</param>
         public void SetDirection(Vector2 newDirection)
         {
             _walkIdle.SetDirection(newDirection);

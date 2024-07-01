@@ -1,8 +1,7 @@
-using System;
-using Gameplay.FSM.States;
+using Gameplay.Player.FSM.States;
 using UnityEngine;
 
-namespace Gameplay.FSM.Behaviours
+namespace Gameplay.Player.FSM.Behaviours
 {
     public class GrappleIBehaviour : MonoBehaviour, IBehaviour
     {
@@ -15,7 +14,7 @@ namespace Gameplay.FSM.Behaviours
             _grapple ??= GetComponent<Grapple>();
             _fsm ??= GetComponent<StateMachine>();
             
-            _grapple.onEnd += SetIBehaviour;
+            _grapple.OnTheEnd += SetIBehaviour;
         }
 
         public bool CheckTransitionIsApproved(IBehaviour newBehaviour)
@@ -53,6 +52,9 @@ namespace Gameplay.FSM.Behaviours
             return _grapple;
         }
 
+        /// <summary>
+        /// Sets the current behavior to walk idle after completing jump.
+        /// </summary>
         private void SetIBehaviour()
         {
             _fsm.CurretIBehaviour = GetComponent<WalkIdleIBehaviour>();

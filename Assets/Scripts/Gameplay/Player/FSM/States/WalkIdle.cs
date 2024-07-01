@@ -1,17 +1,21 @@
-using Gameplay.FSM.States;
-using Player;
-using Player.Running;
+using Gameplay.Player.Running;
 using UnityEngine;
 
 namespace Gameplay.Player.FSM.States
 {
     public class WalkIdle : State
     {
-        [Header("Running Variables: ")] 
-        [SerializeField] private RunningModel model;
-        [SerializeField] private float groundDrag;
+        [Header("Running Variables:")]
         
-        [Header("Orientation: ")] 
+        [Tooltip("Model defining the running parameters such as speed and acceleration.")]
+        [SerializeField] private RunningModel model;
+        
+        [Tooltip("Drag applied to the rigidbody when on the ground to control sliding.")]
+        [SerializeField] private float groundDrag;
+
+        [Header("Orientation:")]
+        
+        [Tooltip("Transform representing the player's orientation in the scene.")]
         [SerializeField] private Transform orientation;
 
         private GroundCheck _groundCheck;
@@ -29,7 +33,6 @@ namespace Gameplay.Player.FSM.States
         }
         public override void OnFixedUpdate()
         {
-            SpeedControl();
             
             Move();
 
@@ -37,7 +40,14 @@ namespace Gameplay.Player.FSM.States
             {
                 Brake();
             }
+            
+            SpeedControl();
         }
+        
+        /// <summary>
+        /// Sets the movement direction based on the input direction.
+        /// </summary>
+        /// <param name="direction">Direction vector from the input.</param>
         public void SetDirection(Vector2 direction)
         {
             Vector3 moveDirection = new Vector3(direction.x, 0, direction.y);
@@ -52,6 +62,10 @@ namespace Gameplay.Player.FSM.States
                 _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
             }
         }
+        
+        /// <summary>
+        /// Controls the speed of the player based on whether they are on the ground or in the air.
+        /// </summary>
         private void SpeedControl()
         {
             _rb.drag = _groundCheck.IsOnGround() ? groundDrag : 0;
@@ -63,6 +77,10 @@ namespace Gameplay.Player.FSM.States
             Vector3 limitedSpeed = flatSpeed.normalized * model.speed;
             _rb.velocity = new Vector3(limitedSpeed.x, _rb.velocity.y, limitedSpeed.z);
         }
+        
+        /// <summary>
+        /// Applies a braking force to slow down the player's movement.
+        /// </summary>
         private void Brake()
         {
             var currentHorizontalVelocity = _rb.velocity;
@@ -71,12 +89,16 @@ namespace Gameplay.Player.FSM.States
             _rb.AddForce(-currentHorizontalVelocity * model.BrakeMultiplier, ForceMode.Impulse);
             _shouldBrake = false;
         }
+        
+        /// <summary>
+        /// Moves the player by applying a force in the calculated direction.
+        /// </summary>
         private void Move()
         {
             if (_groundCheck.IsOnGround())
                 _rb.AddForce(_moveDirection.normalized * (model.speed * model.Acceleration), ForceMode.Force);
             else
-                _rb.AddForce(_moveDirection.normalized * (model.speed * model.Acceleration * model.AirMultiplayer),
+                _rb.AddForce(_moveDirection.normalized * (model.speed * model.Acceleration * model.AirMultiplier),
                     ForceMode.Force);
         }
     }

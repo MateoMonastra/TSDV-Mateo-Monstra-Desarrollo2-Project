@@ -1,14 +1,21 @@
-using Guns.Swing;
-using Player;
+using Gameplay.Player.Guns.Swing;
 using UnityEngine;
 
-namespace Guns.HitPoint
+namespace Gameplay.Player.Guns.HitPoint
 {
     public class HitPointManager : MonoBehaviour
     {
+        [Header("Swing Settings")]
+        [Tooltip("The swing model containing swing parameters.")]
         [SerializeField] private SwingModel model;
+
+        [Tooltip("Prefab for the swing point visual representation.")]
         [SerializeField] private MeshRenderer pointPrefab;
+
+        [Tooltip("Animation curve for scaling the swing point based on distance.")]
         [SerializeField] private AnimationCurve sizeCurve;
+
+        [Tooltip("Reference to the ground check component.")]
         [SerializeField] private GroundCheck groundCheck;
         
         private float _size;

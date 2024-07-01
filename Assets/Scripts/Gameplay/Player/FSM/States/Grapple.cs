@@ -1,33 +1,45 @@
 using System;
-using System.Collections;
 using EventSystems.EventSoundManager;
-using Guns.Grappler;
-using Player;
-using Player.Running;
-using Unity.VisualScripting;
+using Gameplay.Player.Guns.Grappler;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Gameplay.FSM.States
+namespace Gameplay.Player.FSM.States
 {
     public class Grapple : State
     {
-        public Action onEnd;
-        [Header("References")] 
+        public Action OnTheEnd;
+
+        [Header("References")]
+        [Tooltip("The player's camera transform.")]
         [SerializeField] private Transform playerCamera;
+
+        [Tooltip("Line renderer for visualizing the grapple.")]
         [SerializeField] private LineRenderer lr;
+
+        [Tooltip("Transform representing the gun tip.")]
         [SerializeField] private Transform gunTip;
+
+        [Tooltip("Rigidbody of the player.")]
         [SerializeField] private Rigidbody rb;
+
+        [Tooltip("Animator for the grappling animation.")]
         [SerializeField] private Animator animator;
+
+        [Tooltip("Name of the grappling animation parameter.")]
         [SerializeField] private string grapplerAnimationName;
 
-        [Header("Audio SFX:")] 
+        [Header("Audio SFX:")]
+        [Tooltip("Event channel for playing sound effects.")]
         [SerializeField] private EventChannelSoundManager channel;
-        [SerializeField] private AudioClip shootClip;
+
+        [Tooltip("Sound clip for hitting the grapple target.")]
         [SerializeField] private AudioClip hitClip;
+
+        [Tooltip("Sound clip for missing the grapple target.")]
         [SerializeField] private AudioClip missClip;
 
-        [Header("Model")] 
+        [Header("Model")]
+        [Tooltip("Model containing grapple parameters.")]
         [SerializeField] private GrapplingModel model;
 
         private Vector3 _grapplePoint;
@@ -48,12 +60,14 @@ namespace Gameplay.FSM.States
             if (_grappling)
                 lr.SetPosition(0, gunTip.position);
         }
+        /// <summary>
+        /// Checks that the Raycast results in true, then executes the grapple; if it returns false, it simply plays a "failure animation" with its corresponding sound
+        /// </summary>
         private void StartGrapple()
         {
             _grappling = true;
             animator.SetBool(grapplerAnimationName, true);
             
-
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
                     model.Grappeable))
             {
@@ -71,6 +85,9 @@ namespace Gameplay.FSM.States
             lr.enabled = true;
             lr.SetPosition(1, _grapplePoint);
         }
+        /// <summary>
+        /// Using the variables, calculates the jump and executes it, then calls the stop
+        /// </summary>
         private void ExecuteGrapple()
         {
             channel.PlaySound(hitClip);
@@ -92,14 +109,21 @@ namespace Gameplay.FSM.States
 
             Invoke(nameof(StopGrapple), model.GrappleDuration);
         }
+        /// <summary>
+        /// Stops the grapple and makes the animation
+        /// </summary>
         private void StopGrapple()
         {
             animator.SetBool(grapplerAnimationName, false);
 
             _grappling = false;
             lr.enabled = false;
-            onEnd.Invoke();
+            OnTheEnd.Invoke();
         }
+        
+        /// <summary>
+        /// Calculation of the parabola between the startPoint and the endPoint.
+        /// </summary>
         private Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float tarjectoryHeight)
         {
             //formula sacada de este video : https://www.youtube.com/watch?v=IvT8hjy6q4o
@@ -120,6 +144,10 @@ namespace Gameplay.FSM.States
             _velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
             Invoke(nameof(SetVelocity), 0.1f);
         }
+        
+        /// <summary>
+        /// Set rigidbody velocity to the calculated jump velocity
+        /// </summary>
         private void SetVelocity()
         {
             rb.velocity = _velocityToSet;

@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using Gameplay.FSM.Behaviours;
+using Gameplay.Player.FSM.Behaviours;
 using UnityEngine;
-using UnityEngine.Serialization;
-using State = Gameplay.FSM.States.State;
 
-namespace Gameplay.FSM
+namespace Gameplay.Player.FSM
 {
     public class StateMachine : MonoBehaviour
     {
@@ -17,14 +13,17 @@ namespace Gameplay.FSM
             CurretIBehaviour.Enter();
         }
 
+        /// <summary>
+        /// Changes the current state of the state machine.
+        /// </summary>
+        /// <param name="newIBehaviour">The new behavior to transition to.</param>
         public void ChangeState(IBehaviour newIBehaviour)
         {
             if (CurretIBehaviour == newIBehaviour || !CurretIBehaviour.CheckTransitionIsApproved(newIBehaviour)) return;
 
             var beforeIBehaviour = CurretIBehaviour;
             var afterIBehaviour = newIBehaviour;
-
-            Debug.Log($"{beforeIBehaviour} cambio a {afterIBehaviour}");
+            
             beforeIBehaviour.Exit();
             afterIBehaviour.Enter();
 

@@ -1,63 +1,69 @@
-using Gameplay.FSM.States;
 using Gameplay.Player.FSM.States;
 using UnityEngine;
-using State = Gameplay.FSM.States.State;
+using UnityEngine.Serialization;
+using State = Gameplay.Player.FSM.States.State;
 
-namespace Gameplay.FSM.Behaviours
+namespace Gameplay.Player.FSM.Behaviours
 {
     public class JumpIBehaviour : MonoBehaviour,IBehaviour
     {
-        private Jump _jump;
+        [Tooltip("Reference to the jump state component.")]
+        [SerializeField] private States.Jump jump;
+        
+        [Tooltip("Reference to the walk idle behavior component.")]
+        [SerializeField] private WalkIdle walkIdle;
        
-        private WalkIdle _walkIdle;
-
-        private StateMachine _fsm;
+        [Tooltip("Reference to the state machine managing behaviors.")]
+        [SerializeField] private StateMachine fsm;
         private void Start()
         {
-            _jump ??= GetComponent<Jump>();
-            _fsm ??= GetComponent<StateMachine>();
-            _walkIdle ??= GetComponent<WalkIdle>();
-            _jump.Jumped += SetIBehaviour;
+            jump ??= GetComponent<States.Jump>();
+            fsm ??= GetComponent<StateMachine>();
+            walkIdle ??= GetComponent<WalkIdle>();
+            jump.Jumped += SetIBehaviour;
         }
 
         public bool CheckTransitionIsApproved(IBehaviour newBehaviour)
         {
-            return _jump.CheckStateTransition(newBehaviour.GetBehaviourState());
+            return jump.CheckStateTransition(newBehaviour.GetBehaviourState());
         }
 
         public void Enter()
         {
-            _jump.OnEnter();
+            jump.OnEnter();
         }
 
         public void OnBehaviourUpdate()
         {
-            _jump.OnUpdate();
+            jump.OnUpdate();
         }
 
         public void OnBehaviourFixedUpdate()
         {
-            _walkIdle.OnFixedUpdate();
+            walkIdle.OnFixedUpdate();
         }
 
         public void OnBehaviourLateUpdate()
         {
-            _jump.OnLateUpdate();
+            jump.OnLateUpdate();
         }
 
         public void Exit()
         {
-            _jump.OnEnd();
+            jump.OnEnd();
         }
 
         public State GetBehaviourState()
         {
-            return _jump;
+            return jump;
         }
         
+        /// <summary>
+        /// Sets the current behavior to walk idle after completing jump.
+        /// </summary>
         private void SetIBehaviour()
         {
-            _fsm.CurretIBehaviour = GetComponent<WalkIdleIBehaviour>();
+            fsm.CurretIBehaviour = GetComponent<WalkIdleIBehaviour>();
         }
     }
 }

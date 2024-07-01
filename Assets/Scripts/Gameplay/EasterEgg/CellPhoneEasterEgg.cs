@@ -1,31 +1,33 @@
-using System;
 using EventSystems.EventSoundManager;
-using Gameplay.FSM;
-using Unity.VisualScripting.FullSerializer;
+using Gameplay.Player.FSM;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Gameplay.EasterEgg
 {
     public class CellPhoneEasterEgg : MonoBehaviour
     {
+        [Tooltip("Reference for Raycast")]
         [SerializeField] private Transform playerCamera;
+        
+        [Tooltip("Reference of actual inputReader")]
         [SerializeField] private InputReaderFsm inputReaderFsm;
+        
+        [Tooltip("LayerMask of the EasterEgg GameObject")]
         [SerializeField] private LayerMask cellphoneLayer;
 
-        [Header("Audio SFX:")] [SerializeField]
-        private EventChannelSoundManager channel;
-
+        [Header("Audio SFX:")] 
+        [SerializeField] private EventChannelSoundManager channel;
         [SerializeField] private AudioClip clip;
-
-
+        
         private void Start()
         {
-            inputReaderFsm.onGrapple += PlaySound;
+            inputReaderFsm.OnGrapple += PlaySound;
         }
 
-        void PlaySound()
+        /// <summary>
+        /// Plays the sound effect if the player's camera raycast intersects with an object on the cellphoneLayer.
+        /// </summary>
+        private void PlaySound()
         {
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, Mathf.Infinity, cellphoneLayer))
             {

@@ -1,9 +1,10 @@
 using UnityEngine;
 
-namespace MenuButton
+namespace Menu.MenuButton
 {
     public class ButtonAction : MonoBehaviour
     {
+        [Tooltip("Reference to the button handler")]
         [SerializeField] private ButtonHandler buttonHandler;
 
         private void Start()
@@ -13,6 +14,10 @@ namespace MenuButton
                 buttonHandler.Set();
             }
         }
+        
+        /// <summary>
+        /// Handles the click event by calling the Handle method of the button handler.
+        /// </summary>
         public void HandleClick()
         {
             if (buttonHandler)

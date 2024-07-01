@@ -2,24 +2,29 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 
-namespace LevelManager
+namespace Gameplay.Timer
 {
     public class Timer : MonoBehaviour
     {
         [Header("Alpha fade out effect")] 
-        [SerializeField] private Color newColor;
-        [SerializeField] private Color transparentColor;
+        [Tooltip("The objective color for the fade In")] 
+        [SerializeField] private Color normalColor;
 
-        [SerializeField] private float animFadeDuration;
-        [SerializeField] private float animOutDuration;
+        [Tooltip("The objective color for the fade Out")] [SerializeField]
+        private Color transparentColor;
+
+        [Tooltip("The Duration of the FadeIn")] [SerializeField]
+        private float animFadeInDuration;
+
+        [Tooltip("The Duration of the FadeOut")] [SerializeField]
+        private float animFadeOutDuration;
 
         public TextMeshProUGUI textTimer;
         public TextMeshProUGUI addTimeText;
 
-        private bool fading;
-        
+        private bool _fading;
+
         private float _timer;
         public float TotalTime => _timer;
 
@@ -45,38 +50,43 @@ namespace LevelManager
             }
         }
 
+        /// <summary>
+        /// Fades the addTimeText color in and out to provide visual feedback when time is added.
+        /// </summary>
         private IEnumerator FadeInOut()
         {
             float startTime = Time.time;
             float timer = 0;
-            
-            while (timer < animOutDuration && !fading)
+
+            while (timer < animFadeOutDuration && !_fading)
             {
                 timer = Time.time - startTime;
-                
-                addTimeText.color = Color.Lerp(addTimeText.color, newColor, timer/animOutDuration);
-                
+
+                addTimeText.color = Color.Lerp(addTimeText.color, normalColor, timer / animFadeOutDuration);
+
                 yield return null;
             }
-            
+
             startTime = Time.time;
             timer = 0;
-            fading = true;
-            
-            while (timer < animFadeDuration)
+            _fading = true;
+
+            while (timer < animFadeInDuration)
             {
                 timer = Time.time - startTime;
-                addTimeText.color = Color.Lerp(addTimeText.color, transparentColor, timer/animOutDuration);
+                addTimeText.color = Color.Lerp(addTimeText.color, transparentColor, timer / animFadeOutDuration);
                 yield return null;
             }
-
         }
-        
 
+        /// <summary>
+        /// Adds the specified amount of time to the timer and triggers the fade-in/out animation.
+        /// </summary>
+        /// <param name="timeToAdd">The amount of time to add to the timer</param>
         public void AddTime(float timeToAdd)
         {
             _timer += timeToAdd;
-            fading = false;
+            _fading = false;
             StartCoroutine(FadeInOut());
         }
     }

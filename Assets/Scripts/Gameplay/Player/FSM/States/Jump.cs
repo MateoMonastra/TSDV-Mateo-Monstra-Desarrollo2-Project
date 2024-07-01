@@ -1,19 +1,23 @@
 using System;
 using System.Collections;
 using EventSystems.EventSoundManager;
-using Player;
-using Player.Jump;
+using Gameplay.Player.Jump;
 using UnityEngine;
 
-namespace Gameplay.FSM.States
+namespace Gameplay.Player.FSM.States
 {
     public class Jump : State
     {
         public Action Jumped;
+        [Tooltip("Model defining jump parameters")]
         [SerializeField] private JumpModel model;
 
-        [Header("References")] 
+        [Header("References")]
+        
+        [Tooltip("Manager for playing sound effects.")]
         [SerializeField] private EventChannelSoundManager channelSoundManager;
+        
+        [Tooltip("Audio clip played when jumping.")]
         [SerializeField] private AudioClip clip;
         
         private GroundCheck _groundCheck;
@@ -46,6 +50,9 @@ namespace Gameplay.FSM.States
             }
         }
 
+        /// <summary>
+        /// Coroutine that handles the jump mechanics.
+        /// </summary>
         private IEnumerator OnJump()
         {
             if (!_canJump)
@@ -65,6 +72,9 @@ namespace Gameplay.FSM.States
             }
         }
 
+        /// <summary>
+        /// Resets the ability to jump.
+        /// </summary>
         private void Reset()
         {
             _canJump = true;

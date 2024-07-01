@@ -1,12 +1,11 @@
-using System;
-using Gameplay.FSM;
+using Gameplay.Player.FSM;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Options
 {
     public class PauseManager : MonoBehaviour
     {
+        [Tooltip("Reference to the input reader")]
         [SerializeField]private InputReaderFsm inputReader;
         
         private PauseUI _pauseUI;
@@ -17,7 +16,7 @@ namespace Options
         {
             _pauseUI = GetComponent<PauseUI>();
             
-            inputReader.onPause += _pauseUI.InitPauseMenu;
+            inputReader.OnPause += _pauseUI.InitPauseMenu;
         }
 
     

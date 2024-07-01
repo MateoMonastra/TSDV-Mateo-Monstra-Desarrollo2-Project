@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.PlayerCam
+namespace Gameplay.Player.PlayerCam
 {
     [CreateAssetMenu(fileName = "PlayerCamModel", menuName = "Models/Player/Cam")]
     public class PlayerCamModel : ScriptableObject

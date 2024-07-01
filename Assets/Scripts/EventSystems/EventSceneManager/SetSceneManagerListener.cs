@@ -5,6 +5,7 @@ namespace EventSystems.EventSceneManager
 {
     public class SetSceneManagerListener : MonoBehaviour
     {
+        [Tooltip("Listener of MySceneManager")]
         [SerializeField] private EventListenerSceneManager listener;
 
         private void Start()

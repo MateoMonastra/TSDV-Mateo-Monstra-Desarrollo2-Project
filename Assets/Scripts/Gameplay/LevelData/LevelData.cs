@@ -1,17 +1,17 @@
 using System.Collections.Generic;
-using Coin;
-using Coin.CoinMode;
+using Gameplay.Coin;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
 
-namespace LevelData
+namespace Gameplay.LevelData
 {
     [CreateAssetMenu(fileName = "LevelData", menuName = "Models/Levels/LevelData")]
     public class LevelData : ScriptableObject
     {
+        [Tooltip("Name of the scene associated with this level data.")]
         [SerializeField] private string sceneName;
+        
+        [Tooltip("Name of the next level to transition to after completing this level.")]
         [SerializeField] private string nextLevel;
-        // [SerializeField] private CoinMode coinMode;
 
         public List<CoinData> coinPositionData;
         public string SceneName => sceneName;
