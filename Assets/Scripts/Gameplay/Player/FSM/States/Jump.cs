@@ -9,6 +9,7 @@ namespace Gameplay.Player.FSM.States
     public class Jump : State
     {
         public Action Jumped;
+
         [Tooltip("Model defining jump parameters")]
         [SerializeField] private JumpModel model;
 
@@ -23,14 +24,12 @@ namespace Gameplay.Player.FSM.States
         private GroundCheck _groundCheck;
         private bool _canJump;
         private Rigidbody _rb;
-        private float _coyoteTimeTimer;
 
         public override void OnEnter()
         {
             _rb = GetComponent<Rigidbody>();
             _groundCheck = GetComponent<GroundCheck>();
             
-            _coyoteTimeTimer = model.CoyoteTime;
             Reset();
 
             channelSoundManager.PlaySound(clip);
@@ -39,15 +38,7 @@ namespace Gameplay.Player.FSM.States
         }
 
         public override void OnUpdate()
-        {
-            if (!_groundCheck.IsOnGround())
-            {
-                _coyoteTimeTimer -= Time.deltaTime;
-            }
-            else
-            {
-                _coyoteTimeTimer = model.CoyoteTime;
-            }
+        { 
         }
 
         /// <summary>
@@ -58,7 +49,7 @@ namespace Gameplay.Player.FSM.States
             if (!_canJump)
                 yield break;
 
-            if (!_groundCheck.IsOnGround() && _coyoteTimeTimer > 0 || _groundCheck.IsOnGround())
+            if (!_groundCheck.IsOnGround() || _groundCheck.IsOnGround())
             {
                 _canJump = false;
 

@@ -27,14 +27,14 @@ Material:
   m_ValidKeywords:
   - _EMISSION
   m_InvalidKeywords: []
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _BaseMap
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -131,9 +131,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BackColor: {r: 1, g: 0.9747956, b: 0, a: 1}
-    - _BaseColor: {r: 0.58017635, g: 0, b: 1, a: 1}
-    - _Color: {r: 0.58017635, g: 0, b: 1, a: 1}
-    - _EmissionColor: {r: 0.23634672, g: 0, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0.254717, g: 0.1837958, b: 0, a: 1}
     - _FrontColor: {r: 0.83259535, g: 0, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
