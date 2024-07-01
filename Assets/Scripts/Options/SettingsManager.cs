@@ -1,17 +1,20 @@
 using System;
+using Player.PlayerCam;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace Options
 {
-    public class SettingsAudioManager : MonoBehaviour
+    public class SettingsManager : MonoBehaviour
     {
         [SerializeField] private Slider masterVol;
         [SerializeField] private Slider musicVol;
         [SerializeField] private Slider sfxVol;
+        [SerializeField] private Slider sensibility;
 
         [SerializeField] private AudioMixer audioMixer;
+        [SerializeField] private PlayerCamModel camModel;
 
         private void Start()
         {
@@ -26,6 +29,9 @@ namespace Options
             audioMixer.GetFloat("SfxVol",out var sfxVolValue );
 
             sfxVol.value = sfxVolValue;
+
+            sensibility.value = camModel.sensX + camModel.sensY;
+
         }
 
         public void ChangeMasterVolume()
@@ -41,6 +47,12 @@ namespace Options
         public void ChangeSfxVolume()
         {
             audioMixer.SetFloat("SfxVol", sfxVol.value);
+        }
+        
+        public void ChangeSensibility()
+        {
+            camModel.sensX = sensibility.value/2;
+            camModel.sensY = sensibility.value/2;
         }
     }
 }

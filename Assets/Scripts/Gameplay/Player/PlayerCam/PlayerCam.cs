@@ -13,12 +13,7 @@ namespace Gameplay.Player.PlayerCam
         private float _xRotation;
 
         private Vector2 _moveDirection;
-
-        private void Start()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        
         private void Update()
         {
             _xRotation += _moveDirection.x;
@@ -32,12 +27,12 @@ namespace Gameplay.Player.PlayerCam
 
         public void UpdateMouseCamera(Vector2 angle)
         {
-            _moveDirection = new Vector2(angle.x * model.SensX, angle.y * model.SensY);
+            _moveDirection = new Vector2(angle.x * model.sensX, angle.y * model.sensY);
         }
 
         public void UpdateJoystickCamera(Vector2 axis)
         {
-            _moveDirection = new Vector2(axis.x * model.SensX * Time.deltaTime, axis.y * model.SensY * Time.deltaTime);
+            _moveDirection = new Vector2(axis.x * model.sensX * Time.deltaTime, axis.y * model.sensY * Time.deltaTime);
         }
     }
 }

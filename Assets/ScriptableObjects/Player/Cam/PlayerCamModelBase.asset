@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d1824893abfb445afbeaedd86bcf1e, type: 3}
   m_Name: PlayerCamModelBase
   m_EditorClassIdentifier: 
-  sensX: 12
-  sensY: 12
+  sensX: 6
+  sensY: 6
