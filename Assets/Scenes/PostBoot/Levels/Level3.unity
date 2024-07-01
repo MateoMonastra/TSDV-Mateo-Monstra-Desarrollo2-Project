@@ -3551,6 +3551,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1791033487}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1791033487}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1791033487}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandlePassLevelCheatInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleJumperCheatInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleSpeedCheatInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8627875081271035373, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
       propertyPath: m_Name
       value: PlayerInputFsm Variant
@@ -3715,7 +3751,9 @@ PrefabInstance:
       propertyPath: cameraPos
       value: 
       objectReference: {fileID: 991610164}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1251758148672930263, guid: 8eed64e3d148bb04e9766e0bd5aa2b96, type: 3}
+    - {fileID: 4510567082289780737, guid: 8eed64e3d148bb04e9766e0bd5aa2b96, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

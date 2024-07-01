@@ -33,7 +33,6 @@ namespace Managers
             if (!CheckLevelExistence(currentLevel.SceneName)) return;
             LoadLevel();
         }
-
         private void Update()
         {
             if (!passLevel)
@@ -42,6 +41,7 @@ namespace Managers
             }
             else
             {
+                TurnOffCoins();
                 passLevel = false;
             }
 
@@ -57,7 +57,6 @@ namespace Managers
                 ReturnFromGameplay();
             }
         }
-
         private bool CheckLevelExistence(string newLevel)
         {
             for (var index = 0; index < levels.Count; index++)
@@ -71,7 +70,6 @@ namespace Managers
 
             return false;
         }
-
         private void LoadLevel()
         {
             eventChanel.AddScene(currentLevel.SceneName);
@@ -80,7 +78,6 @@ namespace Managers
 
             SetCoinsNewTransform();
         }
-
         private LevelData.LevelData UpdateCurrentLevelData()
         {
             foreach (var level in levels)
@@ -94,7 +91,6 @@ namespace Managers
             Debug.Log("Level not found");
             return null;
         }
-
         private LevelData.LevelData GetCurrentLevelData()
         {
             foreach (var level in levels)
@@ -108,7 +104,6 @@ namespace Managers
             Debug.Log("Level not found");
             return null;
         }
-
         private bool CheckLevelIsOver()
         {
             foreach (var coin in coins)
@@ -122,19 +117,16 @@ namespace Managers
             Debug.Log("Finish Level");
             return true;
         }
-
         private void SetMouseForGameplay()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
         private void SetMouseForMenus()
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-
         private void SetCoinsNewTransform()
         {
             foreach (var newCoinPos in currentLevel.coinPositionData)
@@ -154,13 +146,19 @@ namespace Managers
                 }
             }
         }
-
         private void ReturnFromGameplay()
         {
             SetMouseForMenus();
             highScore.AddNewHighScore(timer.TotalTime);
             eventChanel.RemoveScene(gameObject.scene.name);
             eventChanel.AddScene(returnScene);
+        }
+        private void TurnOffCoins()
+        {
+            foreach (var coin in coins)
+            {
+                coin.isActive = false;
+            }
         }
     }
 }

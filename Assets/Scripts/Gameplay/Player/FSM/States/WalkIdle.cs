@@ -47,7 +47,7 @@ namespace Gameplay.Player.FSM.States
                 _shouldBrake = true;
             }
 
-            if (_moveDirection!=null)
+            if (orientation!=null)
             {
                 _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
             }
