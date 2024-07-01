@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6619997310946953938}
   - component: {fileID: 1193237639574648789}
-  - component: {fileID: 804378947806867337}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -60,7 +59,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandleMoveInput
         m_Mode: 0
@@ -76,7 +75,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandleCamInput
         m_Mode: 0
@@ -92,7 +91,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandleGrapplingInput
         m_Mode: 0
@@ -148,7 +147,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandleJumpInput
         m_Mode: 0
@@ -164,7 +163,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandleSwingInput
         m_Mode: 0
@@ -180,7 +179,7 @@ MonoBehaviour:
     m_ActionName: Player/ShootSwing[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandlePauseMenuInput
         m_Mode: 0
@@ -196,7 +195,7 @@ MonoBehaviour:
     m_ActionName: Player/PauseMenu[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandlePassLevelInput
         m_Mode: 0
@@ -212,7 +211,7 @@ MonoBehaviour:
     m_ActionName: Player/PassLevel[/Keyboard/f9]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandleGodModeInput
         m_Mode: 0
@@ -228,7 +227,7 @@ MonoBehaviour:
     m_ActionName: Player/GodMode[/Keyboard/f10]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804378947806867337}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player.InputReader, Assembly-CSharp
         m_MethodName: HandleFlashModeInput
         m_Mode: 0
@@ -247,21 +246,3 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &804378947806867337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3299739001341392533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d1a6f767f121b40800caf6f6261105, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runBehaviour: {fileID: 0}
-  jumpBehaviour: {fileID: 0}
-  playerCam: {fileID: 0}
-  grapplingBehaviour: {fileID: 0}
-  swingBehaviour: {fileID: 0}
-  pauseUI: {fileID: 0}

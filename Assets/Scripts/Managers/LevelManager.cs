@@ -29,7 +29,7 @@ namespace LevelManager
         [SerializeField] private EventChannelSoundManager channel;
         [SerializeField] private AudioClip finishLevelClip;
 
-
+        public bool passLevel;
         private void Start()
         {
             SetMouseForGameplay();
@@ -40,7 +40,14 @@ namespace LevelManager
 
         private void Update()
         {
-            if (!CheckLevelIsOver() || currentLevel.SceneName == returnScene) return;
+            if (!passLevel)
+            {
+                if (!CheckLevelIsOver() || currentLevel.SceneName == returnScene) return;
+            }
+            else
+            {
+                passLevel = false;
+            }
 
             eventChanel.RemoveScene(currentLevel.SceneName);
 

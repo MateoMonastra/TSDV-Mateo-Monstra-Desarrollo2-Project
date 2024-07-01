@@ -446,6 +446,14 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1611189316}
+    - target: {fileID: 3997795023321638276, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1611189316}
+    - target: {fileID: 3997795023321638276, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
+      propertyPath: inputReaderFsm
+      value: 
+      objectReference: {fileID: 139899532}
     - target: {fileID: 4724743753140151910, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
       propertyPath: inputReaderFsm
       value: 
@@ -470,38 +478,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerFsm Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8508671423986522573, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
+      propertyPath: inputReaderFsm
+      value: 
+      objectReference: {fileID: 139899532}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6223453261769589200, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 286823016}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
 --- !u!1 &286823014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6223453261769589200, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
   m_PrefabInstance: {fileID: 281779207}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &286823016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286823014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af43be65bc88b4f4eb69e77d842a5d2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 1611189316}
-  inputReaderFsm: {fileID: 139899532}
-  cellphoneLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
-  clip: {fileID: 8300000, guid: b8ef1e70370202145a806e988930006d, type: 3}
 --- !u!1 &299386824 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8982898923138191406, guid: 6f0abe9c7d82a604c92fe6110e0879aa, type: 3}
@@ -1466,6 +1456,42 @@ PrefabInstance:
     - target: {fileID: 119818137157155242, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 139899532}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 139899532}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 139899532}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandlePassLevelCheatInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleJumperCheatInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleSpeedCheatInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402176332968133805, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Gameplay.FSM.InputReaderFsm, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8627875081271035373, guid: ccf36395c876e984d891a9bf0a7082a3, type: 3}
       propertyPath: m_Name

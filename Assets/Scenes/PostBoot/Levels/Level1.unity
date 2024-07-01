@@ -1402,6 +1402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerFsm Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8508671423986522573, guid: 43d5d6690aabf9a4e86003b6680d831d, type: 3}
+      propertyPath: inputReaderFsm
+      value: 
+      objectReference: {fileID: 679586039}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

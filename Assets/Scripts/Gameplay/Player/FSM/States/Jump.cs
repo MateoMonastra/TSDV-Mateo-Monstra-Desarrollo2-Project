@@ -58,7 +58,7 @@ namespace Gameplay.FSM.States
                 _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
                 yield return new WaitForFixedUpdate();
-                _rb.AddForce(transform.up * model.JumpForce, ForceMode.Impulse);
+                _rb.AddForce(transform.up * model.jumpForce, ForceMode.Impulse);
                 Jumped.Invoke();
                 yield return null;
                 Invoke(nameof(Reset), model.JumpCooldown);

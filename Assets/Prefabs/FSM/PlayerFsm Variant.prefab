@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3682030588457508643, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 394.33624
+      value: 2.95
       objectReference: {fileID: 0}
     - target: {fileID: 3682030588457508643, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 255.494
+      value: 19.33
       objectReference: {fileID: 0}
     - target: {fileID: 3682030588457508643, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -478.2705
+      value: -27.19
       objectReference: {fileID: 0}
     - target: {fileID: 3682030588457508643, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -86,6 +86,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7426808506456594427, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3763682624510092685}
+    - targetCorrespondingSourceObject: {fileID: 7426808506456594427, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3997795023321638276}
+    - targetCorrespondingSourceObject: {fileID: 7426808506456594427, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8508671423986522573}
   m_SourcePrefab: {fileID: 100100000, guid: 1bf3a4f0a0de3b84894f2d52931d792d, type: 3}
 --- !u!114 &1044963793006397909 stripped
 MonoBehaviour:
@@ -209,7 +215,6 @@ MonoBehaviour:
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   rb: {fileID: 2321361142696819601}
-  groundCheck: {fileID: 1044963793006397909}
   animator: {fileID: 0}
   grapplerAnimationName: ShootGrappler
   channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
@@ -278,3 +283,39 @@ MonoBehaviour:
   model: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
   groundDrag: 10
   orientation: {fileID: 1315686519662878467}
+--- !u!114 &3997795023321638276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223453261769589200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af43be65bc88b4f4eb69e77d842a5d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  inputReaderFsm: {fileID: 0}
+  cellphoneLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
+  clip: {fileID: 8300000, guid: b8ef1e70370202145a806e988930006d, type: 3}
+--- !u!114 &8508671423986522573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223453261769589200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdc871010021ee43ac80302cb56c16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runCheated: {fileID: 11400000, guid: 780645f9c51b89c44bf92d1fcc1d795d, type: 2}
+  runModel: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
+  jumpCheated: {fileID: 11400000, guid: 17b2fa8bce1f5b2408a880c8f5b1cf78, type: 2}
+  jumpModel: {fileID: 11400000, guid: b0743c17b37c2ea418728c5729b9e3e7, type: 2}
+  inputReaderFsm: {fileID: 0}

@@ -56,9 +56,9 @@ namespace Gameplay.FSM.States
 
             Vector3 flatSpeed = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
-            if (!(flatSpeed.magnitude > model.Speed)) return;
+            if (!(flatSpeed.magnitude > model.speed)) return;
 
-            Vector3 limitedSpeed = flatSpeed.normalized * model.Speed;
+            Vector3 limitedSpeed = flatSpeed.normalized * model.speed;
             _rb.velocity = new Vector3(limitedSpeed.x, _rb.velocity.y, limitedSpeed.z);
         }
         private void Brake()
@@ -72,9 +72,9 @@ namespace Gameplay.FSM.States
         private void Move()
         {
             if (_groundCheck.IsOnGround())
-                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration), ForceMode.Force);
+                _rb.AddForce(_moveDirection.normalized * (model.speed * model.Acceleration), ForceMode.Force);
             else
-                _rb.AddForce(_moveDirection.normalized * (model.Speed * model.Acceleration * model.AirMultiplayer),
+                _rb.AddForce(_moveDirection.normalized * (model.speed * model.Acceleration * model.AirMultiplayer),
                     ForceMode.Force);
         }
     }
