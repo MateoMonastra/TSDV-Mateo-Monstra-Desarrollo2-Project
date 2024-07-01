@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.FSM.States;
+using Gameplay.Player.FSM.States;
 using UnityEngine;
 
 namespace Gameplay.FSM.Behaviours

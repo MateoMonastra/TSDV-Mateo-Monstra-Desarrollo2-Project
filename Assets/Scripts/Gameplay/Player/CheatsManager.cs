@@ -20,7 +20,7 @@ namespace Gameplay.Player
             
         [SerializeField] private InputReaderFsm inputReaderFsm;
 
-        private LevelManager.LevelManager _levelManager;
+        private Managers.LevelManager _levelManager;
         private float auxSpeed;
         private float auxJumpForce;
         private void Start()
@@ -28,7 +28,7 @@ namespace Gameplay.Player
             auxSpeed = runModel.speed;
             auxJumpForce = jumpModel.jumpForce;
             
-            _levelManager = FindObjectOfType<LevelManager.LevelManager>();
+            _levelManager = FindObjectOfType<Managers.LevelManager>();
             
             inputReaderFsm.onSpeedCheat += ChangeSpeed;
             inputReaderFsm.onJumperCheat += ChangeJumpForce;

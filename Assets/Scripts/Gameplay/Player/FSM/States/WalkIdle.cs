@@ -1,10 +1,9 @@
-using EventSystems.EventSoundManager;
+using Gameplay.FSM.States;
 using Player;
 using Player.Running;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Gameplay.FSM.States
+namespace Gameplay.Player.FSM.States
 {
     public class WalkIdle : State
     {

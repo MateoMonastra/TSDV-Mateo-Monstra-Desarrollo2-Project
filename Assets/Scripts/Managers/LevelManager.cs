@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
 using EventSystems;
 using EventSystems.EventSoundManager;
-using EventSystems.EventTimer;
 using HighScore;
-using Managers;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Timer = LevelManager.Timer;
 
-namespace LevelManager
+namespace Managers
 {
     public class LevelManager : MonoBehaviour
     {
