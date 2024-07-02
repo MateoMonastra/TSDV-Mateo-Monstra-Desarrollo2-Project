@@ -126,7 +126,7 @@ namespace Gameplay.Player.FSM.States
         /// </summary>
         private Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float tarjectoryHeight)
         {
-            //formula sacada de este video : https://www.youtube.com/watch?v=IvT8hjy6q4o
+            //If you want to know more, here is the video: https://www.youtube.com/watch?v=IvT8hjy6q4o
 
             float gravity = Physics.gravity.y;
             float displacementY = endPoint.y - startPoint.y;
