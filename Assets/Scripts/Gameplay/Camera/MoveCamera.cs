@@ -6,7 +6,7 @@ namespace Gameplay.Camera
     {
         [Tooltip("The transform whose position this object should match.")]
         [SerializeField] private Transform cameraPos;
-        private void Update()
+        private void LateUpdate()
         {
             transform.position = cameraPos.position;
         }
