@@ -57,7 +57,7 @@ namespace Gameplay.Player.FSM.Behaviours
         /// </summary>
         private void SetIBehaviour()
         {
-            _fsm.CurretIBehaviour = GetComponent<WalkIdleIBehaviour>();
+            _fsm.CurrentIBehaviour = GetComponent<WalkIdleIBehaviour>();
         }
     }
 }

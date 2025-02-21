@@ -5,12 +5,23 @@ namespace Gameplay.Player.FSM
 {
     public class StateMachine : MonoBehaviour
     {
-        public IBehaviour CurretIBehaviour;
-
+        public IBehaviour CurrentIBehaviour;
         private void Start()
         {
-            CurretIBehaviour = GetComponent<WalkIdleIBehaviour>();
-            CurretIBehaviour.Enter();
+            CurrentIBehaviour = GetComponent<WalkIdleIBehaviour>();
+            CurrentIBehaviour.Enter();
+        }
+        private void Update()
+        {
+            CurrentIBehaviour.OnBehaviourUpdate();
+        }
+        private void FixedUpdate()
+        {
+            CurrentIBehaviour.OnBehaviourFixedUpdate();
+        }
+        private void LateUpdate()
+        {
+            CurrentIBehaviour.OnBehaviourLateUpdate();
         }
 
         /// <summary>
@@ -19,31 +30,17 @@ namespace Gameplay.Player.FSM
         /// <param name="newIBehaviour">The new behavior to transition to.</param>
         public void ChangeState(IBehaviour newIBehaviour)
         {
-            if (CurretIBehaviour == newIBehaviour || !CurretIBehaviour.CheckTransitionIsApproved(newIBehaviour)) return;
+            if (CurrentIBehaviour == newIBehaviour || !CurrentIBehaviour.CheckTransitionIsApproved(newIBehaviour)) return;
 
-            var beforeIBehaviour = CurretIBehaviour;
+            var beforeIBehaviour = CurrentIBehaviour;
             var afterIBehaviour = newIBehaviour;
             
             beforeIBehaviour.Exit();
             afterIBehaviour.Enter();
 
-            CurretIBehaviour = afterIBehaviour;
+            CurrentIBehaviour = afterIBehaviour;
         }
 
-        private void Update()
-        {
-            CurretIBehaviour.OnBehaviourUpdate();
-        }
-
-        private void FixedUpdate()
-        {
-            CurretIBehaviour.OnBehaviourFixedUpdate();
-        }
-
-        private void LateUpdate()
-        {
-            CurretIBehaviour.OnBehaviourLateUpdate();
-        }
         
     }
 }

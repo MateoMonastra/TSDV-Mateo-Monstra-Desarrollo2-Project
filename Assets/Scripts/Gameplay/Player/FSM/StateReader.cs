@@ -6,7 +6,6 @@ namespace Gameplay.Player.FSM
 {
     public class StateReader : MonoBehaviour
     {
-        [FormerlySerializedAs("inputReaderFsm")]
         [Header("References")]
         [Tooltip("Input reader to detect player actions.")]
         [SerializeField] private InputReader inputReader;
@@ -30,7 +29,7 @@ namespace Gameplay.Player.FSM
         [Tooltip("Component to check if the player is on the ground.")]
         [SerializeField] private GroundCheck groundCheck;
 
-        private void Awake()
+        private void OnEnable()
         {
             inputReader.OnMove += SetMoveStateDirection;
             inputReader.OnJump += SetJumpState;
@@ -38,7 +37,14 @@ namespace Gameplay.Player.FSM
             inputReader.OnSwingStart += SetSwingState;
             inputReader.OnSwingEnd += EndSwingState;
         }
-
+        private void OnDisable()
+        {
+            inputReader.OnMove -= SetMoveStateDirection;
+            inputReader.OnJump -= SetJumpState;
+            inputReader.OnGrapple -= SetGrappleState;
+            inputReader.OnSwingStart -= SetSwingState;
+            inputReader.OnSwingEnd -= EndSwingState;
+        }
         /// <summary>
         /// Sets movement direction and changes state to walkIdle.
         /// </summary>
@@ -48,7 +54,6 @@ namespace Gameplay.Player.FSM
             inputReader.OnMove += walkIdle.SetDirection;
             fsm.ChangeState(walkIdle);
         }
-
         /// <summary>
         /// Ends the swing state.
         /// </summary>
@@ -56,7 +61,6 @@ namespace Gameplay.Player.FSM
         {
             swing.Exit();
         }
-
         /// <summary>
         /// Sets the jump state if the player is on the ground.
         /// </summary>
@@ -65,7 +69,6 @@ namespace Gameplay.Player.FSM
             if (groundCheck.IsOnGround())
                 fsm.ChangeState(jump);
         }
-
         /// <summary>
         /// Sets the grapple state if the player is not on the ground.
         /// </summary>
@@ -74,7 +77,6 @@ namespace Gameplay.Player.FSM
             if (!groundCheck.IsOnGround())
                 fsm.ChangeState(grapple);
         }
-
         /// <summary>
         /// Sets the swing state if the player is not on the ground.
         /// </summary>
