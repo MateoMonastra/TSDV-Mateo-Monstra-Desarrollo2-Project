@@ -26,17 +26,16 @@ namespace Gameplay.Coin
 
         public void OnTriggerEnter(Collider other)
         {
-            if (isActive)
-            {
-                channel.PlaySound(clip);
-                DesactivateCoin();
-            }
+            if (!isActive) return;
+            
+            channel.PlaySound(clip);
+            DeactivateCoin();
         }
 
         /// <summary>
         /// Deactivates the coin, setting isActive to false and deactivating the GameObject.
         /// </summary>
-        private void DesactivateCoin()
+        private void DeactivateCoin()
         {
             isActive = false;
             gameObject.SetActive(false);
