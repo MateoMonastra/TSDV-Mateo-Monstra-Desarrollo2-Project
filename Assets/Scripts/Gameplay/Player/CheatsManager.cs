@@ -1,8 +1,10 @@
+using System;
 using Gameplay.Player.FSM;
 using Gameplay.Player.Jump;
 using Gameplay.Player.Running;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Player
 {
@@ -10,34 +12,43 @@ namespace Gameplay.Player
     {
         [Header("Running Cheat")]
         [Tooltip("The running model with cheat parameters.")]
-        [SerializeField] private RunningModel runCheated;
-    
+        [SerializeField] private RunningModel cheatRunModel;
+        
         [Tooltip("The default running model.")]
-        [SerializeField] private RunningModel runModel;
-    
+        [SerializeField] private RunningModel normalRunModel;
+        
         [Header("Jumper Cheat")]
         [Tooltip("The jump model with cheat parameters.")]
-        [SerializeField] private JumpModel jumpCheated;
-    
+        [SerializeField] private JumpModel cheatJumpModel;
+        
         [Tooltip("The default jump model.")]
-        [SerializeField] private JumpModel jumpModel;
+        [SerializeField] private JumpModel normalJumpModel;
         
         [Tooltip("Input reader for detecting cheat activations.")]
-        [SerializeField] private InputReaderFsm inputReaderFsm;
+        [SerializeField] private InputReader inputReader;
 
         private LevelManager _levelManager;
+        
         private float _auxSpeed;
         private float _auxJumpForce;
-        private void Start()
+        
+        private void OnEnable()
         {
-            _auxSpeed = runModel.speed;
-            _auxJumpForce = jumpModel.jumpForce;
+            _auxSpeed = normalRunModel.speed;
+            _auxJumpForce = normalJumpModel.jumpForce;
             
             _levelManager = FindObjectOfType<LevelManager>();
             
-            inputReaderFsm.OnSpeedCheat += ChangeSpeed;
-            inputReaderFsm.OnJumperCheat += ChangeJumpForce;
-            inputReaderFsm.OnPassLevelCheat += PassLevel;
+            inputReader.OnSpeedCheat += ChangeSpeed;
+            inputReader.OnJumperCheat += ChangeJumpForce;
+            inputReader.OnPassLevelCheat += PassLevel;
+        }
+
+        private void OnDisable()
+        {
+            inputReader.OnSpeedCheat -= ChangeSpeed;
+            inputReader.OnJumperCheat -= ChangeJumpForce;
+            inputReader.OnPassLevelCheat -= PassLevel;
         }
 
         /// <summary>
@@ -45,7 +56,7 @@ namespace Gameplay.Player
         /// </summary>
         private void ChangeSpeed()
         {
-            runModel.speed = Mathf.Approximately(runModel.speed, _auxSpeed) ? runCheated.speed : _auxSpeed;
+            normalRunModel.speed = Mathf.Approximately(normalRunModel.speed, _auxSpeed) ? cheatRunModel.speed : _auxSpeed;
         }
 
         /// <summary>
@@ -53,7 +64,7 @@ namespace Gameplay.Player
         /// </summary>
         private void ChangeJumpForce()
         {
-            jumpModel.jumpForce = Mathf.Approximately(jumpModel.jumpForce, _auxJumpForce) ? jumpCheated.jumpForce : _auxJumpForce;
+            normalJumpModel.jumpForce = Mathf.Approximately(normalJumpModel.jumpForce, _auxJumpForce) ? cheatJumpModel.jumpForce : _auxJumpForce;
         }
 
         /// <summary>
