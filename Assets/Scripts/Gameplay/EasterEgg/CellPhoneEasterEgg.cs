@@ -19,9 +19,14 @@ namespace Gameplay.EasterEgg
         [SerializeField] private EventChannelSoundManager channel;
         [SerializeField] private AudioClip clip;
         
-        private void Start()
+        private void OnEnable()
         {
             inputReaderFsm.OnGrapple += PlaySound;
+        }
+        
+        private void OnDisable()
+        {
+            inputReaderFsm.OnGrapple -= PlaySound;
         }
 
         /// <summary>
