@@ -11,28 +11,27 @@ namespace Gameplay.Timer
         [Tooltip("The objective color for the fade In")] 
         [SerializeField] private Color normalColor;
 
-        [Tooltip("The objective color for the fade Out")] [SerializeField]
-        private Color transparentColor;
+        [Tooltip("The objective color for the fade Out")] 
+        [SerializeField] private Color transparentColor;
 
-        [Tooltip("The Duration of the FadeIn")] [SerializeField]
-        private float animFadeInDuration;
+        [Tooltip("The Duration of the FadeIn")] 
+        [SerializeField] private float animFadeInDuration;
 
-        [Tooltip("The Duration of the FadeOut")] [SerializeField]
-        private float animFadeOutDuration;
+        [Tooltip("The Duration of the FadeOut")] 
+        [SerializeField] private float animFadeOutDuration;
 
         public TextMeshProUGUI textTimer;
         public TextMeshProUGUI addTimeText;
+        public float TotalTime => _timer;
 
         private bool _fading;
 
         private float _timer;
-        public float TotalTime => _timer;
 
-        private void Start()
+        private void OnEnable()
         {
             _timer = 0;
         }
-
         private void Update()
         {
             _timer += Time.deltaTime;
@@ -48,6 +47,17 @@ namespace Gameplay.Timer
             {
                 textTimer.text = minutes + ":0" + seconds;
             }
+        }
+
+        /// <summary>
+        /// Adds the specified amount of time to the timer and triggers the fade-in/out animation.
+        /// </summary>
+        /// <param name="timeToAdd">The amount of time to add to the timer</param>
+        public void AddTime(float timeToAdd)
+        {
+            _timer += timeToAdd;
+            _fading = false;
+            StartCoroutine(FadeInOut());
         }
 
         /// <summary>
@@ -77,17 +87,6 @@ namespace Gameplay.Timer
                 addTimeText.color = Color.Lerp(addTimeText.color, transparentColor, timer / animFadeOutDuration);
                 yield return null;
             }
-        }
-
-        /// <summary>
-        /// Adds the specified amount of time to the timer and triggers the fade-in/out animation.
-        /// </summary>
-        /// <param name="timeToAdd">The amount of time to add to the timer</param>
-        public void AddTime(float timeToAdd)
-        {
-            _timer += timeToAdd;
-            _fading = false;
-            StartCoroutine(FadeInOut());
         }
     }
 }
