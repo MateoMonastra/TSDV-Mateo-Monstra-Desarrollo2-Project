@@ -34,7 +34,7 @@ namespace Gameplay.Player.FSM.States
         {
             _rb ??= GetComponent<Rigidbody>();
             _groundCheck ??= GetComponent<GroundCheck>();
-            playerCamManager.onCameraRotation += UpdateDirection;
+            playerCamManager.OnCameraRotation += UpdateDirection;
 
             _rb.freezeRotation = true;
         }

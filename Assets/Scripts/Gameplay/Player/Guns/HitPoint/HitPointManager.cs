@@ -5,19 +5,18 @@ namespace Gameplay.Player.Guns.HitPoint
 {
     public class HitPointManager : MonoBehaviour
     {
-        [Header("Swing Settings")]
-        [Tooltip("The swing model containing swing parameters.")]
+        [Header("Swing Settings")] [Tooltip("The swing model containing swing parameters.")] 
         [SerializeField] private SwingModel model;
 
-        [Tooltip("Prefab for the swing point visual representation.")]
+        [Tooltip("Prefab for the swing point visual representation.")] 
         [SerializeField] private MeshRenderer pointPrefab;
 
-        [Tooltip("Animation curve for scaling the swing point based on distance.")]
+        [Tooltip("Animation curve for scaling the swing point based on distance.")] 
         [SerializeField] private AnimationCurve sizeCurve;
 
-        [Tooltip("Reference to the ground check component.")]
+        [Tooltip("Reference to the ground check component.")] 
         [SerializeField] private GroundCheck groundCheck;
-        
+
         private float _size;
         private MeshRenderer _point;
         private UnityEngine.Camera _camera;
@@ -34,16 +33,16 @@ namespace Gameplay.Player.Guns.HitPoint
 
         private void OnDisable()
         {
-            if(_point != null && _point.gameObject != null)
+            if (_point != null && _point.gameObject != null)
                 Destroy(_point.gameObject);
         }
 
         private void Update()
         {
             if (!_camera) return;
-            
-            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hit, model.MaxSwingDistance,
-                    model.Grappeable) && !groundCheck.IsOnGround())
+
+            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hit,
+                    model.MaxSwingDistance,model.Grabbable) && !groundCheck.IsOnGround())
             {
                 _point.transform.position = hit.point;
                 _size = sizeCurve.Evaluate(hit.distance / model.MaxSwingDistance);

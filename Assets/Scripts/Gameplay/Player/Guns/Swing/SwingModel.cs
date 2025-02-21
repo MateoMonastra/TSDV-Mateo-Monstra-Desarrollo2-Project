@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Player.Guns.Swing
 {
@@ -29,9 +30,9 @@ namespace Gameplay.Player.Guns.Swing
 
         [Tooltip("The mass scale applied to the character during swinging.")]
         [SerializeField] private float massScale;
-
-        [Tooltip("The layer mask for determining what objects are grappleable.")]
-        [SerializeField] private LayerMask grappeable;
+        
+        [Tooltip("The layer mask for determining what objects are grabbable.")]
+        [SerializeField] private LayerMask grabbable;
     
         public float MaxSwingDistance => maxSwingDistance;
         public float SwingDelayTime => swingDelayTime;
@@ -41,6 +42,6 @@ namespace Gameplay.Player.Guns.Swing
         public float Spring => spring;
         public float Damper => damper;
         public float MassScale => massScale;
-        public LayerMask Grappeable => grappeable;
+        public LayerMask Grabbable => grabbable;
     }
 }

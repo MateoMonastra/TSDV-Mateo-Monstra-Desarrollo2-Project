@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Gameplay.Player.FSM
 {
-    public class InputReaderFsm : MonoBehaviour
+    public class InputReader : MonoBehaviour
     {
         public Action<Vector2> OnMove;
         public Action OnJump;

@@ -71,7 +71,7 @@ namespace Gameplay.Player.FSM.States
             if (_joint) StopSwing();
             
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
-                    model.Grappeable))
+                    model.Grabbable))
             {
                 animator.SetBool(swingAnimationName, true);
                 

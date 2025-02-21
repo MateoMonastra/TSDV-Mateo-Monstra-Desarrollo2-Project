@@ -1,13 +1,15 @@
 using Gameplay.Player.FSM.Behaviours;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Player.FSM
 {
     public class StateReader : MonoBehaviour
     {
+        [FormerlySerializedAs("inputReaderFsm")]
         [Header("References")]
         [Tooltip("Input reader to detect player actions.")]
-        [SerializeField] private InputReaderFsm inputReaderFsm;
+        [SerializeField] private InputReader inputReader;
     
         [Tooltip("State machine responsible for managing player states.")]
         [SerializeField] private StateMachine fsm;
@@ -30,11 +32,11 @@ namespace Gameplay.Player.FSM
 
         private void Awake()
         {
-            inputReaderFsm.OnMove += SetMoveStateDirection;
-            inputReaderFsm.OnJump += SetJumpState;
-            inputReaderFsm.OnGrapple += SetGrappleState;
-            inputReaderFsm.OnSwingStart += SetSwingState;
-            inputReaderFsm.OnSwingEnd += EndSwingState;
+            inputReader.OnMove += SetMoveStateDirection;
+            inputReader.OnJump += SetJumpState;
+            inputReader.OnGrapple += SetGrappleState;
+            inputReader.OnSwingStart += SetSwingState;
+            inputReader.OnSwingEnd += EndSwingState;
         }
 
         /// <summary>
@@ -43,7 +45,7 @@ namespace Gameplay.Player.FSM
         /// <param name="direction">Direction of movement input.</param>
         private void SetMoveStateDirection(Vector2 direction)
         {
-            inputReaderFsm.OnMove += walkIdle.SetDirection;
+            inputReader.OnMove += walkIdle.SetDirection;
             fsm.ChangeState(walkIdle);
         }
 

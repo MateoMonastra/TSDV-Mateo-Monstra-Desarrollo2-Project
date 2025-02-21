@@ -1,6 +1,7 @@
 using EventSystems.EventSoundManager;
 using Gameplay.Player.FSM;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.EasterEgg
 {
@@ -9,8 +10,9 @@ namespace Gameplay.EasterEgg
         [Tooltip("Reference for Raycast")]
         [SerializeField] private Transform playerCamera;
         
+        [FormerlySerializedAs("inputReaderFsm")]
         [Tooltip("Reference of actual inputReader")]
-        [SerializeField] private InputReaderFsm inputReaderFsm;
+        [SerializeField] private InputReader inputReader;
         
         [Tooltip("LayerMask of the EasterEgg GameObject")]
         [SerializeField] private LayerMask cellphoneLayer;
@@ -21,12 +23,12 @@ namespace Gameplay.EasterEgg
         
         private void OnEnable()
         {
-            inputReaderFsm.OnGrapple += PlaySound;
+            inputReader.OnGrapple += PlaySound;
         }
         
         private void OnDisable()
         {
-            inputReaderFsm.OnGrapple -= PlaySound;
+            inputReader.OnGrapple -= PlaySound;
         }
 
         /// <summary>

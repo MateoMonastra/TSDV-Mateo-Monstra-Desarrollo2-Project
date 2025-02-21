@@ -20,8 +20,8 @@ namespace Gameplay.Player.PlayerCam
         private void Update()
         {
             _xRotation += _moveDirection.x;
-
             _yRotation -= _moveDirection.y;
+            
             _yRotation = Mathf.Clamp(_yRotation, -90f, 90f);
 
             transform.rotation = Quaternion.Euler(_yRotation, _xRotation, 0);

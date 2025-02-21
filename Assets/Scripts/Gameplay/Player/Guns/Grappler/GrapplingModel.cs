@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Player.Guns.Grappler
 {
@@ -20,14 +21,14 @@ namespace Gameplay.Player.Guns.Grappler
 
         [Tooltip("The duration the grappling hook stays active.")]
         [SerializeField] private float grappleDuration;
-
-        [Tooltip("The layer mask for determining what objects are grappleable.")]
-        [SerializeField] private LayerMask grappeable;
+        
+        [Tooltip("The layer mask for determining what objects are grabbable.")]
+        [SerializeField] private LayerMask grabbable;
         public float MaxGrappleDistance => maxGrappleDistance;
         public float GrappleDelayTime => grappleDelayTime;
         public float OvershootYAxis => overshootYAxis;
         public float GrapplingCd => grapplingCd;
         public float GrappleDuration => grappleDuration;
-        public LayerMask Grappeable => grappeable;
+        public LayerMask Grabbable => grabbable;
     }
 }

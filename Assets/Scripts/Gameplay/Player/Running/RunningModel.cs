@@ -5,7 +5,6 @@ namespace Gameplay.Player.Running
     [CreateAssetMenu(fileName = "RunningModel", menuName = "Models/Player/Running")]
     public class RunningModel : ScriptableObject
     {
-        
         [Header("On Ground")]
         [Tooltip("The running speed of the character.")]
         public float speed;

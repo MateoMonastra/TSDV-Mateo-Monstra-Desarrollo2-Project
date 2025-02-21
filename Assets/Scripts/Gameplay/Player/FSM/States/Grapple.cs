@@ -69,7 +69,7 @@ namespace Gameplay.Player.FSM.States
             animator.SetBool(grapplerAnimationName, true);
             
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
-                    model.Grappeable))
+                    model.Grabbable))
             {
                 _grapplePoint = hit.point;
 

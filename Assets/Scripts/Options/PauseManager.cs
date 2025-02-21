@@ -6,7 +6,7 @@ namespace Options
     public class PauseManager : MonoBehaviour
     {
         [Tooltip("Reference to the input reader")]
-        [SerializeField]private InputReaderFsm inputReader;
+        [SerializeField]private InputReader inputReader;
         
         private PauseUI _pauseUI;
 

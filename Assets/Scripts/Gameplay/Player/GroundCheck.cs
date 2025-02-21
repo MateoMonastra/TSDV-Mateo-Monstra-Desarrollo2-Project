@@ -34,7 +34,7 @@ namespace Gameplay.Player
             Gizmos.DrawRay(footPivot.position, Vector3.down * rayHeight);
         }
         
-        void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             Draw();
         }
