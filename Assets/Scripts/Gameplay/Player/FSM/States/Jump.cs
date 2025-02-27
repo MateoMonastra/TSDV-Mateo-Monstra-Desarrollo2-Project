@@ -3,23 +3,18 @@ using System.Collections;
 using EventSystems.EventSoundManager;
 using Gameplay.Player.Jump;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Player.FSM.States
 {
     public class Jump : State
     {
-        public Action Jumped;
+        public UnityEvent onJumpStart;
+        public UnityEvent onJumpEnd;
 
         [Tooltip("Model defining jump parameters")]
         [SerializeField] private JumpModel model;
-
-        [Header("References")]
-        
-        [Tooltip("Manager for playing sound effects.")]
-        [SerializeField] private EventChannelSoundManager channelSoundManager;
-        
-        [Tooltip("Audio clip played when jumping.")]
-        [SerializeField] private AudioClip clip;
         
         private GroundCheck _groundCheck;
         private bool _canJump;
@@ -32,7 +27,7 @@ namespace Gameplay.Player.FSM.States
             
             Reset();
 
-            channelSoundManager.PlaySound(clip);
+            onJumpStart.Invoke();
             
             StartCoroutine(OnJump());
         }
@@ -57,7 +52,7 @@ namespace Gameplay.Player.FSM.States
 
                 yield return new WaitForFixedUpdate();
                 _rb.AddForce(transform.up * model.jumpForce, ForceMode.Impulse);
-                Jumped.Invoke();
+                onJumpEnd.Invoke();
                 yield return null;
                 Invoke(nameof(Reset), model.JumpCooldown);
             }

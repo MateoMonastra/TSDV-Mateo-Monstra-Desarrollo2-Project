@@ -16,6 +16,9 @@ namespace Gameplay.Player
  
         [Tooltip("Audio clip played when the swing hits.")]
         [SerializeField] private AudioClip swingHitClip;
+        
+        [Tooltip("Audio clip played when jumping.")]
+        [SerializeField] private AudioClip jumpClip;
 
 
         private void PlayGrappleHitSound()
@@ -31,6 +34,11 @@ namespace Gameplay.Player
         private void PlaySwingSound()
         {
             channel.PlaySound(swingHitClip);
+        }
+
+        private void PlayJumpSound()
+        {
+            channel.PlaySound(jumpClip);
         }
     }
 }

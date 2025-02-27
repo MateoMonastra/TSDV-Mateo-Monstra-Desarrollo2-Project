@@ -20,7 +20,7 @@ namespace Gameplay.Player.FSM.Behaviours
             jump ??= GetComponent<States.Jump>();
             fsm ??= GetComponent<StateMachine>();
             walkIdle ??= GetComponent<WalkIdle>();
-            jump.Jumped += SetIBehaviour;
+            jump.onJumpEnd += SetIBehaviour;
         }
 
         public bool CheckTransitionIsApproved(IBehaviour newBehaviour)
