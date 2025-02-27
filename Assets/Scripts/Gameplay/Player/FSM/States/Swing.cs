@@ -2,12 +2,17 @@ using EventSystems.EventSoundManager;
 using Gameplay.Player.Guns.Swing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using State = Gameplay.Player.FSM.States.State;
 
 namespace Gameplay.Player.FSM.States
 {
     public class Swing : State
     {
+        public UnityEvent onSwingStart;
+        public UnityEvent onSwingEnd;
+        public UnityEvent onSwingHit;
+        
         [Header("References")]
         
         [Tooltip("Transform of the player's camera.")]
@@ -22,20 +27,6 @@ namespace Gameplay.Player.FSM.States
         [Tooltip("Rigidbody of the player.")]
         [SerializeField] private Rigidbody rb;
         
-        [Tooltip("Animator responsible for swing animations.")]
-        [SerializeField] private Animator animator;
-        
-        [Tooltip("Name of the swing animation trigger.")]
-        [SerializeField] private string swingAnimationName;
-
-        [Header("Audio SFX:")]
-        
-        [Tooltip("Manager for playing sound effects.")]
-        [SerializeField] private EventChannelSoundManager channel;
-        
-        [Tooltip("Audio clip played when the swing hits.")]
-        [SerializeField] private AudioClip hitClip;
-
         [Header("Model")]
         [Tooltip("Model defining swing parameters.")]
         [SerializeField] private SwingModel model;
@@ -70,10 +61,12 @@ namespace Gameplay.Player.FSM.States
         {
             if (_joint) StopSwing();
             
+            onSwingStart.Invoke();
+            
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxSwingDistance,
                     model.Grabbable))
             {
-                animator.SetBool(swingAnimationName, true);
+                onSwingHit.Invoke();
                 
                 _swingPoint = hit.point;
 
@@ -92,8 +85,6 @@ namespace Gameplay.Player.FSM.States
         /// </summary>
         private void ExecuteSwing()
         {
-            channel.OnPlaySound(hitClip);
-          
             _joint = transform.AddComponent<SpringJoint>();
             _joint.autoConfigureConnectedAnchor = false;
             _joint.connectedAnchor = _swingPoint;
@@ -115,7 +106,7 @@ namespace Gameplay.Player.FSM.States
         /// </summary>
         private void StopSwing()
         {
-            animator.SetBool(swingAnimationName, false);
+            onSwingEnd.Invoke();
             
             if (_joint) Destroy(_joint);
 

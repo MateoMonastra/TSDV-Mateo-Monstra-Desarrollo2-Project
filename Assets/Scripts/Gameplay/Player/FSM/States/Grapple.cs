@@ -2,12 +2,18 @@ using System;
 using EventSystems.EventSoundManager;
 using Gameplay.Player.Guns.Grappler;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Player.FSM.States
 {
     public class Grapple : State
     {
-        public Action OnTheEnd;
+        
+        public UnityEvent onGrappleStart;
+        public UnityEvent onGrappleEnd;
+        public UnityEvent onGrappleMiss;
+        public UnityEvent onGrappleHit;
 
         [Header("References")]
         [Tooltip("The player's camera transform.")]
@@ -21,22 +27,6 @@ namespace Gameplay.Player.FSM.States
 
         [Tooltip("Rigidbody of the player.")]
         [SerializeField] private Rigidbody rb;
-
-        [Tooltip("Animator for the grappling animation.")]
-        [SerializeField] private Animator animator;
-
-        [Tooltip("Name of the grappling animation parameter.")]
-        [SerializeField] private string grapplerAnimationName;
-
-        [Header("Audio SFX:")]
-        [Tooltip("Event channel for playing sound effects.")]
-        [SerializeField] private EventChannelSoundManager channel;
-
-        [Tooltip("Sound clip for hitting the grapple target.")]
-        [SerializeField] private AudioClip hitClip;
-
-        [Tooltip("Sound clip for missing the grapple target.")]
-        [SerializeField] private AudioClip missClip;
 
         [Header("Model")]
         [Tooltip("Model containing grapple parameters.")]
@@ -66,7 +56,7 @@ namespace Gameplay.Player.FSM.States
         private void StartGrapple()
         {
             _grappling = true;
-            animator.SetBool(grapplerAnimationName, true);
+            onGrappleStart.Invoke();
             
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out var hit, model.MaxGrappleDistance,
                     model.Grabbable))
@@ -78,7 +68,7 @@ namespace Gameplay.Player.FSM.States
             else
             {
                 _grapplePoint = playerCamera.position + playerCamera.forward * model.MaxGrappleDistance;
-                channel.PlaySound(missClip);
+                onGrappleMiss.Invoke();
                 Invoke(nameof(StopGrapple), model.GrappleDelayTime);
             }
 
@@ -90,7 +80,7 @@ namespace Gameplay.Player.FSM.States
         /// </summary>
         private void ExecuteGrapple()
         {
-            channel.PlaySound(hitClip);
+            onGrappleHit.Invoke();
             
             rb.velocity = Vector3.zero;
 
@@ -114,11 +104,11 @@ namespace Gameplay.Player.FSM.States
         /// </summary>
         private void StopGrapple()
         {
-            animator.SetBool(grapplerAnimationName, false);
+           onGrappleEnd.Invoke();
 
             _grappling = false;
             lr.enabled = false;
-            OnTheEnd.Invoke();
+            onGrappleEnd.Invoke();
         }
         
         /// <summary>

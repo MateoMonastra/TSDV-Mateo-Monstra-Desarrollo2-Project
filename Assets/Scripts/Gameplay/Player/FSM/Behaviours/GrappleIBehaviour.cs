@@ -14,7 +14,7 @@ namespace Gameplay.Player.FSM.Behaviours
             _grapple ??= GetComponent<Grapple>();
             _fsm ??= GetComponent<StateMachine>();
             
-            _grapple.OnTheEnd += SetIBehaviour;
+            _grapple.onGrappleEnd += SetIBehaviour;
         }
 
         public bool CheckTransitionIsApproved(IBehaviour newBehaviour)
