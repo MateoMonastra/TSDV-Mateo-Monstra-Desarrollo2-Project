@@ -114,7 +114,7 @@ namespace Gameplay.Player.FSM.States
         /// <summary>
         /// Calculation of the parabola between the startPoint and the endPoint.
         /// </summary>
-        private Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float tarjectoryHeight)
+        private Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
         {
             //If you want to know more, here is the video: https://www.youtube.com/watch?v=IvT8hjy6q4o
 
@@ -123,23 +123,15 @@ namespace Gameplay.Player.FSM.States
 
             Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0, endPoint.z - startPoint.z);
 
-            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * tarjectoryHeight);
-            Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * tarjectoryHeight / gravity) +
-                                                   Mathf.Sqrt(2 * (displacementY - tarjectoryHeight) / gravity));
+            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+            Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity) +
+                                                   Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
 
             return velocityXZ + velocityY;
         }
         private void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
         {
             _velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
-            Invoke(nameof(SetVelocity), 0.1f);
-        }
-        
-        /// <summary>
-        /// Set rigidbody velocity to the calculated jump velocity
-        /// </summary>
-        private void SetVelocity()
-        {
             rb.velocity = _velocityToSet;
         }
     }

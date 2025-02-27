@@ -18,7 +18,7 @@ namespace EventSystems.EventSoundManager
         /// <param name="clip">Audio clip to play.</param>
         public void PlaySound(AudioClip clip)
         {
-            OnPlaySound.Invoke(clip);
+            OnPlaySound?.Invoke(clip);
         }
         
         /// <summary>
@@ -27,7 +27,7 @@ namespace EventSystems.EventSoundManager
         /// <param name="clip">Audio clip to play as music.</param>
         public void PlayMusic(AudioClip clip)
         {
-            OnPlayMusic.Invoke(clip);
+            OnPlayMusic?.Invoke(clip);
         }
         
         /// <summary>
@@ -36,7 +36,7 @@ namespace EventSystems.EventSoundManager
         /// <param name="volume">New volume value.</param>
         public void ChangeSoundVolume(float volume)
         {
-            OnChangeSoundVolume.Invoke(volume);
+            OnChangeSoundVolume?.Invoke(volume);
         }
         
         /// <summary>
@@ -45,7 +45,7 @@ namespace EventSystems.EventSoundManager
         /// <param name="volume">New volume value.</param>
         public void ChangeMusicVolume(float volume)
         {
-            OnChangeMusicVolume.Invoke(volume);
+            OnChangeMusicVolume?.Invoke(volume);
         }
     }
 }

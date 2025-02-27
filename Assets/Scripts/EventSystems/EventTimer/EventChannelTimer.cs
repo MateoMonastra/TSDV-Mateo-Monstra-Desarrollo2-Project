@@ -14,7 +14,7 @@ namespace EventSystems.EventTimer
         /// <param name="timeToAdd">Amount of time to add to the timer.</param>
         public void AddTime(float timeToAdd)
         {
-            OnAddTime.Invoke(timeToAdd);
+            OnAddTime?.Invoke(timeToAdd);
         }
     }
 }

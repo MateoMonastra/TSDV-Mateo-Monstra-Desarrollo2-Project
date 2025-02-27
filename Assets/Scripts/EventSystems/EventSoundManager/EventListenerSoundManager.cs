@@ -25,6 +25,8 @@ namespace EventSystems.EventSoundManager
         /// </summary>
         public void SetEvents()
         {
+            if (!eventChannel) return;
+            
             eventChannel.OnPlaySound += PlaySound;
             eventChannel.OnChangeSoundVolume += ChangeSoundVolume;
             
@@ -38,7 +40,8 @@ namespace EventSystems.EventSoundManager
         /// <param name="clip">Audio clip to play.</param>
         private void PlaySound(AudioClip clip)
         {
-            soundManager.PlaySound(clip);
+            if (soundManager)   
+                soundManager.PlaySound(clip);
         }
         
         /// <summary>
@@ -47,7 +50,8 @@ namespace EventSystems.EventSoundManager
         /// <param name="clip">Audio clip to play as music.</param>
         private void PlayMusic(AudioClip clip)
         {
-            soundManager.PlayMusic(clip);
+            if (soundManager)
+                soundManager.PlayMusic(clip);
         }
 
         /// <summary>
@@ -56,7 +60,8 @@ namespace EventSystems.EventSoundManager
         /// <param name="volume">New volume value.</param>
         private void ChangeSoundVolume(float volume)
         {
-            soundManager.ChangeSFXVolume(volume);
+            if (soundManager)
+             soundManager.ChangeSFXVolume(volume);
         }
         
         /// <summary>
@@ -65,7 +70,8 @@ namespace EventSystems.EventSoundManager
         /// <param name="volume">New volume value.</param>
         private void ChangeMusicVolume(float volume)
         {
-            soundManager.ChangeMusicVolume(volume);
+            if (soundManager)
+                soundManager.ChangeMusicVolume(volume);
         }
     }
 }

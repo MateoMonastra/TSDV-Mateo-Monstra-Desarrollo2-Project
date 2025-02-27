@@ -38,7 +38,7 @@ namespace Managers
 
     public bool passLevel;
 
-    private void Start()
+    private void OnEnable()
     {
         SetMouseForGameplay();
         

@@ -8,10 +8,15 @@ namespace EventSystems.EventTimer
         [Tooltip("Reference to the EventListenerTimer component.")]
         [SerializeField] private EventListenerTimer listener;
 
-        private void Start()
+        private void OnEnable()
         {
             listener.Timer = FindObjectOfType<Timer>();
             listener.SetEvents();
+        }
+
+        private void OnDisable()
+        {
+            listener.ClearEvents();
         }
     }
 }

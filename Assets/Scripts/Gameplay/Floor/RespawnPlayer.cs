@@ -7,17 +7,18 @@ namespace Gameplay.Floor
     {
         [SerializeField] private bool activateLogs;
 
-        [Tooltip("Reference of the player GameObject")] 
-        [SerializeField] private GameObject player;
+        [Tooltip("Reference of the player GameObject")] [SerializeField]
+        private GameObject player;
 
-        [Tooltip("Reference of the transition GameObject")] 
-        [SerializeField] private GameObject transition;
+        [Tooltip("Reference of the transition GameObject")] [SerializeField]
+        private GameObject transition;
 
-        [Tooltip("transition cooldown variable")] 
-        [SerializeField] private float transitionCoolDown;
+        [Tooltip("transition cooldown variable")] [SerializeField]
+        private float transitionCoolDown;
 
-        [Header("Timer References")] 
-        [SerializeField] private EventChannelTimer eventChannelTimer;
+        [Header("Timer References")] [SerializeField]
+        private EventChannelTimer eventChannelTimer;
+
         [SerializeField] private float timeToAdd = 20.0f;
 
         public Transform CheckPoint
@@ -25,7 +26,7 @@ namespace Gameplay.Floor
             get => _checkPoint;
             set => _checkPoint = value;
         }
-        
+
         private Rigidbody _playerRb;
         private float _transitionTimer;
         private Transform _checkPoint;
@@ -48,8 +49,7 @@ namespace Gameplay.Floor
 
         private void OnTriggerEnter(Collider other)
         {
-            if (eventChannelTimer)
-                eventChannelTimer.AddTime(timeToAdd);
+            eventChannelTimer.AddTime(timeToAdd);
 
             _transitionTimer = transitionCoolDown;
 

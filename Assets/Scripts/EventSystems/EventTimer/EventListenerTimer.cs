@@ -28,6 +28,11 @@ namespace EventSystems.EventTimer
             eventChannel.OnAddTime += AddTime;
         }
 
+        public void ClearEvents()
+        {
+            eventChannel.OnAddTime -= AddTime;
+        }
+
         /// <summary>
         /// Adds the specified amount of time to the Timer component.
         /// </summary>
