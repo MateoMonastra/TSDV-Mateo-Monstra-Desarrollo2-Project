@@ -13,8 +13,6 @@ namespace Gameplay.Player.FSM.Behaviours
         {
             _grapple ??= GetComponent<Grapple>();
             _fsm ??= GetComponent<StateMachine>();
-            
-            _grapple.onGrappleEnd += SetIBehaviour;
         }
 
         public bool CheckTransitionIsApproved(IBehaviour newBehaviour)
@@ -55,7 +53,7 @@ namespace Gameplay.Player.FSM.Behaviours
         /// <summary>
         /// Sets the current behavior to walk idle after completing jump.
         /// </summary>
-        private void SetIBehaviour()
+        public void SetIBehaviour()
         {
             _fsm.CurrentIBehaviour = GetComponent<WalkIdleIBehaviour>();
         }

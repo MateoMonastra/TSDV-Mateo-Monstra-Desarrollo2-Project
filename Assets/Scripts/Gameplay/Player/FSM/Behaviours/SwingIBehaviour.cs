@@ -51,7 +51,7 @@ namespace Gameplay.Player.FSM.Behaviours
         }
         
         /// <summary>
-        /// Sets the current behavior to walk idle after completing jump.
+        /// Sets the current behavior to walk idle after completing.
         /// </summary>
         private void SetIBehaviour()
         {
