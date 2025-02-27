@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 2702952056433391888}
   - component: {fileID: 3626017123695385002}
   - component: {fileID: 9002008024698056494}
+  - component: {fileID: 3982019996402429066}
   - component: {fileID: 3620021686174285039}
   - component: {fileID: 3110083396482205835}
   - component: {fileID: 5833355707005527918}
@@ -223,6 +224,8 @@ GameObject:
   - component: {fileID: 2045983100898153788}
   - component: {fileID: 4764640622379833322}
   - component: {fileID: 6471712049191225506}
+  - component: {fileID: 516826523154084263}
+  - component: {fileID: 3110765342312182923}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -292,7 +295,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   rayHeight: 0.08
-  footPivot: {fileID: 0}
+  footPivot: {fileID: 254557036101620395}
 --- !u!114 &1717744169749455783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +334,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 5681562709192599014}
 --- !u!114 &2702952056433391888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,12 +348,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputReader: {fileID: 0}
-  fsm: {fileID: 0}
-  jump: {fileID: 0}
-  walkIdle: {fileID: 0}
-  grapple: {fileID: 0}
-  swing: {fileID: 0}
-  groundCheck: {fileID: 0}
+  fsm: {fileID: 3626017123695385002}
+  jump: {fileID: 3620021686174285039}
+  walkIdle: {fileID: 3110083396482205835}
+  grapple: {fileID: 9002008024698056494}
+  swing: {fileID: 3982019996402429066}
+  groundCheck: {fileID: 5681562709192599014}
 --- !u!114 &3626017123695385002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +378,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b1955cec09e3f4483eb229b287e08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3982019996402429066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8827048928792315509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cb3debd901f87418949b24657d31d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3620021686174285039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,9 +402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fed6860cadcf14fab648b6803a73e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: {fileID: 0}
-  walkIdle: {fileID: 0}
-  fsm: {fileID: 0}
+  jump: {fileID: 3924785809140520657}
+  walkIdle: {fileID: 2045983100898153788}
+  fsm: {fileID: 3626017123695385002}
 --- !u!114 &3110083396482205835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,15 +430,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitions: []
+  onGrappleStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 516826523154084263}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerAnimation, Assembly-CSharp
+        m_MethodName: PlayGrapplingAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGrappleEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9002008024698056494}
+        m_TargetAssemblyTypeName: Gameplay.Player.FSM.Behaviours.GrappleIBehaviour,
+          Assembly-CSharp
+        m_MethodName: SetIBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 516826523154084263}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerAnimation, Assembly-CSharp
+        m_MethodName: StopGrapplingAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGrappleMiss:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3110765342312182923}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerSoundManager, Assembly-CSharp
+        m_MethodName: PlayGrappleMissSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGrappleHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3110765342312182923}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerSoundManager, Assembly-CSharp
+        m_MethodName: PlayGrappleHitSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   playerCamera: {fileID: 0}
   lr: {fileID: 0}
   gunTip: {fileID: 0}
-  rb: {fileID: 0}
-  animator: {fileID: 0}
-  grapplerAnimationName: ShootGrappler
-  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
-  hitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
-  missClip: {fileID: 8300000, guid: 1c83fdd448d245c41b4e7ceb26f0f57e, type: 3}
+  rb: {fileID: 1869160496440553972}
   model: {fileID: 11400000, guid: 7e7912bc552f56a4fab27b998d6fff04, type: 2}
 --- !u!114 &1019772178830350843
 MonoBehaviour:
@@ -438,14 +521,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitions: []
+  onSwingStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwingEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 516826523154084263}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerAnimation, Assembly-CSharp
+        m_MethodName: StopSwingAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSwingHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 516826523154084263}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerAnimation, Assembly-CSharp
+        m_MethodName: PlaySwingAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3110765342312182923}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerSoundManager, Assembly-CSharp
+        m_MethodName: PlaySwingSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   playerCamera: {fileID: 0}
   lr: {fileID: 0}
   gunTip: {fileID: 0}
-  rb: {fileID: 0}
-  animator: {fileID: 0}
-  swingAnimationName: ShootSwing
-  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
-  hitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
+  rb: {fileID: 1869160496440553972}
   model: {fileID: 11400000, guid: 9776a1bac7391c1488fe921a82045fbf, type: 2}
 --- !u!114 &3924785809140520657
 MonoBehaviour:
@@ -460,12 +584,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1019772178830350843}
+  - {fileID: 5833355707005527918}
+  - {fileID: 2045983100898153788}
+  onJumpStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3110765342312182923}
+        m_TargetAssemblyTypeName: Gameplay.Player.PlayerSoundManager, Assembly-CSharp
+        m_MethodName: PlayJumpSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onJumpEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3620021686174285039}
+        m_TargetAssemblyTypeName: Gameplay.Player.FSM.Behaviours.JumpIBehaviour,
+          Assembly-CSharp
+        m_MethodName: SetIBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   model: {fileID: 11400000, guid: b0743c17b37c2ea418728c5729b9e3e7, type: 2}
-  channelSoundManager: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
-  clip: {fileID: 8300000, guid: 8bf9802f8dcef9c408c86a6974f168f4, type: 3}
 --- !u!114 &2045983100898153788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,12 +632,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3924785809140520657}
+  - {fileID: 1019772178830350843}
+  - {fileID: 5833355707005527918}
   model: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
   groundDrag: 10
-  orientation: {fileID: 0}
+  orientation: {fileID: 3666955567412201423}
   playerCamManager: {fileID: 0}
 --- !u!114 &4764640622379833322
 MonoBehaviour:
@@ -517,8 +670,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdc871010021ee43ac80302cb56c16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cheatRunModel: {fileID: 0}
-  normalRunModel: {fileID: 0}
-  cheatJumpModel: {fileID: 0}
-  normalJumpModel: {fileID: 0}
+  cheatRunModel: {fileID: 11400000, guid: 780645f9c51b89c44bf92d1fcc1d795d, type: 2}
+  normalRunModel: {fileID: 11400000, guid: 5eaa40cff0fd37c438c863dbaf4ef9d2, type: 2}
+  cheatJumpModel: {fileID: 11400000, guid: 17b2fa8bce1f5b2408a880c8f5b1cf78, type: 2}
+  normalJumpModel: {fileID: 11400000, guid: b0743c17b37c2ea418728c5729b9e3e7, type: 2}
   inputReader: {fileID: 0}
+--- !u!114 &516826523154084263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8827048928792315509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce951ecbf50dfc0499e5a20129e6a0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  grapplerAnimationName: ShootGrappler
+  swingAnimationName: ShootSwing
+--- !u!114 &3110765342312182923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8827048928792315509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a057c63bf6fd2894ab6aa06cd30f1f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: {fileID: 11400000, guid: 120b8f2564c53264fbb8f0b57abeed54, type: 2}
+  grappleHitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
+  grappleMissClip: {fileID: 8300000, guid: 1c83fdd448d245c41b4e7ceb26f0f57e, type: 3}
+  swingHitClip: {fileID: 8300000, guid: 6417b7d4e32c25f48998ee4d1d0b7e9d, type: 3}
+  jumpClip: {fileID: 8300000, guid: 8bf9802f8dcef9c408c86a6974f168f4, type: 3}
