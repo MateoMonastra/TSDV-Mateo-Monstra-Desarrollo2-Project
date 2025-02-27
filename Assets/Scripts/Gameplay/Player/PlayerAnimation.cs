@@ -12,22 +12,22 @@ namespace Gameplay.Player
         [Tooltip("Name of the swing animation trigger.")] 
         [SerializeField] private string swingAnimationName;
 
-        private void PlayGrapplingAnimation()
+        public void PlayGrapplingAnimation()
         {
             animator.SetBool(grapplerAnimationName, true);
         }
 
-        private void StopGrapplingAnimation()
+        public void StopGrapplingAnimation()
         {
             animator.SetBool(grapplerAnimationName, false);
         }
 
-        private void PlaySwingAnimation()
+        public void PlaySwingAnimation()
         {
             animator.SetBool(swingAnimationName, true);
         }
 
-        private void StopSwingAnimation()
+        public void StopSwingAnimation()
         {
             animator.SetBool(swingAnimationName, false);
         }

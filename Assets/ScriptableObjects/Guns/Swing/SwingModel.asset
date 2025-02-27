@@ -20,6 +20,6 @@ MonoBehaviour:
   spring: 4.5
   damper: 7
   massScale: 4.5
-  grappeable:
+  grabbable:
     serializedVersion: 2
     m_Bits: 1536

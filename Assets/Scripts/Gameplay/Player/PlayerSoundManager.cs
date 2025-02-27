@@ -21,22 +21,22 @@ namespace Gameplay.Player
         [SerializeField] private AudioClip jumpClip;
 
 
-        private void PlayGrappleHitSound()
+        public void PlayGrappleHitSound()
         {
             channel.PlaySound(grappleHitClip);
         }
         
-        private void PlayGrappleMissSound()
+        public void PlayGrappleMissSound()
         {
             channel.PlaySound(grappleMissClip);
         }
 
-        private void PlaySwingSound()
+        public void PlaySwingSound()
         {
             channel.PlaySound(swingHitClip);
         }
 
-        private void PlayJumpSound()
+        public void PlayJumpSound()
         {
             channel.PlaySound(jumpClip);
         }

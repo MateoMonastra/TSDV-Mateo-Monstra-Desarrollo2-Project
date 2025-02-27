@@ -17,6 +17,6 @@ MonoBehaviour:
   overshootYAxis: 0.5
   grapplingCd: 0.3
   grappleDuration: 1
-  grappeable:
+  grabbable:
     serializedVersion: 2
     m_Bits: 1536

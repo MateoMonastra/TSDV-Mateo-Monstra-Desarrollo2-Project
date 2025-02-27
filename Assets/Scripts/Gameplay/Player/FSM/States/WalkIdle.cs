@@ -25,6 +25,7 @@ namespace Gameplay.Player.FSM.States
         private GroundCheck _groundCheck;
         private Vector3 _moveDirection;
         private Rigidbody _rb;
+        private Vector3 moveDirection;
 
 
         private bool _shouldBrake;
@@ -57,7 +58,7 @@ namespace Gameplay.Player.FSM.States
         /// <param name="direction">Direction vector from the input.</param>
         public void SetDirection(Vector2 direction)
         {
-            _moveDirection = new Vector3(direction.x, 0, direction.y);
+            moveDirection = new Vector3(direction.x, 0, direction.y);
             
             if (direction.magnitude < 0.0001f)
             {
@@ -66,15 +67,15 @@ namespace Gameplay.Player.FSM.States
 
             if (orientation!=null)
             {
-                _moveDirection = orientation.forward * _moveDirection.z + orientation.right * _moveDirection.x;
+                _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
             }
         }
 
-        private void UpdateDirection() 
+        public void UpdateDirection() 
         {
             if (orientation != null)
             {
-                _moveDirection = orientation.forward * _moveDirection.z + orientation.right * _moveDirection.x;
+                _moveDirection = orientation.forward * moveDirection.z + orientation.right * moveDirection.x;
             }
         }
         

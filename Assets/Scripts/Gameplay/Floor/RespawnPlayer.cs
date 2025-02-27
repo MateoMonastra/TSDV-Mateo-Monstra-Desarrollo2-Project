@@ -28,7 +28,6 @@ namespace Gameplay.Floor
         
         private Rigidbody _playerRb;
         private float _transitionTimer;
-
         private Transform _checkPoint;
 
 
@@ -49,7 +48,8 @@ namespace Gameplay.Floor
 
         private void OnTriggerEnter(Collider other)
         {
-            eventChannelTimer.AddTime(timeToAdd);
+            if (eventChannelTimer)
+                eventChannelTimer.AddTime(timeToAdd);
 
             _transitionTimer = transitionCoolDown;
 
