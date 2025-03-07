@@ -15,7 +15,7 @@ namespace EventSystems.EventSceneManager
         /// <param name="newScene">Name of the scene to add.</param>
         public void AddScene(string newScene)
         {
-            OnAddScene.Invoke(newScene);
+            OnAddScene?.Invoke(newScene);
         }
         
         /// <summary>
@@ -24,7 +24,7 @@ namespace EventSystems.EventSceneManager
         /// <param name="unLoadedScene">Name of the scene to remove.</param>
         public void RemoveScene(string unLoadedScene)
         {
-            OnRemoveScene.Invoke(unLoadedScene);
+            OnRemoveScene?.Invoke(unLoadedScene);
         }
     }
 }

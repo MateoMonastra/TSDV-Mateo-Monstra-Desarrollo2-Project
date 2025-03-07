@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Player.FSM
 {
     public class InputReader : MonoBehaviour
     {
         public Action<Vector2> OnMove;
+        public Action OnNavigate;
         public Action OnJump;
         public Action OnGrapple;
         public Action OnSwingStart;
@@ -18,6 +20,16 @@ namespace Gameplay.Player.FSM
         public Action OnJumperCheat;
         public Action OnPassLevelCheat;
 
+        public bool activateLogs;
+
+        public void HandleNavigate(InputAction.CallbackContext context)
+        {
+            OnNavigate?.Invoke();
+
+            if (activateLogs)
+                Debug.Log("OnNavigate was called");
+        }
+
         /// <summary>
         /// Maneja la entrada de salto.
         /// </summary>
@@ -25,7 +37,10 @@ namespace Gameplay.Player.FSM
         {
             if (context.started)
             {
-                OnJump.Invoke();
+                OnJump?.Invoke();
+
+                if (activateLogs)
+                    Debug.Log("OnJump was called");
             }
         }
 
@@ -34,7 +49,10 @@ namespace Gameplay.Player.FSM
         /// </summary>
         public void HandleMoveInput(InputAction.CallbackContext context)
         {
-            OnMove.Invoke(context.ReadValue<Vector2>());
+            OnMove?.Invoke(context.ReadValue<Vector2>());
+
+            if (activateLogs)
+                Debug.Log("OnMove was called");
         }
 
         /// <summary>
@@ -44,7 +62,9 @@ namespace Gameplay.Player.FSM
         {
             if (context.started)
             {
-                OnGrapple.Invoke();
+                OnGrapple?.Invoke();
+                if (activateLogs)
+                    Debug.Log("OnGrapple was called");
             }
         }
 
@@ -55,11 +75,15 @@ namespace Gameplay.Player.FSM
         {
             if (context.started)
             {
-                OnSwingStart.Invoke();
+                OnSwingStart?.Invoke();
+                if (activateLogs)
+                    Debug.Log("OnSwingStart was called");
             }
             else if (context.canceled)
             {
-                OnSwingEnd.Invoke();
+                OnSwingEnd?.Invoke();
+                if (activateLogs)
+                    Debug.Log("OnSwingEnd was called");
             }
         }
 
@@ -72,16 +96,22 @@ namespace Gameplay.Player.FSM
             {
                 if (context.performed)
                 {
-                    OnMouseCam.Invoke(context.ReadValue<Vector2>());
+                    OnMouseCam?.Invoke(context.ReadValue<Vector2>());
+                    if (activateLogs)
+                        Debug.Log("OnMouseCam was called");
                 }
                 else
                 {
-                    OnMouseCam.Invoke(Vector2.zero);
+                    OnMouseCam?.Invoke(Vector2.zero);
+                    if (activateLogs)
+                        Debug.Log("OnMouseCam was called");
                 }
             }
             else
             {
-                OnJoystickCam.Invoke(context.ReadValue<Vector2>());
+                OnJoystickCam?.Invoke(context.ReadValue<Vector2>());
+                if (activateLogs)
+                    Debug.Log("OnJoystickCam was called");
             }
         }
 
@@ -92,7 +122,9 @@ namespace Gameplay.Player.FSM
         {
             if (context.started)
             {
-                OnPause.Invoke();
+                OnPause?.Invoke();
+                if (activateLogs)
+                    Debug.Log("OnPause was called");
             }
         }
 
@@ -103,7 +135,9 @@ namespace Gameplay.Player.FSM
         {
             if (context.started)
             {
-                OnSpeedCheat.Invoke();
+                OnSpeedCheat?.Invoke();
+                if (activateLogs)
+                    Debug.Log("OnSpeedCheat was called");
             }
         }
 
@@ -114,7 +148,9 @@ namespace Gameplay.Player.FSM
         {
             if (context.started)
             {
-                OnJumperCheat.Invoke();
+                OnJumperCheat?.Invoke();
+                if (activateLogs)
+                    Debug.Log("OnJumperCheat was called");
             }
         }
 
@@ -125,7 +161,9 @@ namespace Gameplay.Player.FSM
         {
             if (context.started)
             {
-                OnPassLevelCheat.Invoke();
+                OnPassLevelCheat?.Invoke();
+                if (activateLogs)
+                    Debug.Log("OnPassLevelCheat was called");
             }
         }
     }
